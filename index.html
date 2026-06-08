@@ -323,7 +323,7 @@
                         <button onclick="copyServerIP()" class="bg-surface-container-high/60 backdrop-blur-md hover:bg-surface-container border border-outline-variant/40 hover:border-primary/40 px-8 py-4 w-full sm:w-auto rounded-lg text-on-surface font-display font-bold text-sm tracking-wider flex items-center justify-center gap-2 active:scale-95 transition-all">
                             COPY SERVER IP <span class="material-symbols-outlined text-sm">content_copy</span>
                         </button>
-                        <a href="https://discord.gg/minecraft" target="_blank" class="bg-indigo-600/35 hover:bg-indigo-600 border border-indigo-500/40 px-8 py-4 w-full sm:w-auto rounded-lg text-on-surface font-display font-bold text-sm tracking-wider flex items-center justify-center gap-2 active:scale-95 transition-all">
+                        <a href="https://discord.gg/3Sfte6XW4g" target="_blank" class="bg-indigo-600/35 hover:bg-indigo-600 border border-indigo-500/40 px-8 py-4 w-full sm:w-auto rounded-lg text-on-surface font-display font-bold text-sm tracking-wider flex items-center justify-center gap-2 active:scale-95 transition-all">
                             JOIN DISCORD <span class="material-symbols-outlined text-sm">forum</span>
                         </a>
                     </div>
@@ -379,83 +379,40 @@
                     </div>
                 </div>
 
-                <!-- Monthly Goal / News section -->
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    
-                    <!-- Left: Server News & Updates -->
-                    <div class="lg:col-span-2 flex flex-col gap-6">
-                        <h2 class="font-display font-bold text-2xl text-on-surface uppercase tracking-tight flex items-center gap-2">
-                            <span class="material-symbols-outlined text-primary">feed</span> LATEST ANNOUNCEMENTS
-                        </h2>
+                <!-- Monthly Goal & Community section (2 columns, announcements removed) -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Donation Goal Box -->
+                    <div class="glass-card rounded-xl p-6 relative overflow-hidden flex flex-col justify-between">
+                        <div class="absolute -right-16 -top-16 w-36 h-36 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
                         
-                        <div class="flex flex-col gap-4">
-                            <!-- News 1 -->
-                            <div class="glass-card rounded-xl overflow-hidden flex flex-col md:flex-row group">
-                                <div class="w-full md:w-48 h-32 bg-cover bg-center bg-surface-container border-b md:border-b-0 md:border-r border-outline-variant/20" style="background-image: url('https://images.unsplash.com/photo-1605901309584-818e25960a8f?auto=format&fit=crop&q=80&w=400')"></div>
-                                <div class="p-6 flex-1 flex flex-col justify-between">
-                                    <div>
-                                        <div class="flex items-center justify-between mb-1">
-                                            <span class="text-xs font-mono font-bold text-primary uppercase tracking-widest">Update</span>
-                                            <span class="text-xs font-mono text-on-surface-variant">June 08, 2026</span>
-                                        </div>
-                                        <h3 class="font-display font-bold text-lg text-on-surface group-hover:text-primary transition-colors mb-2">Summer Patch v2.0 - Survival Reset</h3>
-                                        <p class="text-sm text-on-surface-variant line-clamp-2">Our massive Summer Reset is finally live! Check out the brand new spawn, revamped coin shop, and seasonal quest progression.</p>
-                                    </div>
-                                </div>
+                        <div>
+                            <h3 class="font-display font-bold text-lg text-on-surface mb-2 uppercase tracking-wide">Monthly Goal</h3>
+                            <p class="text-xs text-on-surface-variant mb-6">Helps keep the network running, supports hardware updates, and funds custom plugin development.</p>
+                        </div>
+
+                        <div>
+                            <div class="flex items-end justify-between mb-2">
+                                <span class="font-mono text-sm font-bold text-primary">82% Completed</span>
+                                <span class="font-mono text-sm text-on-surface-variant">₹8,200 / ₹10,000</span>
                             </div>
-                            
-                            <!-- News 2 -->
-                            <div class="glass-card rounded-xl overflow-hidden flex flex-col md:flex-row group">
-                                <div class="w-full md:w-48 h-32 bg-cover bg-center bg-surface-container border-b md:border-b-0 md:border-r border-outline-variant/20" style="background-image: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&q=80&w=400')"></div>
-                                <div class="p-6 flex-1 flex flex-col justify-between">
-                                    <div>
-                                        <div class="flex items-center justify-between mb-1">
-                                            <span class="text-xs font-mono font-bold text-secondary uppercase tracking-widest">Store</span>
-                                            <span class="text-xs font-mono text-on-surface-variant">June 04, 2026</span>
-                                        </div>
-                                        <h3 class="font-display font-bold text-lg text-on-surface group-hover:text-primary transition-colors mb-2">Soul Reaper & Elite Titan Ranks Released</h3>
-                                        <p class="text-sm text-on-surface-variant line-clamp-2">Elevate your game with the brand new Soul Reaper and Elite Titan ranks, now available at special launch prices in the webstore.</p>
-                                    </div>
-                                </div>
+                            <div class="w-full bg-surface-container-lowest border border-outline-variant/10 rounded-full h-4 overflow-hidden p-[2px]">
+                                <div class="bg-gradient-to-r from-primary/80 to-primary h-full rounded-full pulse-glow-emerald" style="width: 82%"></div>
                             </div>
+                            <p class="text-[10px] font-mono text-on-surface-variant mt-2 text-right">Goal resets in 22 days</p>
                         </div>
                     </div>
 
-                    <!-- Right: Donation Goal & Discord Card -->
-                    <div class="flex flex-col gap-6">
-                        <!-- Donation Goal Box -->
-                        <div class="glass-card rounded-xl p-6 relative overflow-hidden flex flex-col justify-between h-fit">
-                            <div class="absolute -right-16 -top-16 w-36 h-36 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
-                            
-                            <div>
-                                <h3 class="font-display font-bold text-lg text-on-surface mb-2 uppercase tracking-wide">Monthly Goal</h3>
-                                <p class="text-xs text-on-surface-variant mb-6">Helps keep the network running, supports hardware updates, and funds custom plugin development.</p>
-                            </div>
-
-                            <div>
-                                <div class="flex items-end justify-between mb-2">
-                                    <span class="font-mono text-sm font-bold text-primary">82% Completed</span>
-                                    <span class="font-mono text-sm text-on-surface-variant">₹8,200 / ₹10,000</span>
-                                </div>
-                                <div class="w-full bg-surface-container-lowest border border-outline-variant/10 rounded-full h-4 overflow-hidden p-[2px]">
-                                    <div class="bg-gradient-to-r from-primary/80 to-primary h-full rounded-full pulse-glow-emerald" style="width: 82%"></div>
-                                </div>
-                                <p class="text-[10px] font-mono text-on-surface-variant mt-2 text-right">Goal resets in 22 days</p>
-                            </div>
+                    <!-- Community Card -->
+                    <div class="glass-card rounded-xl p-6 bg-gradient-to-br from-indigo-950/20 to-indigo-900/10 border-indigo-500/20 flex flex-col justify-between">
+                        <div>
+                            <h3 class="font-display font-bold text-lg text-on-surface mb-1 flex items-center gap-2">
+                                <span class="material-symbols-outlined text-indigo-400">groups</span> COMMUNITY HUB
+                            </h3>
+                            <p class="text-xs text-on-surface-variant mb-4">Interact with thousands of server members, join voice chats, and participate in weekly events.</p>
                         </div>
-
-                        <!-- Community Card -->
-                        <div class="glass-card rounded-xl p-6 bg-gradient-to-br from-indigo-950/20 to-indigo-900/10 border-indigo-500/20 flex flex-col justify-between">
-                            <div>
-                                <h3 class="font-display font-bold text-lg text-on-surface mb-1 flex items-center gap-2">
-                                    <span class="material-symbols-outlined text-indigo-400">groups</span> COMMUNITY HUB
-                                </h3>
-                                <p class="text-xs text-on-surface-variant mb-4">Interact with thousands of server members, join voice chats, and participate in weekly events.</p>
-                            </div>
-                            <a href="https://discord.gg/minecraft" target="_blank" class="w-full bg-indigo-600 hover:bg-indigo-500 text-on-surface text-center py-2.5 rounded-lg text-xs font-bold tracking-wider flex items-center justify-center gap-2 transition-all active:scale-95">
-                                CONNECT DISCORD <span class="material-symbols-outlined text-sm">open_in_new</span>
-                            </a>
-                        </div>
+                        <a href="https://discord.gg/3Sfte6XW4g" target="_blank" class="w-full bg-indigo-600 hover:bg-indigo-500 text-on-surface text-center py-2.5 rounded-lg text-xs font-bold tracking-wider flex items-center justify-center gap-2 transition-all active:scale-95">
+                            CONNECT DISCORD <span class="material-symbols-outlined text-sm">open_in_new</span>
+                        </a>
                     </div>
                 </div>
 
@@ -908,7 +865,7 @@
                             <span class="material-symbols-outlined text-indigo-400 text-2xl">forum</span>
                             <div>
                                 <h4 class="font-display font-bold text-sm text-on-surface uppercase mb-0.5">Discord Tickets</h4>
-                                <p class="text-xs text-on-surface-variant">discord.gg/roxsmp</p>
+                                <p class="text-xs text-on-surface-variant"><a href="https://discord.gg/3Sfte6XW4g" target="_blank" class="hover:underline text-primary">discord.gg/3Sfte6XW4g</a></p>
                                 <p class="text-[10px] text-on-surface-variant/60 mt-1">Direct chat channels with admins</p>
                             </div>
                         </div>
@@ -1141,7 +1098,7 @@
                     Premium Indian Minecraft Server network. Elevate your in-game adventure with top-tier ranks and unban services.
                 </p>
                 <div class="flex items-center gap-3">
-                    <a href="https://discord.gg/minecraft" target="_blank" class="w-8 h-8 rounded-lg bg-surface-container border border-outline-variant/30 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary/50 transition-all active:scale-95">
+                    <a href="https://discord.gg/3Sfte6XW4g" target="_blank" class="w-8 h-8 rounded-lg bg-surface-container border border-outline-variant/30 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary/50 transition-all active:scale-95">
                         <span class="material-symbols-outlined text-base">forum</span>
                     </a>
                     <a href="https://youtube.com" target="_blank" class="w-8 h-8 rounded-lg bg-surface-container border border-outline-variant/30 flex items-center justify-center text-on-surface-variant hover:text-red-500 hover:border-red-500/50 transition-all active:scale-95">
