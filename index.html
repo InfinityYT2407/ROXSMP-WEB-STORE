@@ -1157,6 +1157,18 @@
         <div class="h-16 md:hidden"></div>
     </footer>
 
+    <!-- PAYMENT MODAL -->
+    <div id="payment-modal" class="fixed inset-0 z-50 pointer-events-none opacity-0 transition-all duration-300 flex items-center justify-center p-4">
+        <!-- Backdrop -->
+        <div onclick="closePaymentModal()" class="absolute inset-0 bg-background/90 backdrop-blur-md transition-opacity"></div>
+        <!-- Modal Panel -->
+        <div class="modal-panel relative w-full max-w-sm bg-surface-container border border-outline-variant/30 rounded-xl p-6 shadow-2xl transition-transform scale-95 duration-300">
+            <div class="modal-panel-content">
+                <!-- Dynamically injected -->
+            </div>
+        </div>
+    </div>
+
     <!-- Toast Engine Container (Sticky bottom-right alerts) -->
     <div id="toast-container" class="fixed bottom-20 md:bottom-6 right-6 z-50 flex flex-col gap-3 pointer-events-none"></div>
 
@@ -1846,11 +1858,11 @@
 
                     <div>
                         <label class="block text-xs font-mono font-bold text-on-surface-variant/80 uppercase mb-3">Select Payment Gateway</label>
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
                             <label class="relative flex items-center gap-3 p-4 rounded-lg border border-outline-variant/30 bg-surface-container-lowest cursor-pointer hover:border-primary/50 transition-all select-none">
                                 <input type="radio" name="payment_method" value="upi" checked class="text-primary focus:ring-0 cursor-pointer"/>
                                 <div class="flex flex-col">
-                                    <span class="text-xs font-bold font-display text-on-surface">UPI / GPay / PhonePe</span>
+                                    <span class="text-xs font-bold font-display text-on-surface">UPI (GPay / PhonePe / Paytm / BHIM)</span>
                                     <span class="text-[9px] text-on-surface-variant/60">India Instant Delivery</span>
                                 </div>
                             </label>
@@ -1859,15 +1871,7 @@
                                 <input type="radio" name="payment_method" value="card" class="text-primary focus:ring-0 cursor-pointer"/>
                                 <div class="flex flex-col">
                                     <span class="text-xs font-bold font-display text-on-surface">Credit / Debit Card</span>
-                                    <span class="text-[9px] text-on-surface-variant/60">Visa / Mastercard</span>
-                                </div>
-                            </label>
-
-                            <label class="relative flex items-center gap-3 p-4 rounded-lg border border-outline-variant/30 bg-surface-container-lowest cursor-pointer hover:border-primary/50 transition-all select-none">
-                                <input type="radio" name="payment_method" value="paypal" class="text-primary focus:ring-0 cursor-pointer"/>
-                                <div class="flex flex-col">
-                                    <span class="text-xs font-bold font-display text-on-surface">PayPal / Venmo</span>
-                                    <span class="text-[9px] text-on-surface-variant/60">International Gateways</span>
+                                    <span class="text-[9px] text-on-surface-variant/60">Visa / Mastercard / RuPay</span>
                                 </div>
                             </label>
                         </div>
@@ -1883,32 +1887,150 @@
                             BACK
                         </button>
                         <button type="submit" class="flex-1 bg-primary hover:bg-primary-container text-background py-3 rounded-lg font-bold text-sm tracking-wide transition-all active:scale-95 shimmer-btn">
-                            COMPLETE PAYMENT (SIMULATION)
+                            PROCEED TO PAY
                         </button>
                     </div>
                 </form>
             `;
         }
 
+        let checkoutEmail = '';
+        let checkoutDiscord = '';
+        let checkoutMethod = 'upi';
+
         function handleCheckoutPayment(e) {
             e.preventDefault();
             
-            // Simulate payment processing loader
+            const emailInput = e.target.querySelector('input[type="email"]');
+            const discordInput = e.target.querySelector('input[placeholder="e.g. player#1234"]');
+            const methodInput = e.target.querySelector('input[name="payment_method"]:checked');
+            
+            checkoutEmail = emailInput.value;
+            checkoutDiscord = discordInput.value;
+            checkoutMethod = methodInput.value;
+
+            openPaymentModal();
+        }
+
+        function openPaymentModal() {
+            const modal = document.getElementById('payment-modal');
+            const panel = modal.querySelector('.modal-panel-content');
+            const total = document.getElementById('checkout-total').innerText;
+
+            if (checkoutMethod === 'upi') {
+                panel.innerHTML = `
+                    <div class="flex flex-col items-center text-center">
+                        <div class="w-12 h-12 rounded-full bg-primary/20 border border-primary flex items-center justify-center text-primary mb-3">
+                            <span class="material-symbols-outlined text-2xl font-bold">qr_code_scanner</span>
+                        </div>
+                        <h3 class="font-display font-extrabold text-lg text-on-surface uppercase mb-1">SCAN & PAY WITH UPI</h3>
+                        <p class="text-[10px] text-on-surface-variant max-w-xs mb-4">Scan using Paytm, PhonePe, GPay or BHIM to pay <span class="text-primary font-bold font-mono">${total}</span>.</p>
+                        
+                        <!-- UPI QR Code -->
+                        <div class="bg-white p-3 rounded-xl mb-4 shadow-xl">
+                            <img src="payment_qr.jpg" class="w-44 h-auto mx-auto" alt="Payment QR Code"/>
+                        </div>
+                        
+                        <div class="w-full text-left space-y-1 mb-4">
+                            <span class="block text-[10px] font-mono font-bold text-on-surface-variant/80 uppercase">UPI Address:</span>
+                            <div class="flex items-center justify-between bg-surface-container-lowest border border-outline-variant/30 rounded-lg p-2.5">
+                                <span id="payment-upi-id" class="font-mono text-xs font-bold text-primary">9266495455@ptyes</span>
+                                <button onclick="copyUPIID()" class="text-[10px] bg-surface-container-high border border-outline-variant/40 hover:border-primary/50 text-on-surface font-bold py-1 px-2.5 rounded-md transition-all active:scale-95 flex items-center gap-1">
+                                    COPY <span class="material-symbols-outlined text-xs">content_copy</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="w-full flex gap-3">
+                            <button type="button" onclick="closePaymentModal()" class="flex-1 bg-surface-container-high hover:bg-surface-variant text-on-surface py-2.5 rounded-lg font-bold text-xs tracking-wider transition-all">
+                                CANCEL
+                            </button>
+                            <button type="button" onclick="confirmPayment()" class="flex-1 bg-primary hover:bg-primary-container text-background py-2.5 rounded-lg font-bold text-xs tracking-wider shimmer-btn">
+                                I HAVE PAID
+                            </button>
+                        </div>
+                    </div>
+                `;
+            } else {
+                panel.innerHTML = `
+                    <div class="flex flex-col items-center">
+                        <div class="w-12 h-12 rounded-full bg-primary/20 border border-primary flex items-center justify-center text-primary mb-3">
+                            <span class="material-symbols-outlined text-2xl font-bold">credit_card</span>
+                        </div>
+                        <h3 class="font-display font-extrabold text-lg text-on-surface uppercase mb-1">SECURE CARD CHECKOUT</h3>
+                        <p class="text-[10px] text-on-surface-variant max-w-xs mb-4">Pay safely using your Credit or Debit Card for <span class="text-primary font-bold font-mono">${total}</span>.</p>
+                        
+                        <form onsubmit="handleCardPaymentSubmit(event)" class="w-full text-left space-y-3 mb-4">
+                            <div>
+                                <label class="block text-[9px] font-mono font-bold text-on-surface-variant/80 uppercase mb-1">Cardholder Name</label>
+                                <input type="text" required class="w-full bg-surface-container-lowest border border-outline-variant/30 rounded-lg text-xs text-on-surface py-2 px-3 focus:ring-primary focus:border-primary" placeholder="Rohan Sharma"/>
+                            </div>
+                            <div>
+                                <label class="block text-[9px] font-mono font-bold text-on-surface-variant/80 uppercase mb-1">Card Number</label>
+                                <input type="text" required pattern="[0-9\\s]{15,19}" class="w-full bg-surface-container-lowest border border-outline-variant/30 rounded-lg text-xs text-on-surface py-2 px-3 focus:ring-primary focus:border-primary" placeholder="4111 2222 3333 4444"/>
+                            </div>
+                            <div class="grid grid-cols-2 gap-3">
+                                <div>
+                                    <label class="block text-[9px] font-mono font-bold text-on-surface-variant/80 uppercase mb-1">Expiry Date</label>
+                                    <input type="text" required pattern="[0-9/]{5}" class="w-full bg-surface-container-lowest border border-outline-variant/30 rounded-lg text-xs text-on-surface py-2 px-3 focus:ring-primary focus:border-primary" placeholder="MM/YY"/>
+                                </div>
+                                <div>
+                                    <label class="block text-[9px] font-mono font-bold text-on-surface-variant/80 uppercase mb-1">CVV / CVC</label>
+                                    <input type="password" required pattern="[0-9]{3}" class="w-full bg-surface-container-lowest border border-outline-variant/30 rounded-lg text-xs text-on-surface py-2 px-3 focus:ring-primary focus:border-primary" placeholder="***"/>
+                                </div>
+                            </div>
+                            
+                            <div class="w-full flex gap-3 pt-2">
+                                <button type="button" onclick="closePaymentModal()" class="flex-1 bg-surface-container-high hover:bg-surface-variant text-on-surface py-2.5 rounded-lg font-bold text-xs tracking-wider transition-all">
+                                    CANCEL
+                                </button>
+                                <button type="submit" class="flex-1 bg-primary hover:bg-primary-container text-background py-2.5 rounded-lg font-bold text-xs tracking-wider shimmer-btn">
+                                    PAY ${total}
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                `;
+            }
+
+            modal.classList.remove('pointer-events-none', 'opacity-0');
+            modal.querySelector('.modal-panel').classList.remove('scale-95');
+        }
+
+        function closePaymentModal() {
+            const modal = document.getElementById('payment-modal');
+            modal.classList.add('pointer-events-none', 'opacity-0');
+            modal.querySelector('.modal-panel').classList.add('scale-95');
+        }
+
+        function copyUPIID() {
+            navigator.clipboard.writeText('9266495455@ptyes').then(() => {
+                showToast('UPI Address copied to clipboard!', 'success');
+            }).catch(() => {
+                showToast('Failed to copy UPI address.', 'error');
+            });
+        }
+
+        function handleCardPaymentSubmit(e) {
+            e.preventDefault();
             const btn = e.target.querySelector('button[type="submit"]');
-            btn.innerHTML = `<span class="inline-block animate-spin border-2 border-background border-t-transparent w-4 h-4 rounded-full mr-2"></span> PROCESSING SECURE GATEWAY...`;
+            btn.innerHTML = `<span class="inline-block animate-spin border-2 border-background border-t-transparent w-4 h-4 rounded-full mr-2"></span> CHARGING CARD...`;
             btn.disabled = true;
 
             setTimeout(() => {
-                checkoutStep = 3;
-                
-                // Clear cart state upon successful checkout simulation
-                cart = [];
-                localStorage.removeItem('roxsmp_cart');
-                updateCartUI();
+                closePaymentModal();
+                confirmPayment();
+            }, 2000);
+        }
 
-                renderCheckoutFlow();
-                showToast('Payment completed successfully!', 'success');
-            }, 2500);
+        function confirmPayment() {
+            checkoutStep = 3;
+            cart = [];
+            localStorage.removeItem('roxsmp_cart');
+            updateCartUI();
+            renderCheckoutFlow();
+            closePaymentModal();
+            showToast('Payment completed successfully!', 'success');
         }
 
         // STEP 3: Invoice Success
