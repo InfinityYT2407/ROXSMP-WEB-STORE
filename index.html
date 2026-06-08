@@ -67,33 +67,34 @@
             50% { transform: translateY(-8px); }
         }
 
-        /* Modern Glassmorphic Container & Hover States */
+        /* Modern Vibrant Glassmorphic Container & Hover States */
         .glass-card {
-            background-color: rgba(28, 27, 27, 0.6);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-top: 1px solid rgba(255, 255, 255, 0.08);
-            border-left: 1px solid rgba(255, 255, 255, 0.04);
-            border-right: 1px solid rgba(0, 0, 0, 0.2);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+            background-color: rgba(20, 19, 19, 0.7);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-top: 1px solid rgba(255, 51, 68, 0.15);
+            border-left: 1px solid rgba(255, 51, 68, 0.08);
+            border-right: 1px solid rgba(0, 0, 0, 0.3);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.4);
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 4px 24px -6px rgba(0, 0, 0, 0.8), inset 0 0 8px rgba(255, 255, 255, 0.02);
         }
         .glass-card:hover {
-            transform: translateY(-4px) scale(1.01);
-            border-color: rgba(255, 51, 68, 0.3);
-            box-shadow: 0 12px 40px -10px rgba(0, 0, 0, 0.7), 0 0 25px 0 rgba(255, 51, 68, 0.1);
+            transform: translateY(-5px) scale(1.01);
+            border-color: rgba(255, 51, 68, 0.45);
+            box-shadow: 0 16px 45px -12px rgba(0, 0, 0, 0.9), 0 0 30px 2px rgba(255, 51, 68, 0.2), inset 0 0 12px rgba(255, 51, 68, 0.1);
         }
         .glass-card-premium:hover {
-            border-color: rgba(255, 219, 60, 0.3);
-            box-shadow: 0 12px 40px -10px rgba(0, 0, 0, 0.7), 0 0 25px 0 rgba(255, 219, 60, 0.1);
+            border-color: rgba(255, 219, 60, 0.45);
+            box-shadow: 0 16px 45px -12px rgba(0, 0, 0, 0.9), 0 0 30px 2px rgba(255, 219, 60, 0.2), inset 0 0 12px rgba(255, 219, 60, 0.1);
         }
 
-        /* Accent text shadows */
+        /* Accent text shadows (Vibrant) */
         .glow-text-primary {
-            text-shadow: 0 0 15px rgba(255, 51, 68, 0.4);
+            text-shadow: 0 0 12px rgba(255, 51, 68, 0.6), 0 0 24px rgba(255, 51, 68, 0.3);
         }
         .glow-text-gold {
-            text-shadow: 0 0 15px rgba(255, 219, 60, 0.4);
+            text-shadow: 0 0 12px rgba(255, 219, 60, 0.6), 0 0 24px rgba(255, 219, 60, 0.3);
         }
 
         /* Buttons Base Styling */
@@ -101,10 +102,11 @@
             background-color: #ff3344 !important;
             color: #131313 !important;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 51, 68, 0.25) !important;
         }
         .btn-primary:hover {
             background-color: #ff4d5d !important;
-            box-shadow: 0 0 25px rgba(255, 51, 68, 0.5) !important;
+            box-shadow: 0 0 30px rgba(255, 51, 68, 0.6), 0 4px 20px rgba(255, 51, 68, 0.4) !important;
         }
 
         /* Shimmering Button Hover Effect */
@@ -123,7 +125,7 @@
             background: linear-gradient(
                 to right,
                 transparent 0%,
-                rgba(255, 255, 255, 0.2) 50%,
+                rgba(255, 255, 255, 0.25) 50%,
                 transparent 100%
             );
             transform: rotate(25deg);
@@ -138,11 +140,11 @@
 
         /* Pulsing Glow Animation */
         @keyframes pulseGlow {
-            0%, 100% { box-shadow: 0 0 15px rgba(255, 51, 68, 0.2); }
-            50% { box-shadow: 0 0 25px rgba(255, 51, 68, 0.45); }
+            0%, 100% { box-shadow: 0 0 15px rgba(255, 51, 68, 0.25); }
+            50% { box-shadow: 0 0 30px rgba(255, 51, 68, 0.55); }
         }
         .pulse-glow-emerald {
-            animation: pulseGlow 2.5s infinite ease-in-out;
+            animation: pulseGlow 2s infinite ease-in-out;
         }
 
         /* Thin modern scrollbar styling */
@@ -190,6 +192,71 @@
             padding-left: 24px;
             padding-right: 24px;
         }
+
+        /* Print styles for Receipt Invoice */
+        @media print {
+            header, footer, nav, aside, .no-print,
+            #mobile-menu-drawer, #toast-container,
+            #checkout-step-1-indicator, #checkout-step-2-indicator, #checkout-step-3-indicator,
+            .flex-1.h-\[2px\], .mx-3.mb-4,
+            .lg\:col-span-1, .glass-card.p-6.h-fit,
+            .fixed, .absolute {
+                display: none !important;
+            }
+
+            body, html {
+                background: #ffffff !important;
+                color: #000000 !important;
+                min-height: auto !important;
+                padding: 0 !important;
+                margin: 0 !important;
+            }
+
+            .flex-1.pt-20 {
+                padding-top: 0 !important;
+            }
+            .page-view {
+                display: none !important;
+            }
+            .page-view.active {
+                display: block !important;
+                opacity: 1 !important;
+                transform: none !important;
+            }
+            
+            .grid {
+                display: block !important;
+            }
+            .lg\:col-span-2 {
+                width: 100% !important;
+            }
+
+            .invoice-container {
+                max-width: 100% !important;
+                margin: 0 auto !important;
+                padding: 20px !important;
+                background: #ffffff !important;
+                color: #000000 !important;
+            }
+
+            .invoice-card {
+                background: #ffffff !important;
+                color: #000000 !important;
+                border: 1px solid #000000 !important;
+                border-radius: 0 !important;
+                box-shadow: none !important;
+                padding: 20px !important;
+            }
+
+            .text-on-surface, .text-on-surface-variant, .text-primary, .text-secondary {
+                color: #000000 !important;
+                text-shadow: none !important;
+            }
+            
+            .border-b, .border-t, .border {
+                border-color: #000000 !important;
+            }
+        }
     </style>
 </head>
 <body class="bg-background text-on-surface font-sans min-h-screen flex flex-col antialiased">
@@ -235,6 +302,20 @@
                     <button onclick="openLoginModal()" class="flex items-center gap-2 bg-surface-container border border-outline-variant/20 hover:bg-surface-container-high px-4 py-2 rounded-lg text-xs font-bold font-mono tracking-wider text-on-surface transition-all active:scale-95">
                         <span class="material-symbols-outlined text-sm">login</span> SIGN IN
                     </button>
+                </div>
+
+                <!-- Social links (Instagram & YouTube) -->
+                <div class="hidden sm:flex items-center gap-2">
+                    <a href="https://instagram.com" target="_blank" class="p-2 rounded-lg bg-surface-container border border-outline-variant/30 hover:border-pink-500/50 hover:bg-pink-500/10 text-on-surface-variant hover:text-pink-500 transition-all active:scale-90" aria-label="Instagram">
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                        </svg>
+                    </a>
+                    <a href="https://youtube.com" target="_blank" class="p-2 rounded-lg bg-surface-container border border-outline-variant/30 hover:border-red-500/50 hover:bg-red-500/10 text-on-surface-variant hover:text-red-500 transition-all active:scale-90" aria-label="YouTube">
+                        <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                            <path d="M23.498 6.163a3.003 3.003 0 00-2.11-2.107C19.53 3.5 12 3.5 12 3.5s-7.53 0-9.388.556a3.003 3.003 0 00-2.11 2.107C0 8.028 0 12 0 12s0 3.972.502 5.837a3.003 3.003 0 002.11 2.107C4.47 20.5 12 20.5 12 20.5s7.53 0 9.388-.556a3.003 3.003 0 002.11-2.107C24 15.972 24 12 24 12s0-3.972-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                        </svg>
+                    </a>
                 </div>
 
                 <!-- Cart Action -->
@@ -1086,14 +1167,20 @@
                     Premium Indian Minecraft Server network. Elevate your in-game adventure with top-tier ranks and unban services.
                 </p>
                 <div class="flex items-center gap-3">
-                    <a href="https://discord.gg/3Sfte6XW4g" target="_blank" class="w-8 h-8 rounded-lg bg-surface-container border border-outline-variant/30 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary/50 transition-all active:scale-95">
-                        <span class="material-symbols-outlined text-base">forum</span>
+                    <a href="https://discord.gg/3Sfte6XW4g" target="_blank" class="w-9 h-9 rounded-lg bg-surface-container border border-outline-variant/30 flex items-center justify-center text-on-surface-variant hover:text-indigo-400 hover:border-indigo-400/50 transition-all active:scale-95" aria-label="Discord">
+                        <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                            <path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 00-.041-.106 13.107 13.107 0 01-1.873-.894.077.077 0 01-.008-.128c.126-.093.252-.19.372-.287a.075.075 0 01.077-.011c3.92 1.793 8.18 1.793 12.061 0a.073.073 0 01.078.009c.12.099.246.195.373.289a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.894.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.156-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.156 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.156-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.156 2.418z"/>
+                        </svg>
                     </a>
-                    <a href="https://youtube.com" target="_blank" class="w-8 h-8 rounded-lg bg-surface-container border border-outline-variant/30 flex items-center justify-center text-on-surface-variant hover:text-red-500 hover:border-red-500/50 transition-all active:scale-95">
-                        <span class="material-symbols-outlined text-base">video_library</span>
+                    <a href="https://youtube.com" target="_blank" class="w-9 h-9 rounded-lg bg-surface-container border border-outline-variant/30 flex items-center justify-center text-on-surface-variant hover:text-red-500 hover:border-red-500/50 transition-all active:scale-95" aria-label="YouTube">
+                        <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                            <path d="M23.498 6.163a3.003 3.003 0 00-2.11-2.107C19.53 3.5 12 3.5 12 3.5s-7.53 0-9.388.556a3.003 3.003 0 00-2.11 2.107C0 8.028 0 12 0 12s0 3.972.502 5.837a3.003 3.003 0 002.11 2.107C4.47 20.5 12 20.5 12 20.5s7.53 0 9.388-.556a3.003 3.003 0 002.11-2.107C24 15.972 24 12 24 12s0-3.972-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                        </svg>
                     </a>
-                    <a href="https://twitter.com" target="_blank" class="w-8 h-8 rounded-lg bg-surface-container border border-outline-variant/30 flex items-center justify-center text-on-surface-variant hover:text-sky-400 hover:border-sky-400/50 transition-all active:scale-95">
-                        <span class="material-symbols-outlined text-base">feed</span>
+                    <a href="https://instagram.com" target="_blank" class="w-9 h-9 rounded-lg bg-surface-container border border-outline-variant/30 flex items-center justify-center text-on-surface-variant hover:text-pink-500 hover:border-pink-500/50 transition-all active:scale-95" aria-label="Instagram">
+                        <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+                            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+                        </svg>
                     </a>
                 </div>
             </div>
@@ -1206,6 +1293,7 @@
         let checkoutUtr = '';
         let minecraftUser = null;
         let checkoutStep = 1;
+        let purchasedItems = [];
 
         // Tickets DB mockup in LocalStorage
         let supportTickets = JSON.parse(localStorage.getItem('roxsmp_tickets')) || [
@@ -1986,6 +2074,7 @@
 
         function confirmPayment() {
             checkoutStep = 3;
+            purchasedItems = [...cart]; // Backup cart items
             cart = [];
             localStorage.removeItem('roxsmp_cart');
             updateCartUI();
@@ -1997,48 +2086,101 @@
         // STEP 3: Invoice Success
         function renderStep3(container) {
             const invoiceId = 'INV-' + Math.floor(100000 + Math.random() * 900000);
+            const dateStr = new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
             
+            // Generate items HTML
+            const itemsHtml = purchasedItems.map(item => `
+                <tr class="border-b border-outline-variant/10">
+                    <td class="py-2 text-on-surface font-medium">${item.name}</td>
+                    <td class="py-2 text-right text-on-surface-variant font-mono">${item.quantity}</td>
+                    <td class="py-2 text-right text-on-surface-variant font-mono">₹${item.price}</td>
+                    <td class="py-2 text-right text-on-surface font-mono font-bold">₹${item.price * item.quantity}</td>
+                </tr>
+            `).join('');
+
+            const total = purchasedItems.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
             container.innerHTML = `
-                <div class="text-center py-6 flex flex-col items-center">
-                    <div class="w-16 h-16 rounded-full bg-primary/20 border border-primary flex items-center justify-center text-primary mb-4 pulse-glow-emerald">
-                        <span class="material-symbols-outlined text-4xl">check_circle</span>
-                    </div>
-                    
-                    <h3 class="font-display font-extrabold text-2xl text-on-surface uppercase mb-1">TRANSACTION COMPLETE!</h3>
-                    <p class="text-xs text-on-surface-variant max-w-sm mb-6">Your order has been authorized. Items will reach Minecraft account <span class="text-primary font-bold font-mono">${minecraftUser}</span> in 2-5 minutes.</p>
-
-                    <!-- Invoice Card -->
-                    <div class="w-full bg-surface-container-lowest border border-outline-variant/20 p-5 rounded-lg text-left text-xs space-y-4 mb-8">
-                        <div class="flex justify-between border-b border-outline-variant/15 pb-2.5">
-                            <span class="font-mono text-on-surface-variant font-bold">INVOICE ID:</span>
-                            <span class="font-mono font-bold text-on-surface">${invoiceId}</span>
+                <div class="invoice-container py-6 flex flex-col">
+                    <!-- Invoice Header -->
+                    <div class="flex items-center justify-between border-b border-outline-variant/20 pb-4 mb-6">
+                        <div class="flex items-center gap-2">
+                            <img src="logo.png" alt="RoxSmp Logo" class="w-10 h-10 object-contain">
+                            <span class="font-display font-extrabold text-xl tracking-tighter text-on-surface">
+                                Rox<span class="text-primary glow-text-primary">Smp</span>
+                            </span>
                         </div>
-                        <div class="flex justify-between">
-                            <span class="text-on-surface-variant font-bold">Delivery Username:</span>
-                            <span class="font-mono text-on-surface">${minecraftUser}</span>
-                        </div>
-                        <div class="flex justify-between">
-                            <span class="text-on-surface-variant font-bold">Status:</span>
-                            <span class="text-primary font-bold uppercase font-mono">CREDITED / DELIVERING</span>
-                        </div>
-                        ${checkoutMethod === 'upi' ? `
-                        <div class="flex justify-between border-t border-outline-variant/15 pt-2.5">
-                            <span class="text-on-surface-variant font-bold">UTR / Ref No:</span>
-                            <span class="font-mono text-primary font-bold">${checkoutUtr}</span>
-                        </div>
-                        ` : ''}
-                        <div class="flex justify-between border-t border-outline-variant/15 pt-2.5 text-sm font-bold text-on-surface">
-                            <span>Total Paid:</span>
-                            <span class="text-primary">₹${document.getElementById('checkout-total').innerText}</span>
+                        <div class="text-right">
+                            <span class="text-xs font-mono font-bold text-primary block uppercase">Official Receipt</span>
+                            <span class="text-[10px] text-on-surface-variant font-mono">${dateStr}</span>
                         </div>
                     </div>
 
-                    <div class="w-full flex flex-col sm:flex-row gap-3">
-                        <a href="#home" onclick="resetCheckout()" class="flex-1 bg-primary hover:bg-primary-container text-background py-3 rounded-lg font-bold text-xs tracking-wider text-center">
-                            GO BACK HOME
-                        </a>
-                        <a href="#store" onclick="resetCheckout()" class="flex-1 bg-surface-container-high hover:bg-surface-variant text-on-surface py-3 rounded-lg font-bold text-xs tracking-wider text-center">
-                            CONTINUE SHOPPING
+                    <div class="text-center mb-6 no-print flex flex-col items-center">
+                        <div class="w-16 h-16 rounded-full bg-primary/20 border border-primary flex items-center justify-center text-primary mb-3 pulse-glow-emerald">
+                            <span class="material-symbols-outlined text-4xl">check_circle</span>
+                        </div>
+                        <h3 class="font-display font-extrabold text-xl text-on-surface uppercase mb-1">TRANSACTION COMPLETE!</h3>
+                        <p class="text-xs text-on-surface-variant max-w-sm">Items will reach Minecraft account <span class="text-primary font-bold font-mono">${minecraftUser}</span> in 2-5 minutes.</p>
+                    </div>
+
+                    <!-- Printable Invoice Details Card -->
+                    <div class="invoice-card bg-surface-container-lowest border border-outline-variant/20 p-6 rounded-lg text-xs space-y-4 mb-6">
+                        <div class="grid grid-cols-2 gap-4 border-b border-outline-variant/15 pb-4">
+                            <div>
+                                <span class="block font-mono text-[9px] text-on-surface-variant font-bold uppercase">Invoice ID:</span>
+                                <span class="font-mono font-bold text-on-surface text-sm">${invoiceId}</span>
+                            </div>
+                            <div class="text-right">
+                                <span class="block font-mono text-[9px] text-on-surface-variant font-bold uppercase">Date Issued:</span>
+                                <span class="font-mono font-bold text-on-surface">${dateStr}</span>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-4 border-b border-outline-variant/15 pb-4">
+                            <div>
+                                <span class="block font-mono text-[9px] text-on-surface-variant font-bold uppercase">Billing Details:</span>
+                                <span class="block text-on-surface font-semibold">${minecraftUser}</span>
+                                <span class="block text-[10px] text-on-surface-variant">${checkoutEmail}</span>
+                            </div>
+                            <div class="text-right">
+                                <span class="block font-mono text-[9px] text-on-surface-variant font-bold uppercase">Payment Info:</span>
+                                <span class="block text-on-surface font-semibold">${checkoutMethod.toUpperCase() === 'UPI' ? 'UPI / NetBanking' : 'Credit / Debit Card'}</span>
+                                ${checkoutMethod === 'upi' ? `<span class="block font-mono text-[10px] text-primary font-bold">UTR: ${checkoutUtr}</span>` : ''}
+                            </div>
+                        </div>
+
+                        <!-- Items Table -->
+                        <div>
+                            <span class="block font-mono text-[9px] text-on-surface-variant font-bold uppercase mb-2">Order Items:</span>
+                            <table class="w-full border-collapse">
+                                <thead>
+                                    <tr class="border-b border-outline-variant/25 text-left text-[9px] font-mono text-on-surface-variant uppercase">
+                                        <th class="pb-1 font-bold">Item Description</th>
+                                        <th class="pb-1 text-right font-bold">Qty</th>
+                                        <th class="pb-1 text-right font-bold">Unit Price</th>
+                                        <th class="pb-1 text-right font-bold">Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${itemsHtml}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="flex justify-between border-t border-outline-variant/15 pt-3.5 text-sm font-bold text-on-surface">
+                            <span>Total Amount Paid:</span>
+                            <span class="text-primary text-base glow-text-primary">₹${total}</span>
+                        </div>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="w-full flex flex-col sm:flex-row gap-3 no-print">
+                        <button onclick="window.print()" class="flex-1 bg-surface-container-high border border-outline-variant/30 hover:border-primary/50 hover:bg-surface-container text-on-surface py-3 rounded-lg font-bold text-xs tracking-wider flex items-center justify-center gap-2 active:scale-95 transition-all">
+                            <span class="material-symbols-outlined text-sm text-primary">print</span> PRINT / SAVE RECEIPT
+                        </button>
+                        <a href="#store" onclick="resetCheckout()" class="flex-1 bg-primary hover:bg-primary-container text-background py-3 rounded-lg font-bold text-xs tracking-wider text-center flex items-center justify-center gap-2">
+                            CONTINUE SHOPPING <span class="material-symbols-outlined text-sm">arrow_forward</span>
                         </a>
                     </div>
                 </div>
