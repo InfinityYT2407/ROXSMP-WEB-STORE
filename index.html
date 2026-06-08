@@ -1,0 +1,2131 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>RoxSmp | Premium Minecraft Store</title>
+    <!-- Tailwind CSS with custom styling plugins -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <!-- Google Fonts: Sora (Headings), Inter (Body), JetBrains Mono (Tech/Badges) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+    
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        surface: '#131313',
+                        'surface-dim': '#131313',
+                        'surface-bright': '#393939',
+                        'surface-container-lowest': '#0e0e0e',
+                        'surface-container-low': '#1c1b1b',
+                        'surface-container': '#201f1f',
+                        'surface-container-high': '#2a2a2a',
+                        'surface-container-highest': '#353534',
+                        'on-surface': '#e5e2e1',
+                        'on-surface-variant': '#c5b5b5',
+                        outline: '#8c7373',
+                        'outline-variant': '#453030',
+                        primary: '#ff3344',
+                        'on-primary': '#ffffff',
+                        'primary-container': '#d91e2e',
+                        'on-primary-container': '#ffebec',
+                        secondary: '#ffd60a',
+                        'on-secondary': '#000000',
+                        'secondary-container': '#e0a600',
+                        'on-secondary-container': '#ffe79a',
+                        tertiary: '#ff7096',
+                        'on-tertiary': '#313030',
+                        error: '#ffb4ab',
+                        'on-error': '#690005',
+                        background: '#131313',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        display: ['Sora', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    borderRadius: {
+                        'DEFAULT': '0.5rem',
+                        'md': '0.75rem',
+                        'lg': '1rem',
+                        'xl': '1.5rem',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Floating animation for logo */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        /* Modern Glassmorphic Container & Hover States */
+        .glass-card {
+            background-color: rgba(28, 27, 27, 0.6);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            border-left: 1px solid rgba(255, 255, 255, 0.04);
+            border-right: 1px solid rgba(0, 0, 0, 0.2);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.3);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .glass-card:hover {
+            transform: translateY(-4px) scale(1.01);
+            border-color: rgba(255, 51, 68, 0.3);
+            box-shadow: 0 12px 40px -10px rgba(0, 0, 0, 0.7), 0 0 25px 0 rgba(255, 51, 68, 0.1);
+        }
+        .glass-card-premium:hover {
+            border-color: rgba(255, 219, 60, 0.3);
+            box-shadow: 0 12px 40px -10px rgba(0, 0, 0, 0.7), 0 0 25px 0 rgba(255, 219, 60, 0.1);
+        }
+
+        /* Accent text shadows */
+        .glow-text-primary {
+            text-shadow: 0 0 15px rgba(255, 51, 68, 0.4);
+        }
+        .glow-text-gold {
+            text-shadow: 0 0 15px rgba(255, 219, 60, 0.4);
+        }
+
+        /* Shimmering Button Hover Effect */
+        .shimmer-btn {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .shimmer-btn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -150%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                to right,
+                transparent 0%,
+                rgba(255, 255, 255, 0.2) 50%,
+                transparent 100%
+            );
+            transform: rotate(25deg);
+            transition: all 0.5s;
+            animation: shimmer 4s infinite linear;
+        }
+        @keyframes shimmer {
+            0% { left: -150%; }
+            15% { left: 150%; }
+            100% { left: 150%; }
+        }
+
+        /* Pulsing Glow Animation */
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 15px rgba(255, 51, 68, 0.2); }
+            50% { box-shadow: 0 0 25px rgba(255, 51, 68, 0.45); }
+        }
+        .pulse-glow-emerald {
+            animation: pulseGlow 2.5s infinite ease-in-out;
+        }
+
+        /* Thin modern scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0e0e0e;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #393939;
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #ff3344;
+        }
+
+        /* Smooth tab animations */
+        .page-view {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+            display: none;
+        }
+        .page-view.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Soft Pulse for Badges */
+        @keyframes softBadgePulse {
+            0%, 100% { transform: scale(1); filter: brightness(1); }
+            50% { transform: scale(1.05); filter: brightness(1.15); }
+        }
+        .animate-sale-badge {
+            animation: softBadgePulse 2.5s infinite ease-in-out;
+        }
+
+        /* Grid alignment adjustments */
+        .grid-layout {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding-left: 24px;
+            padding-right: 24px;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface font-sans min-h-screen flex flex-col antialiased">
+
+    <!-- Top Navigation Bar -->
+    <header class="fixed top-0 w-full z-40 bg-surface/70 backdrop-blur-xl border-b border-outline-variant/20 shadow-2xl transition-all duration-300">
+        <div class="max-w-7xl mx-auto flex items-center justify-between h-20 px-6">
+            
+            <!-- Logo Area -->
+            <div class="flex items-center gap-4">
+                <button id="mobile-menu-btn" aria-label="Open Menu" class="md:hidden text-primary p-2 active:scale-95 transition-transform">
+                    <span class="material-symbols-outlined text-2xl">menu</span>
+                </button>
+                <a href="#home" class="flex items-center gap-2 group">
+                    <img src="logo.png" alt="RoxSmp Logo" class="w-10 h-10 object-contain transition-transform group-hover:scale-105">
+                    <span class="font-display font-extrabold text-2xl tracking-tighter text-on-surface group-hover:text-primary transition-colors">
+                        Rox<span class="text-primary glow-text-primary">Smp</span>
+                    </span>
+                </a>
+            </div>
+
+            <!-- Desktop Links -->
+            <nav class="hidden md:flex items-center gap-1">
+                <a href="#home" class="nav-link px-4 py-2 rounded-lg text-sm font-semibold text-on-surface-variant hover:text-primary hover:bg-surface-container/50 transition-all">Home</a>
+                <a href="#store" class="nav-link px-4 py-2 rounded-lg text-sm font-semibold text-on-surface-variant hover:text-primary hover:bg-surface-container/50 transition-all">Store</a>
+                <a href="#rules" class="nav-link px-4 py-2 rounded-lg text-sm font-semibold text-on-surface-variant hover:text-primary hover:bg-surface-container/50 transition-all">Server Rules</a>
+                <a href="#faq" class="nav-link px-4 py-2 rounded-lg text-sm font-semibold text-on-surface-variant hover:text-primary hover:bg-surface-container/50 transition-all">FAQ</a>
+                <a href="#support" class="nav-link px-4 py-2 rounded-lg text-sm font-semibold text-on-surface-variant hover:text-primary hover:bg-surface-container/50 transition-all">Support</a>
+                <a href="#contact" class="nav-link px-4 py-2 rounded-lg text-sm font-semibold text-on-surface-variant hover:text-primary hover:bg-surface-container/50 transition-all">Contact</a>
+            </nav>
+
+            <!-- Actions Right -->
+            <div class="flex items-center gap-4">
+                <!-- Server IP Copy (Desktop) -->
+                <button onclick="copyServerIP()" class="hidden lg:flex items-center gap-2 bg-surface-container border border-outline-variant/40 hover:border-primary/50 text-xs font-mono font-bold uppercase py-2.5 px-4 rounded-md transition-all group active:scale-95">
+                    <span class="w-2.5 h-2.5 rounded-full bg-primary inline-block animate-ping"></span>
+                    <span class="text-on-surface-variant group-hover:text-on-surface">play.roxsmp.fun</span>
+                    <span class="material-symbols-outlined text-sm text-primary">content_copy</span>
+                </button>
+
+                <!-- Minecraft User Status -->
+                <div id="nav-user-container">
+                    <button onclick="openLoginModal()" class="flex items-center gap-2 bg-surface-container border border-outline-variant/20 hover:bg-surface-container-high px-4 py-2 rounded-lg text-xs font-bold font-mono tracking-wider text-on-surface transition-all active:scale-95">
+                        <span class="material-symbols-outlined text-sm">login</span> SIGN IN
+                    </button>
+                </div>
+
+                <!-- Cart Action -->
+                <button onclick="toggleCartDrawer(true)" class="relative p-2.5 rounded-lg bg-primary/10 border border-primary/20 hover:bg-primary/20 transition-all text-primary active:scale-95">
+                    <span class="material-symbols-outlined text-2xl font-semibold">shopping_cart</span>
+                    <span id="nav-cart-badge" class="absolute -top-1.5 -right-1.5 bg-error text-on-error text-[10px] font-bold font-mono w-5 h-5 rounded-full flex items-center justify-center scale-0 transition-transform">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Drawer Sidebar (Sliding) -->
+    <div id="mobile-menu-drawer" class="fixed inset-0 z-50 pointer-events-none opacity-0 transition-all duration-300">
+        <!-- Backdrop -->
+        <div onclick="toggleMobileMenu(false)" class="absolute inset-0 bg-background/80 backdrop-blur-sm transition-opacity"></div>
+        <!-- Panel -->
+        <aside class="absolute top-0 left-0 bottom-0 w-80 bg-surface-container border-r border-outline-variant/20 p-6 flex flex-col gap-6 shadow-2xl transition-transform -translate-x-full duration-300">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <img src="logo.png" alt="RoxSmp Logo" class="w-8 h-8 object-contain">
+                    <span class="font-display font-extrabold text-xl text-primary">RoxSmp</span>
+                </div>
+                <button onclick="toggleMobileMenu(false)" class="text-on-surface-variant p-1.5 active:scale-90 transition-transform">
+                    <span class="material-symbols-outlined text-2xl">close</span>
+                </button>
+            </div>
+            
+            <button onclick="copyServerIP()" class="flex items-center justify-between w-full bg-surface-container-lowest border border-outline-variant/30 px-4 py-3 rounded-lg font-mono text-sm">
+                <span class="flex items-center gap-2 text-primary font-bold">
+                    <span class="w-2 h-2 rounded-full bg-primary inline-block animate-pulse"></span> play.roxsmp.fun
+                </span>
+                <span class="material-symbols-outlined text-sm">content_copy</span>
+            </button>
+
+            <nav class="flex flex-col gap-2">
+                <a href="#home" onclick="toggleMobileMenu(false)" class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-variant/30 rounded-lg text-base font-medium transition-all">
+                    <span class="material-symbols-outlined">home</span> Home
+                </a>
+                <a href="#store" onclick="toggleMobileMenu(false)" class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-variant/30 rounded-lg text-base font-medium transition-all">
+                    <span class="material-symbols-outlined">storefront</span> Store
+                </a>
+                <a href="#rules" onclick="toggleMobileMenu(false)" class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-variant/30 rounded-lg text-base font-medium transition-all">
+                    <span class="material-symbols-outlined">gavel</span> Server Rules
+                </a>
+                <a href="#faq" onclick="toggleMobileMenu(false)" class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-variant/30 rounded-lg text-base font-medium transition-all">
+                    <span class="material-symbols-outlined">help</span> FAQ
+                </a>
+                <a href="#support" onclick="toggleMobileMenu(false)" class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-variant/30 rounded-lg text-base font-medium transition-all">
+                    <span class="material-symbols-outlined">support_agent</span> Support
+                </a>
+                <a href="#contact" onclick="toggleMobileMenu(false)" class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-variant/30 rounded-lg text-base font-medium transition-all">
+                    <span class="material-symbols-outlined">mail</span> Contact Us
+                </a>
+            </nav>
+        </aside>
+    </div>
+
+    <!-- Main Container -->
+    <div class="flex-1 pt-20 flex flex-col">
+
+        <!-- ============================================== -->
+        <!-- VIEW: HOME PAGE                                -->
+        <!-- ============================================== -->
+        <section id="home-view" class="page-view flex-1">
+            <!-- Hero Banner -->
+            <div class="relative overflow-hidden min-h-[600px] flex items-center justify-center py-20 px-6 border-b border-outline-variant/10">
+                <!-- Dynamic Banner Wallpaper with Crimson Blend -->
+                <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('banner.png'); transform: scale(1.02); filter: brightness(0.25) contrast(1.2) saturate(0.85);"></div>
+                <div class="absolute inset-0 bg-primary/15 mix-blend-color"></div>
+                <!-- Radial Dark Vignette Overlay -->
+                <div class="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent"></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background"></div>
+                
+                <!-- Hero Content -->
+                <div class="relative z-10 max-w-4xl text-center flex flex-col items-center">
+                    <!-- Floating Premium Server Logo -->
+                    <img src="logo.png" alt="RoxSmp Logo" class="w-48 h-48 md:w-56 md:h-56 object-contain mb-8 drop-shadow-[0_0_35px_rgba(255,51,68,0.45)] animate-[float_4s_infinite_ease-in-out]">
+
+                    <div class="flex items-center gap-2 mb-4 bg-primary/10 border border-primary/20 px-4 py-1.5 rounded-full animate-sale-badge">
+                        <span class="w-2 h-2 rounded-full bg-primary inline-block animate-ping"></span>
+                        <span class="font-mono text-xs text-primary font-bold uppercase tracking-widest">SUMMER SALE - 20% OFF WITH "SUMMER20"</span>
+                    </div>
+
+                    <h1 class="font-display font-extrabold text-5xl md:text-7xl text-on-surface tracking-tighter uppercase mb-4 leading-none">
+                        RoxSmp <span class="text-primary glow-text-primary">NETWORK</span>
+                    </h1>
+                    
+                    <p class="text-on-surface-variant text-base md:text-xl font-normal max-w-2xl mb-8 leading-relaxed">
+                        Step into India's ultimate Survival & Skyblock network. Claim exclusive custom ranks, unbans, and establish your legacy.
+                    </p>
+
+                    <!-- CTAs -->
+                    <div class="flex flex-col sm:flex-row items-center gap-4 w-full justify-center">
+                        <a href="#store" class="shimmer-btn btn-primary px-8 py-4 w-full sm:w-auto rounded-lg text-background font-display font-bold text-sm tracking-wider flex items-center justify-center gap-2 active:scale-95 shadow-[0_0_30px_rgba(255,51,68,0.2)] hover:bg-primary/90">
+                            BROWSE STORE <span class="material-symbols-outlined text-sm">storefront</span>
+                        </a>
+                        <button onclick="copyServerIP()" class="bg-surface-container-high/60 backdrop-blur-md hover:bg-surface-container border border-outline-variant/40 hover:border-primary/40 px-8 py-4 w-full sm:w-auto rounded-lg text-on-surface font-display font-bold text-sm tracking-wider flex items-center justify-center gap-2 active:scale-95 transition-all">
+                            COPY SERVER IP <span class="material-symbols-outlined text-sm">content_copy</span>
+                        </button>
+                        <a href="https://discord.gg/minecraft" target="_blank" class="bg-indigo-600/35 hover:bg-indigo-600 border border-indigo-500/40 px-8 py-4 w-full sm:w-auto rounded-lg text-on-surface font-display font-bold text-sm tracking-wider flex items-center justify-center gap-2 active:scale-95 transition-all">
+                            JOIN DISCORD <span class="material-symbols-outlined text-sm">forum</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main grid block -->
+            <div class="max-w-7xl mx-auto px-6 py-16 flex flex-col gap-16">
+                
+                <!-- Network Live Statistics -->
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="glass-card rounded-xl p-6 flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center text-primary shadow-[0_0_15px_rgba(255,51,68,0.1)]">
+                            <span class="material-symbols-outlined text-2xl">sports_esports</span>
+                        </div>
+                        <div>
+                            <div class="flex items-center gap-1.5">
+                                <span class="w-2 h-2 rounded-full bg-primary inline-block animate-ping"></span>
+                                <span class="font-mono text-2xl font-bold">342</span>
+                            </div>
+                            <span class="text-xs font-bold text-on-surface-variant font-mono tracking-wide uppercase">Players Online</span>
+                        </div>
+                    </div>
+                    
+                    <div class="glass-card rounded-xl p-6 flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-lg bg-secondary/10 border border-secondary/20 flex items-center justify-center text-secondary shadow-[0_0_15px_rgba(255,219,60,0.1)]">
+                            <span class="material-symbols-outlined text-2xl">thumb_up</span>
+                        </div>
+                        <div>
+                            <span class="font-mono text-2xl font-bold">14,290</span>
+                            <span class="block text-xs font-bold text-on-surface-variant font-mono tracking-wide uppercase">Monthly Votes</span>
+                        </div>
+                    </div>
+
+                    <div class="glass-card rounded-xl p-6 flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-lg bg-teal-400/10 border border-teal-400/20 flex items-center justify-center text-teal-400">
+                            <span class="material-symbols-outlined text-2xl">hourglass_empty</span>
+                        </div>
+                        <div>
+                            <span class="font-mono text-2xl font-bold">99.98%</span>
+                            <span class="block text-xs font-bold text-on-surface-variant font-mono tracking-wide uppercase">Server Uptime</span>
+                        </div>
+                    </div>
+
+                    <div class="glass-card rounded-xl p-6 flex items-center gap-4">
+                        <div class="w-12 h-12 rounded-lg bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400">
+                            <span class="material-symbols-outlined text-2xl">trending_up</span>
+                        </div>
+                        <div>
+                            <span class="font-mono text-2xl font-bold">1,824</span>
+                            <span class="block text-xs font-bold text-on-surface-variant font-mono tracking-wide uppercase">All-time Peak</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Monthly Goal / News section -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Left: Server News & Updates -->
+                    <div class="lg:col-span-2 flex flex-col gap-6">
+                        <h2 class="font-display font-bold text-2xl text-on-surface uppercase tracking-tight flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary">feed</span> LATEST ANNOUNCEMENTS
+                        </h2>
+                        
+                        <div class="flex flex-col gap-4">
+                            <!-- News 1 -->
+                            <div class="glass-card rounded-xl overflow-hidden flex flex-col md:flex-row group">
+                                <div class="w-full md:w-48 h-32 bg-cover bg-center bg-surface-container border-b md:border-b-0 md:border-r border-outline-variant/20" style="background-image: url('https://images.unsplash.com/photo-1605901309584-818e25960a8f?auto=format&fit=crop&q=80&w=400')"></div>
+                                <div class="p-6 flex-1 flex flex-col justify-between">
+                                    <div>
+                                        <div class="flex items-center justify-between mb-1">
+                                            <span class="text-xs font-mono font-bold text-primary uppercase tracking-widest">Update</span>
+                                            <span class="text-xs font-mono text-on-surface-variant">June 08, 2026</span>
+                                        </div>
+                                        <h3 class="font-display font-bold text-lg text-on-surface group-hover:text-primary transition-colors mb-2">Summer Patch v2.0 - Survival Reset</h3>
+                                        <p class="text-sm text-on-surface-variant line-clamp-2">Our massive Summer Reset is finally live! Check out the brand new spawn, revamped coin shop, and seasonal quest progression.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- News 2 -->
+                            <div class="glass-card rounded-xl overflow-hidden flex flex-col md:flex-row group">
+                                <div class="w-full md:w-48 h-32 bg-cover bg-center bg-surface-container border-b md:border-b-0 md:border-r border-outline-variant/20" style="background-image: url('https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&q=80&w=400')"></div>
+                                <div class="p-6 flex-1 flex flex-col justify-between">
+                                    <div>
+                                        <div class="flex items-center justify-between mb-1">
+                                            <span class="text-xs font-mono font-bold text-secondary uppercase tracking-widest">Store</span>
+                                            <span class="text-xs font-mono text-on-surface-variant">June 04, 2026</span>
+                                        </div>
+                                        <h3 class="font-display font-bold text-lg text-on-surface group-hover:text-primary transition-colors mb-2">Soul Reaper & Elite Titan Ranks Released</h3>
+                                        <p class="text-sm text-on-surface-variant line-clamp-2">Elevate your game with the brand new Soul Reaper and Elite Titan ranks, now available at special launch prices in the webstore.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Donation Goal & Discord Card -->
+                    <div class="flex flex-col gap-6">
+                        <!-- Donation Goal Box -->
+                        <div class="glass-card rounded-xl p-6 relative overflow-hidden flex flex-col justify-between h-fit">
+                            <div class="absolute -right-16 -top-16 w-36 h-36 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+                            
+                            <div>
+                                <h3 class="font-display font-bold text-lg text-on-surface mb-2 uppercase tracking-wide">Monthly Goal</h3>
+                                <p class="text-xs text-on-surface-variant mb-6">Helps keep the network running, supports hardware updates, and funds custom plugin development.</p>
+                            </div>
+
+                            <div>
+                                <div class="flex items-end justify-between mb-2">
+                                    <span class="font-mono text-sm font-bold text-primary">82% Completed</span>
+                                    <span class="font-mono text-sm text-on-surface-variant">₹8,200 / ₹10,000</span>
+                                </div>
+                                <div class="w-full bg-surface-container-lowest border border-outline-variant/10 rounded-full h-4 overflow-hidden p-[2px]">
+                                    <div class="bg-gradient-to-r from-primary/80 to-primary h-full rounded-full pulse-glow-emerald" style="width: 82%"></div>
+                                </div>
+                                <p class="text-[10px] font-mono text-on-surface-variant mt-2 text-right">Goal resets in 22 days</p>
+                            </div>
+                        </div>
+
+                        <!-- Community Card -->
+                        <div class="glass-card rounded-xl p-6 bg-gradient-to-br from-indigo-950/20 to-indigo-900/10 border-indigo-500/20 flex flex-col justify-between">
+                            <div>
+                                <h3 class="font-display font-bold text-lg text-on-surface mb-1 flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-indigo-400">groups</span> COMMUNITY HUB
+                                </h3>
+                                <p class="text-xs text-on-surface-variant mb-4">Interact with thousands of server members, join voice chats, and participate in weekly events.</p>
+                            </div>
+                            <a href="https://discord.gg/minecraft" target="_blank" class="w-full bg-indigo-600 hover:bg-indigo-500 text-on-surface text-center py-2.5 rounded-lg text-xs font-bold tracking-wider flex items-center justify-center gap-2 transition-all active:scale-95">
+                                CONNECT DISCORD <span class="material-symbols-outlined text-sm">open_in_new</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Featured Products Header -->
+                <div class="flex flex-col gap-6">
+                    <div class="flex items-center justify-between border-b border-outline-variant/10 pb-4">
+                        <h2 class="font-display font-bold text-2xl text-on-surface uppercase tracking-tight">
+                            BEST SELLING RANKS
+                        </h2>
+                        <a href="#store" class="text-primary hover:underline text-sm font-bold tracking-wide flex items-center gap-1">
+                            Browse All Store <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                        </a>
+                    </div>
+
+                    <!-- Featured Cards Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <!-- Card: VIP+ -->
+                        <div class="glass-card rounded-xl p-6 flex flex-col justify-between transition-all duration-300 relative group overflow-hidden border-outline-variant/30">
+                            <div>
+                                <div class="flex justify-between items-start mb-6">
+                                    <div class="w-14 h-14 rounded-lg bg-surface-container flex items-center justify-center border border-primary/20 text-primary">
+                                        <span class="material-symbols-outlined text-3xl">hotel_class</span>
+                                    </div>
+                                    <span class="font-mono text-2xl font-bold text-on-surface">₹249</span>
+                                </div>
+                                <h3 class="font-display font-bold text-xl text-on-surface mb-1">VIP+ Rank</h3>
+                                <span class="text-xs text-primary font-mono font-bold uppercase tracking-wider block mb-4">Lifetime Perk</span>
+                                <ul class="space-y-2.5 mb-8">
+                                    <li class="flex items-center gap-2.5 text-xs text-on-surface-variant">
+                                        <span class="material-symbols-outlined text-primary text-sm font-bold">check_circle</span>
+                                        Sell all items
+                                    </li>
+                                    <li class="flex items-center gap-2.5 text-xs text-on-surface-variant">
+                                        <span class="material-symbols-outlined text-primary text-sm font-bold">check_circle</span>
+                                        /sit & /workbench
+                                    </li>
+                                    <li class="flex items-center gap-2.5 text-xs text-on-surface-variant">
+                                        <span class="material-symbols-outlined text-primary text-sm font-bold">check_circle</span>
+                                        /enderchest & /anvil
+                                    </li>
+                                    <li class="flex items-center gap-2.5 text-xs text-on-surface-variant">
+                                        <span class="material-symbols-outlined text-primary text-sm font-bold">check_circle</span>
+                                        /grindstone
+                                    </li>
+                                    <li class="flex items-center gap-2.5 text-xs text-on-surface-variant">
+                                        <span class="material-symbols-outlined text-primary text-sm font-bold">check_circle</span>
+                                        Set 4 Homes
+                                    </li>
+                                    <li class="flex items-center gap-2.5 text-xs text-on-surface-variant font-mono text-[10px]">
+                                        <span class="material-symbols-outlined text-primary text-sm font-bold">check_circle</span>
+                                        /order 10 & Daily $5,000
+                                    </li>
+                                </ul>
+                            </div>
+                            <button onclick="addToCart(1)" class="shimmer-btn w-full py-3 rounded-lg bg-primary hover:bg-primary-container text-background font-bold text-sm transition-all flex items-center justify-center gap-2">
+                                Add to Cart <span class="material-symbols-outlined text-sm">shopping_cart</span>
+                            </button>
+                        </div>
+
+                        <!-- Card: Soul Reaper (Featured) -->
+                        <div class="glass-card rounded-xl p-6 flex flex-col justify-between transition-all duration-300 relative group overflow-hidden border-primary/50 shadow-[0_0_30px_rgba(255,51,68,0.1)] md:scale-105 z-10 bg-gradient-to-b from-primary/5 to-transparent">
+                            <div class="absolute top-4 right-[-30px] bg-primary/20 text-primary font-mono text-[10px] font-bold px-10 py-1 shadow-lg animate-sale-badge rotate-45 z-20">
+                                HOT DEAL
+                            </div>
+                            
+                            <div>
+                                <div class="flex justify-between items-start mb-6">
+                                    <div class="w-14 h-14 rounded-lg bg-primary/20 flex items-center justify-center border border-primary text-primary">
+                                        <span class="material-symbols-outlined text-3xl">brightness_3</span>
+                                    </div>
+                                    <span class="font-mono text-2xl font-bold text-primary">₹399</span>
+                                </div>
+                                <h3 class="font-display font-bold text-xl text-on-surface mb-1">Soul Reaper</h3>
+                                <span class="text-xs text-primary font-mono font-bold uppercase tracking-wider block mb-4">Lifetime Perk</span>
+                                <ul class="space-y-2.5 mb-8">
+                                    <li class="flex items-center gap-2.5 text-xs text-on-surface-variant font-medium">
+                                        <span class="material-symbols-outlined text-primary text-sm font-bold">check_circle</span>
+                                        Everything from VIP+
+                                    </li>
+                                    <li class="flex items-center gap-2.5 text-xs text-on-surface-variant font-medium">
+                                        <span class="material-symbols-outlined text-primary text-sm font-bold">check_circle</span>
+                                        /near & /disposal
+                                    </li>
+                                    <li class="flex items-center gap-2.5 text-xs text-on-surface-variant font-medium">
+                                        <span class="material-symbols-outlined text-primary text-sm font-bold">check_circle</span>
+                                        Set 6 Homes
+                                    </li>
+                                    <li class="flex items-center gap-2.5 text-xs text-on-surface-variant font-medium">
+                                        <span class="material-symbols-outlined text-primary text-sm font-bold">check_circle</span>
+                                        /order 15 & /pet
+                                    </li>
+                                    <li class="flex items-center gap-2.5 text-xs text-on-surface-variant font-medium font-mono text-[10px]">
+                                        <span class="material-symbols-outlined text-primary text-sm font-bold">check_circle</span>
+                                        Daily $10,000 Allowance
+                                    </li>
+                                </ul>
+                            </div>
+                            <button onclick="addToCart(2)" class="shimmer-btn w-full py-3 rounded-lg bg-primary hover:bg-primary-container text-background font-bold text-sm transition-all flex items-center justify-center gap-2">
+                                Add to Cart <span class="material-symbols-outlined text-sm">shopping_cart</span>
+                            </button>
+                        </div>
+
+                        <!-- Card: Elite Titan -->
+                        <div class="glass-card rounded-xl p-6 flex flex-col justify-between transition-all duration-300 relative group overflow-hidden border-secondary-container/30">
+                            <div class="absolute inset-0 bg-gradient-to-br from-secondary-container/5 to-transparent pointer-events-none"></div>
+                            <div>
+                                <div class="flex justify-between items-start mb-6">
+                                    <div class="w-14 h-14 rounded-lg bg-surface-container flex items-center justify-center border border-secondary text-secondary">
+                                        <span class="material-symbols-outlined text-3xl">shield</span>
+                                    </div>
+                                    <span class="font-mono text-2xl font-bold text-secondary">₹599</span>
+                                </div>
+                                <h3 class="font-display font-bold text-xl text-secondary mb-1">Elite Titan</h3>
+                                <span class="text-xs text-secondary font-mono font-bold uppercase tracking-wider block mb-4">Lifetime Perk</span>
+                                <ul class="space-y-2.5 mb-8">
+                                    <li class="flex items-center gap-2.5 text-xs text-on-surface-variant">
+                                        <span class="material-symbols-outlined text-secondary text-sm font-bold">check_circle</span>
+                                        Everything from Reaper
+                                    </li>
+                                    <li class="flex items-center gap-2.5 text-xs text-on-surface-variant">
+                                        <span class="material-symbols-outlined text-secondary text-sm font-bold">check_circle</span>
+                                        /feed command
+                                    </li>
+                                    <li class="flex items-center gap-2.5 text-xs text-on-surface-variant">
+                                        <span class="material-symbols-outlined text-secondary text-sm font-bold">check_circle</span>
+                                        Set 9 Homes & /order 25
+                                    </li>
+                                    <li class="flex items-center gap-2.5 text-xs text-on-surface-variant">
+                                        <span class="material-symbols-outlined text-secondary text-sm font-bold">check_circle</span>
+                                        /particles
+                                    </li>
+                                    <li class="flex items-center gap-2.5 text-xs text-on-surface-variant font-mono text-[10px]">
+                                        <span class="material-symbols-outlined text-secondary text-sm font-bold">check_circle</span>
+                                        Daily $20,000 Allowance
+                                    </li>
+                                </ul>
+                            </div>
+                            <button onclick="addToCart(3)" class="shimmer-btn w-full py-3 rounded-lg bg-secondary hover:bg-secondary-container text-background font-bold text-sm transition-all flex items-center justify-center gap-2">
+                                Add to Cart <span class="material-symbols-outlined text-sm">shopping_cart</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- VIEW: STORE (PRODUCTS LIST WITH FILTER)        -->
+        <!-- ============================================== -->
+        <section id="store-view" class="page-view flex-1">
+            <div class="max-w-7xl mx-auto px-6 py-10">
+                
+                <!-- Store Header Banner -->
+                <div class="glass-card rounded-xl p-8 mb-10 bg-gradient-to-r from-surface-container via-surface-container/60 to-surface-container-lowest border-outline-variant/30 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div class="absolute -right-20 -top-20 w-44 h-44 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
+                    
+                    <div>
+                        <h1 class="font-display font-extrabold text-3xl text-secondary glow-text-gold tracking-tight mb-2 uppercase">SERVER WEBSTORE</h1>
+                        <p class="text-sm text-on-surface-variant max-w-xl">Browse our items list. Ranks and unbans are delivered to your account in-game automatically. Apply coupon code <span class="text-primary font-mono font-bold font-mono">SUMMER20</span> at checkout to get 20% discount.</p>
+                    </div>
+
+                    <!-- Search Input on Header -->
+                    <div class="relative w-full md:w-80">
+                        <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant text-lg">search</span>
+                        <input oninput="handleSearch(this.value)" class="w-full bg-surface-container-lowest border border-outline-variant/40 rounded-lg pl-10 pr-4 py-2.5 text-sm text-on-surface focus:ring-1 focus:ring-primary focus:border-primary transition-all placeholder:text-on-surface-variant/40" placeholder="Search products..." type="text"/>
+                    </div>
+                </div>
+
+                <div class="flex flex-col lg:flex-row gap-8">
+                    
+                    <!-- Sidebar: Categories Navigation -->
+                    <aside class="w-full lg:w-64 flex flex-col gap-4 shrink-0">
+                        <h2 class="font-mono text-xs font-bold text-on-surface-variant/60 uppercase tracking-widest px-2">CATEGORIES</h2>
+                        <nav id="store-category-list" class="flex flex-row lg:flex-col overflow-x-auto lg:overflow-x-visible pb-2 lg:pb-0 gap-2 shrink-0 select-none">
+                            <!-- Injected JS -->
+                        </nav>
+                        
+                        <!-- Sort Filter Card -->
+                        <div class="hidden lg:flex flex-col gap-3 glass-card rounded-xl p-4 mt-4">
+                            <span class="font-mono text-xs font-bold text-on-surface-variant/60 uppercase tracking-widest flex items-center gap-1.5"><span class="material-symbols-outlined text-sm">filter_list</span> SORT PRODUCTS</span>
+                            <select onchange="handleSort(this.value)" class="w-full bg-surface-container-lowest border border-outline-variant/30 rounded-lg text-xs font-semibold py-2 px-3 focus:ring-0 focus:border-primary cursor-pointer text-on-surface-variant hover:text-on-surface transition-all">
+                                <option value="default">Default Sorting</option>
+                                <option value="price-asc">Price: Low to High</option>
+                                <option value="price-desc">Price: High to Low</option>
+                            </select>
+                        </div>
+                    </aside>
+
+                    <!-- Product Feed -->
+                    <div class="flex-1 flex flex-col gap-6">
+                        <!-- Top filter row for mobile -->
+                        <div class="lg:hidden flex items-center justify-between bg-surface-container p-3 rounded-lg border border-outline-variant/20">
+                            <span class="text-xs font-mono font-bold text-on-surface-variant uppercase">Filter Options</span>
+                            <select onchange="handleSort(this.value)" class="bg-surface-container-lowest border border-outline-variant/30 rounded-lg text-xs font-semibold py-1.5 px-3 focus:ring-0">
+                                <option value="default">Default Sort</option>
+                                <option value="price-asc">Price: Low to High</option>
+                                <option value="price-desc">Price: High to Low</option>
+                            </select>
+                        </div>
+
+                        <!-- Grid -->
+                        <div id="products-grid" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                            <!-- Injected JS -->
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- VIEW: SERVER RULES                             -->
+        <!-- ============================================== -->
+        <section id="rules-view" class="page-view flex-1">
+            <div class="max-w-4xl mx-auto px-6 py-12">
+                <div class="text-center mb-10">
+                    <span class="material-symbols-outlined text-5xl text-primary mb-2">gavel</span>
+                    <h1 class="font-display font-extrabold text-3xl md:text-4xl text-on-surface uppercase tracking-tight">SERVER NETWORK RULES</h1>
+                    <p class="text-sm text-on-surface-variant mt-2 max-w-lg mx-auto">Ensuring a fair, respectful, and competitive gaming environment for all RoxSmp players.</p>
+                </div>
+
+                <div class="flex flex-col gap-4">
+                    <!-- Rule 1 -->
+                    <details class="glass-card rounded-xl p-5 group cursor-pointer" open>
+                        <summary class="flex items-center justify-between font-display font-bold text-base md:text-lg text-on-surface select-none list-none">
+                            <span class="flex items-center gap-3"><span class="text-primary font-mono font-bold">01.</span> General Conduct & Chat Rules</span>
+                            <span class="material-symbols-outlined text-on-surface-variant group-open:rotate-180 transition-transform">expand_more</span>
+                        </summary>
+                        <div class="mt-4 text-sm text-on-surface-variant border-t border-outline-variant/20 pt-4 leading-relaxed space-y-2.5">
+                            <p>We expect all players to treat each other with respect. Toxic language, harassment, hate speech, racism, and sexism will not be tolerated under any circumstances.</p>
+                            <p class="font-mono text-xs text-error font-bold uppercase">Penalty: Mute (1 hour to permanent depending on severity)</p>
+                        </div>
+                    </details>
+                    
+                    <!-- Rule 2 -->
+                    <details class="glass-card rounded-xl p-5 group cursor-pointer">
+                        <summary class="flex items-center justify-between font-display font-bold text-base md:text-lg text-on-surface select-none list-none">
+                            <span class="flex items-center gap-3"><span class="text-primary font-mono font-bold">02.</span> Hacking, Cheating & Modifications</span>
+                            <span class="material-symbols-outlined text-on-surface-variant group-open:rotate-180 transition-transform">expand_more</span>
+                        </summary>
+                        <div class="mt-4 text-sm text-on-surface-variant border-t border-outline-variant/20 pt-4 leading-relaxed space-y-2.5">
+                            <p>Using hacked clients, cheats, macros, or modifications that grant players an unfair competitive advantage is strictly prohibited. Permitted mods include Optifine, Sodium, Minimap (without radar), and standard visual HUDs.</p>
+                            <p class="font-mono text-xs text-error font-bold uppercase">Penalty: Permanent IP Ban from the network</p>
+                        </div>
+                    </details>
+
+                    <!-- Rule 3 -->
+                    <details class="glass-card rounded-xl p-5 group cursor-pointer">
+                        <summary class="flex items-center justify-between font-display font-bold text-base md:text-lg text-on-surface select-none list-none">
+                            <span class="flex items-center gap-3"><span class="text-primary font-mono font-bold">03.</span> Exploits, Dupes & Glitches</span>
+                            <span class="material-symbols-outlined text-on-surface-variant group-open:rotate-180 transition-transform">expand_more</span>
+                        </summary>
+                        <div class="mt-4 text-sm text-on-surface-variant border-t border-outline-variant/20 pt-4 leading-relaxed space-y-2.5">
+                            <p>Exploiting bugs, glitches, or duplication methods to spawn items or bypass game limits is forbidden. Please report bugs immediately using our Discord support desk or the support form here.</p>
+                            <p class="font-mono text-xs text-error font-bold uppercase">Penalty: Temp ban (7 days) & Full Inventory Reset</p>
+                        </div>
+                    </details>
+
+                    <!-- Rule 4 -->
+                    <details class="glass-card rounded-xl p-5 group cursor-pointer">
+                        <summary class="flex items-center justify-between font-display font-bold text-base md:text-lg text-on-surface select-none list-none">
+                            <span class="flex items-center gap-3"><span class="text-primary font-mono font-bold">04.</span> Store & Transaction Terms</span>
+                            <span class="material-symbols-outlined text-on-surface-variant group-open:rotate-180 transition-transform">expand_more</span>
+                        </summary>
+                        <div class="mt-4 text-sm text-on-surface-variant border-t border-outline-variant/20 pt-4 leading-relaxed space-y-2.5">
+                            <p>Purchases on this store are mock integrations, but in actual play: chargebacks, scam disputes, or fraud lead to automatic blacklist bans. Delivery of items takes up to 5 minutes, requiring an online session.</p>
+                            <p class="font-mono text-xs text-error font-bold uppercase">Penalty: Blacklist from all affiliated Minecraft networks</p>
+                        </div>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- VIEW: FAQ                                      -->
+        <!-- ============================================== -->
+        <section id="faq-view" class="page-view flex-1">
+            <div class="max-w-4xl mx-auto px-6 py-12">
+                <div class="text-center mb-10">
+                    <span class="material-symbols-outlined text-5xl text-secondary mb-2">help_outline</span>
+                    <h1 class="font-display font-extrabold text-3xl md:text-4xl text-on-surface uppercase tracking-tight">FREQUENTLY ASKED QUESTIONS</h1>
+                    <p class="text-sm text-on-surface-variant mt-2 max-w-lg mx-auto">Find answers to billing, game mechanics, and account verification policies.</p>
+                </div>
+
+                <div class="space-y-4">
+                    <details class="glass-card rounded-xl p-5 group cursor-pointer">
+                        <summary class="flex items-center justify-between font-display font-bold text-sm md:text-base text-on-surface select-none list-none">
+                            <span>How long do purchases take to arrive?</span>
+                            <span class="material-symbols-outlined text-on-surface-variant group-open:rotate-180 transition-transform">expand_more</span>
+                        </summary>
+                        <p class="mt-4 text-sm text-on-surface-variant border-t border-outline-variant/20 pt-4 leading-relaxed">
+                            Usually, store items arrive automatically in your inventory within 2 to 5 minutes of payment. Please make sure your Minecraft character is logged in to the ROXSMP server network when checkout processes.
+                        </p>
+                    </details>
+                    
+                    <details class="glass-card rounded-xl p-5 group cursor-pointer">
+                        <summary class="flex items-center justify-between font-display font-bold text-sm md:text-base text-on-surface select-none list-none">
+                            <span>What payment options are supported?</span>
+                            <span class="material-symbols-outlined text-on-surface-variant group-open:rotate-180 transition-transform">expand_more</span>
+                        </summary>
+                        <p class="mt-4 text-sm text-on-surface-variant border-t border-outline-variant/20 pt-4 leading-relaxed">
+                            Through our simulated gateway payment, we accept a wide range of options including Credit/Debit Cards, PayPal, UPI, Netbanking, and popular Cryptocurrencies.
+                        </p>
+                    </details>
+
+                    <details class="glass-card rounded-xl p-5 group cursor-pointer">
+                        <summary class="flex items-center justify-between font-display font-bold text-sm md:text-base text-on-surface select-none list-none">
+                            <span>What should I do if my purchase did not arrive?</span>
+                            <span class="material-symbols-outlined text-on-surface-variant group-open:rotate-180 transition-transform">expand_more</span>
+                        </summary>
+                        <p class="mt-4 text-sm text-on-surface-variant border-t border-outline-variant/20 pt-4 leading-relaxed">
+                            First, check that your transaction went through and wait up to 15 minutes. If items still haven't arrived, navigate to our <a href="#support" class="text-primary hover:underline font-bold">Support</a> tab, submit a Purchase Issue ticket with your transaction ID, and our administrator team will credit your items manually.
+                        </p>
+                    </details>
+
+                    <details class="glass-card rounded-xl p-5 group cursor-pointer">
+                        <summary class="flex items-center justify-between font-display font-bold text-sm md:text-base text-on-surface select-none list-none">
+                            <span>Are ranks permanent?</span>
+                            <span class="material-symbols-outlined text-on-surface-variant group-open:rotate-180 transition-transform">expand_more</span>
+                        </summary>
+                        <p class="mt-4 text-sm text-on-surface-variant border-t border-outline-variant/20 pt-4 leading-relaxed">
+                            Yes, all VIP, VIP+, MVP, and Legendary ranks in this store are one-time lifetime purchases. Once purchased, they will remain on your account across server resets.
+                        </p>
+                    </details>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- VIEW: SUPPORT & TICKETS LOG                    -->
+        <!-- ============================================== -->
+        <section id="support-view" class="page-view flex-1">
+            <div class="max-w-6xl mx-auto px-6 py-12">
+                <div class="text-center mb-10">
+                    <span class="material-symbols-outlined text-5xl text-primary mb-2">support_agent</span>
+                    <h1 class="font-display font-extrabold text-3xl text-on-surface uppercase tracking-tight">SUPPORT & HELP DESK</h1>
+                    <p class="text-sm text-on-surface-variant mt-2 max-w-lg mx-auto">Have an issue? Submit a ticket to our staff team. Real-time updates on active tickets are displayed below.</p>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Ticket Creation Form -->
+                    <div class="glass-card rounded-xl p-6 h-fit">
+                        <h3 class="font-display font-bold text-lg text-on-surface mb-4 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary text-xl">add_box</span> NEW SUPPORT TICKET
+                        </h3>
+                        
+                        <form id="support-ticket-form" onsubmit="submitTicket(event)" class="space-y-4">
+                            <div>
+                                <label class="block text-xs font-mono font-bold text-on-surface-variant/80 uppercase mb-2">Minecraft Username</label>
+                                <input id="ticket-username" type="text" required class="w-full bg-surface-container-lowest border border-outline-variant/30 rounded-lg text-sm text-on-surface focus:ring-primary focus:border-primary py-2.5 px-3.5" placeholder="e.g. Steve"/>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-xs font-mono font-bold text-on-surface-variant/80 uppercase mb-2">Ticket Topic</label>
+                                <select id="ticket-category" class="w-full bg-surface-container-lowest border border-outline-variant/30 rounded-lg text-sm text-on-surface-variant focus:ring-primary focus:border-primary py-2.5 px-3.5 cursor-pointer">
+                                    <option value="Billing / Purchase Issue">Purchase / Billing Issue</option>
+                                    <option value="Bug Report">Bug Report</option>
+                                    <option value="Player Appeal">Player Appeal / Ban Report</option>
+                                    <option value="General Question">General Server Question</option>
+                                </select>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-mono font-bold text-on-surface-variant/80 uppercase mb-2">Detailed Message</label>
+                                <textarea id="ticket-message" required rows="4" class="w-full bg-surface-container-lowest border border-outline-variant/30 rounded-lg text-sm text-on-surface focus:ring-primary focus:border-primary py-2.5 px-3.5 placeholder:text-xs" placeholder="Describe the issue in detail. If billing, include payment mode..."></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full bg-primary hover:bg-primary-container text-background py-3 rounded-lg font-bold text-sm tracking-wide transition-all active:scale-95 shimmer-btn">
+                                SUBMIT TICKET
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Active Ticket History Log -->
+                    <div class="lg:col-span-2 flex flex-col gap-4">
+                        <h3 class="font-display font-bold text-lg text-on-surface flex items-center justify-between">
+                            <span class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-xl">folder_open</span> TICKET LOGS</span>
+                            <span id="ticket-count" class="font-mono text-xs bg-surface-container border border-outline-variant/30 px-3 py-1 rounded-full text-on-surface-variant">0 tickets</span>
+                        </h3>
+
+                        <div id="tickets-history-container" class="flex flex-col gap-4 max-h-[550px] overflow-y-auto pr-1">
+                            <!-- Injected JS -->
+                            <div class="text-center py-12 glass-card rounded-xl">
+                                <span class="material-symbols-outlined text-4xl text-on-surface-variant/30 mb-2">contact_support</span>
+                                <p class="text-sm text-on-surface-variant/50">No tickets found. Submit the form to log your first ticket!</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- VIEW: CONTACT                                  -->
+        <!-- ============================================== -->
+        <section id="contact-view" class="page-view flex-1">
+            <div class="max-w-4xl mx-auto px-6 py-12">
+                <div class="text-center mb-10">
+                    <span class="material-symbols-outlined text-5xl text-primary mb-2">mail</span>
+                    <h1 class="font-display font-extrabold text-3xl text-on-surface uppercase tracking-tight">CONTACT OUR TEAM</h1>
+                    <p class="text-sm text-on-surface-variant mt-2 max-w-lg mx-auto">Get in touch directly for sponsorship deals, staffing inquiries, or administrative concerns.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    
+                    <!-- Form Block -->
+                    <div class="md:col-span-2 glass-card rounded-xl p-6">
+                        <form id="contact-form" onsubmit="submitContact(event)" class="space-y-4">
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-mono font-bold text-on-surface-variant/80 uppercase mb-2">Full Name</label>
+                                    <input type="text" required class="w-full bg-surface-container-lowest border border-outline-variant/30 rounded-lg text-sm text-on-surface focus:ring-primary focus:border-primary py-2.5 px-3.5" placeholder="Alex Carter"/>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-mono font-bold text-on-surface-variant/80 uppercase mb-2">Email Address</label>
+                                    <input type="email" required class="w-full bg-surface-container-lowest border border-outline-variant/30 rounded-lg text-sm text-on-surface focus:ring-primary focus:border-primary py-2.5 px-3.5" placeholder="alex@gmail.com"/>
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <label class="block text-xs font-mono font-bold text-on-surface-variant/80 uppercase mb-2">Discord Tag (Optional)</label>
+                                <input type="text" class="w-full bg-surface-container-lowest border border-outline-variant/30 rounded-lg text-sm text-on-surface focus:ring-primary focus:border-primary py-2.5 px-3.5" placeholder="alex#1234"/>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-mono font-bold text-on-surface-variant/80 uppercase mb-2">Message</label>
+                                <textarea required rows="4" class="w-full bg-surface-container-lowest border border-outline-variant/30 rounded-lg text-sm text-on-surface focus:ring-primary focus:border-primary py-2.5 px-3.5" placeholder="Write your message..."></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full bg-primary hover:bg-primary-container text-background py-3 rounded-lg font-bold text-sm tracking-wide transition-all active:scale-95 shimmer-btn">
+                                SEND MESSAGE
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Details Sidebar -->
+                    <div class="flex flex-col gap-4">
+                        <div class="glass-card rounded-xl p-5 flex items-start gap-4">
+                            <span class="material-symbols-outlined text-primary text-2xl">mail</span>
+                            <div>
+                                <h4 class="font-display font-bold text-sm text-on-surface uppercase mb-0.5">Admin Email</h4>
+                                <p class="text-xs text-on-surface-variant">admin@roxsmp.fun</p>
+                                <p class="text-[10px] text-on-surface-variant/60 mt-1">Response within 24-48 hours</p>
+                            </div>
+                        </div>
+
+                        <div class="glass-card rounded-xl p-5 flex items-start gap-4">
+                            <span class="material-symbols-outlined text-indigo-400 text-2xl">forum</span>
+                            <div>
+                                <h4 class="font-display font-bold text-sm text-on-surface uppercase mb-0.5">Discord Tickets</h4>
+                                <p class="text-xs text-on-surface-variant">discord.gg/roxsmp</p>
+                                <p class="text-[10px] text-on-surface-variant/60 mt-1">Direct chat channels with admins</p>
+                            </div>
+                        </div>
+
+                        <div class="glass-card rounded-xl p-5 flex items-start gap-4">
+                            <span class="material-symbols-outlined text-secondary text-2xl">shield</span>
+                            <div>
+                                <h4 class="font-display font-bold text-sm text-on-surface uppercase mb-0.5">Business Deals</h4>
+                                <p class="text-xs text-on-surface-variant">media@roxsmp.fun</p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- ============================================== -->
+        <!-- VIEW: SECURE CHECKOUT PAGE                     -->
+        <!-- ============================================== -->
+        <section id="checkout-view" class="page-view flex-1">
+            <div class="max-w-5xl mx-auto px-6 py-12">
+                
+                <!-- Checkout Wizard Steps -->
+                <div class="flex items-center justify-between max-w-xl mx-auto mb-12 select-none">
+                    <div class="flex flex-col items-center gap-1">
+                        <div id="checkout-step-1-indicator" class="w-8 h-8 rounded-full bg-primary text-background font-mono font-bold text-xs flex items-center justify-center border-2 border-primary">1</div>
+                        <span class="text-[10px] font-bold text-on-surface font-mono uppercase">Verify</span>
+                    </div>
+                    <div class="flex-1 h-[2px] bg-primary mx-3 mb-4"></div>
+                    <div class="flex flex-col items-center gap-1">
+                        <div id="checkout-step-2-indicator" class="w-8 h-8 rounded-full bg-surface-container border-2 border-outline-variant/30 text-on-surface-variant font-mono font-bold text-xs flex items-center justify-center">2</div>
+                        <span class="text-[10px] font-bold text-on-surface-variant font-mono uppercase">Billing</span>
+                    </div>
+                    <div class="flex-1 h-[2px] bg-surface-container-high mx-3 mb-4"></div>
+                    <div class="flex flex-col items-center gap-1">
+                        <div id="checkout-step-3-indicator" class="w-8 h-8 rounded-full bg-surface-container border-2 border-outline-variant/30 text-on-surface-variant font-mono font-bold text-xs flex items-center justify-center">3</div>
+                        <span class="text-[10px] font-bold text-on-surface-variant font-mono uppercase">Invoice</span>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <!-- Left: Details Forms -->
+                    <div class="lg:col-span-2 flex flex-col gap-6">
+                        
+                        <!-- Panel: Verification & Info -->
+                        <div id="checkout-form-panel" class="glass-card rounded-xl p-6">
+                            <!-- Injected JS based on active step -->
+                        </div>
+
+                    </div>
+
+                    <!-- Right: Cart Items Checklist & Summary -->
+                    <div class="glass-card rounded-xl p-6 h-fit flex flex-col gap-6">
+                        <h3 class="font-display font-bold text-lg text-on-surface border-b border-outline-variant/20 pb-3 flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary text-xl">receipt_long</span> ORDER SUMMARY
+                        </h3>
+                        
+                        <!-- Cart item checklist -->
+                        <div id="checkout-summary-items" class="flex flex-col gap-3 max-h-48 overflow-y-auto pr-1">
+                            <!-- Injected JS -->
+                        </div>
+
+                        <!-- Price Calculations -->
+                        <div class="border-t border-outline-variant/20 pt-4 space-y-2.5 text-sm font-semibold">
+                            <div class="flex justify-between text-on-surface-variant">
+                                <span>Cart Subtotal</span>
+                                <span id="checkout-subtotal">₹0</span>
+                            </div>
+                            <div id="checkout-discount-row" class="flex justify-between text-primary hidden">
+                                <span>Promo Discount (20%)</span>
+                                <span id="checkout-discount">-₹0</span>
+                            </div>
+                            <div class="flex justify-between text-on-surface text-base font-bold border-t border-outline-variant/20 pt-3">
+                                <span>Grand Total</span>
+                                <span id="checkout-total" class="text-primary glow-text-primary">₹0</span>
+                            </div>
+                        </div>
+
+                        <!-- Coupon Form -->
+                        <div class="border-t border-outline-variant/20 pt-4 flex gap-2">
+                            <input id="checkout-coupon-input" type="text" class="flex-1 bg-surface-container-lowest border border-outline-variant/30 rounded-lg text-xs font-mono py-2 px-3 uppercase text-on-surface focus:ring-primary focus:border-primary" placeholder="SUMMER20"/>
+                            <button onclick="applyCoupon()" class="bg-surface-container border border-outline-variant/40 hover:border-primary/50 text-xs font-bold px-4 rounded-lg active:scale-95 transition-all text-on-surface">APPLY</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+    <!-- ============================================== -->
+    <!-- SLIDE-OVER DRAWER: SHOPPING CART               -->
+    <!-- ============================================== -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 pointer-events-none opacity-0 transition-all duration-300">
+        <!-- Backdrop -->
+        <div onclick="toggleCartDrawer(false)" class="absolute inset-0 bg-background/80 backdrop-blur-sm transition-opacity"></div>
+        <!-- Panel -->
+        <aside class="absolute top-0 right-0 bottom-0 w-full sm:w-[450px] bg-surface-container border-l border-outline-variant/20 p-6 flex flex-col justify-between shadow-2xl transition-transform translate-x-full duration-300">
+            <div>
+                <!-- Header -->
+                <div class="flex items-center justify-between border-b border-outline-variant/20 pb-4 mb-4">
+                    <h3 class="font-display font-bold text-lg text-on-surface flex items-center gap-2">
+                        <span class="material-symbols-outlined text-primary text-xl">shopping_cart</span> SHOPPING CART
+                    </h3>
+                    <button onclick="toggleCartDrawer(false)" class="text-on-surface-variant p-1.5 active:scale-90 transition-transform">
+                        <span class="material-symbols-outlined text-2xl">close</span>
+                    </button>
+                </div>
+
+                <!-- Username reminder in Cart -->
+                <div id="cart-username-badge" class="hidden items-center justify-between bg-primary/10 border border-primary/20 px-3.5 py-2.5 rounded-lg mb-4 text-xs font-semibold">
+                    <div class="flex items-center gap-2.5">
+                        <img id="cart-username-avatar" src="" class="w-6 h-6 rounded-md bg-surface border border-outline-variant/30" alt="Skin"/>
+                        <span class="text-on-surface">Purchasing as: <span id="cart-username-name" class="font-bold text-primary">Notch</span></span>
+                    </div>
+                    <button onclick="openLoginModal()" class="text-error underline hover:text-red-400 font-bold uppercase text-[10px]">Change</button>
+                </div>
+
+                <!-- Items list -->
+                <div id="cart-items-feed" class="flex flex-col gap-4 overflow-y-auto max-h-[50vh] pr-1">
+                    <!-- Injected JS -->
+                </div>
+            </div>
+
+            <!-- Footer Calculations -->
+            <div class="border-t border-outline-variant/20 pt-4 mt-4 space-y-4">
+                <div class="space-y-2 text-sm font-semibold">
+                    <div class="flex justify-between text-on-surface-variant">
+                        <span>Items Subtotal</span>
+                        <span id="cart-subtotal">₹0</span>
+                    </div>
+                    <div id="cart-discount-row" class="flex justify-between text-primary hidden">
+                        <span>Promo Code Applied</span>
+                        <span id="cart-discount">-₹0</span>
+                    </div>
+                    <div class="flex justify-between text-on-surface text-base font-bold border-t border-outline-variant/20 pt-3">
+                        <span>Estimated Total</span>
+                        <span id="cart-total" class="text-primary glow-text-primary">₹0</span>
+                    </div>
+                </div>
+
+                <div class="flex flex-col gap-2">
+                    <button onclick="proceedToCheckout()" class="shimmer-btn w-full bg-primary hover:bg-primary-container text-background py-3.5 rounded-lg font-bold text-sm tracking-wider flex items-center justify-center gap-2 active:scale-95 shadow-[0_0_20px_rgba(255,51,68,0.15)]">
+                        CHECKOUT ORDER <span class="material-symbols-outlined text-sm">lock</span>
+                    </button>
+                    <button onclick="toggleCartDrawer(false)" class="w-full bg-surface-container-high hover:bg-surface-variant text-on-surface py-3.5 rounded-lg font-bold text-sm tracking-wider transition-all active:scale-95">
+                        CONTINUE SHOPPING
+                    </button>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- ============================================== -->
+    <!-- MODAL: MINECRAFT LOGIN SIGN-IN                 -->
+    <!-- ============================================== -->
+    <div id="login-modal" class="fixed inset-0 z-50 pointer-events-none opacity-0 flex items-center justify-center px-4 transition-all duration-300">
+        <!-- Backdrop -->
+        <div onclick="closeLoginModal()" class="absolute inset-0 bg-background/80 backdrop-blur-sm transition-opacity"></div>
+        <!-- Dialog -->
+        <div class="relative z-10 w-full max-w-md bg-surface-container border border-outline-variant/30 rounded-xl p-6 shadow-2xl transition-transform scale-95 duration-300">
+            <div class="flex items-center justify-between border-b border-outline-variant/20 pb-3 mb-4">
+                <h3 class="font-display font-bold text-base md:text-lg text-on-surface flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary">login</span> ENTER USERNAME
+                </h3>
+                <button onclick="closeLoginModal()" class="text-on-surface-variant p-1.5 active:scale-90 transition-transform">
+                    <span class="material-symbols-outlined text-xl">close</span>
+                </button>
+            </div>
+            
+            <p class="text-xs text-on-surface-variant mb-4 leading-relaxed">
+                Enter your exact in-game Minecraft username. This links the items you buy on our store directly to your player profile in the game.
+            </p>
+
+            <form onsubmit="handleLoginSubmit(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-mono font-bold text-on-surface-variant/80 uppercase mb-2">In-Game Username</label>
+                    <input id="login-username-input" type="text" required class="w-full bg-surface-container-lowest border border-outline-variant/30 rounded-lg text-sm text-on-surface focus:ring-primary focus:border-primary py-2.5 px-3.5" placeholder="e.g. Notch"/>
+                </div>
+
+                <div class="flex gap-2">
+                    <button type="submit" class="flex-1 bg-primary hover:bg-primary-container text-background py-3 rounded-lg font-bold text-sm transition-all active:scale-95">
+                        VERIFY & CONNECT
+                    </button>
+                    <button type="button" onclick="closeLoginModal()" class="bg-surface-container-high hover:bg-surface-variant text-on-surface px-4 py-3 rounded-lg font-bold text-sm transition-all">
+                        CANCEL
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Mobile Bottom Navigation Bar (Sticky Footer) -->
+    <nav class="md:hidden fixed bottom-0 w-full z-30 bg-surface-container-high/90 backdrop-blur-xl border-t border-outline-variant/20 shadow-[0_-8px_30px_rgba(0,0,0,0.5)]">
+        <div class="flex justify-around items-center h-16 px-4 pb-1">
+            <a class="flex flex-col items-center justify-center w-full h-full text-on-surface-variant hover:text-primary transition-colors" href="#home">
+                <span class="material-symbols-outlined text-2xl mb-0.5">home</span>
+                <span class="font-mono text-[9px] font-bold">Home</span>
+            </a>
+            <a class="flex flex-col items-center justify-center w-full h-full text-on-surface-variant hover:text-primary transition-colors" href="#store">
+                <span class="material-symbols-outlined text-2xl mb-0.5">storefront</span>
+                <span class="font-mono text-[9px] font-bold">Store</span>
+            </a>
+            <a class="flex flex-col items-center justify-center w-full h-full text-on-surface-variant hover:text-primary transition-colors" href="#rules">
+                <span class="material-symbols-outlined text-2xl mb-0.5">gavel</span>
+                <span class="font-mono text-[9px] font-bold">Rules</span>
+            </a>
+            <button onclick="toggleCartDrawer(true)" class="flex flex-col items-center justify-center w-full h-full text-on-surface-variant hover:text-primary transition-colors relative">
+                <span class="material-symbols-outlined text-2xl mb-0.5">shopping_cart</span>
+                <span class="font-mono text-[9px] font-bold">Cart</span>
+                <span id="mobile-cart-badge" class="absolute top-1 right-6 bg-error text-on-error text-[8px] font-bold font-mono w-4 h-4 rounded-full flex items-center justify-center scale-0 transition-transform">0</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Footer -->
+    <footer class="w-full bg-surface-container-lowest border-t border-outline-variant/10 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-4 gap-8">
+            <!-- Brand Column -->
+            <div class="flex flex-col gap-4">
+                <div class="flex items-center gap-2">
+                    <img src="logo.png" alt="RoxSmp Logo" class="w-8 h-8 object-contain">
+                    <span class="font-display font-extrabold text-xl tracking-tighter text-on-surface">
+                        Rox<span class="text-primary glow-text-primary">Smp</span>
+                    </span>
+                </div>
+                <p class="text-xs text-on-surface-variant/80 leading-relaxed max-w-xs">
+                    Premium Indian Minecraft Server network. Elevate your in-game adventure with top-tier ranks and unban services.
+                </p>
+                <div class="flex items-center gap-3">
+                    <a href="https://discord.gg/minecraft" target="_blank" class="w-8 h-8 rounded-lg bg-surface-container border border-outline-variant/30 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary/50 transition-all active:scale-95">
+                        <span class="material-symbols-outlined text-base">forum</span>
+                    </a>
+                    <a href="https://youtube.com" target="_blank" class="w-8 h-8 rounded-lg bg-surface-container border border-outline-variant/30 flex items-center justify-center text-on-surface-variant hover:text-red-500 hover:border-red-500/50 transition-all active:scale-95">
+                        <span class="material-symbols-outlined text-base">video_library</span>
+                    </a>
+                    <a href="https://twitter.com" target="_blank" class="w-8 h-8 rounded-lg bg-surface-container border border-outline-variant/30 flex items-center justify-center text-on-surface-variant hover:text-sky-400 hover:border-sky-400/50 transition-all active:scale-95">
+                        <span class="material-symbols-outlined text-base">feed</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Categories Links -->
+            <div>
+                <h4 class="font-mono text-xs font-bold text-on-surface-variant/60 uppercase tracking-widest mb-4">Store Categories</h4>
+                <ul class="space-y-2.5 text-xs text-on-surface-variant">
+                    <li><a href="#store" onclick="selectStoreCategory('ranks')" class="hover:text-primary transition-colors">Server Ranks</a></li>
+                    <li><a href="#store" onclick="selectStoreCategory('crates')" class="hover:text-primary transition-colors">Crate Keys</a></li>
+                    <li><a href="#store" onclick="selectStoreCategory('currency')" class="hover:text-primary transition-colors">Gems</a></li>
+                </ul>
+            </div>
+
+            <!-- Helpful Navigation -->
+            <div>
+                <h4 class="font-mono text-xs font-bold text-on-surface-variant/60 uppercase tracking-widest mb-4">Useful Links</h4>
+                <ul class="space-y-2.5 text-xs text-on-surface-variant font-semibold">
+                    <li><a href="#rules" class="hover:text-primary transition-colors">Network Rules</a></li>
+                    <li><a href="#faq" class="hover:text-primary transition-colors">FAQ & Support Help</a></li>
+                    <li><a href="#support" class="hover:text-primary transition-colors">Create Support Ticket</a></li>
+                    <li><a href="#contact" class="hover:text-primary transition-colors">Contact Administration</a></li>
+                </ul>
+            </div>
+
+            <!-- Mojang Disclaimer -->
+            <div class="flex flex-col gap-4">
+                <h4 class="font-mono text-xs font-bold text-secondary-container tracking-widest uppercase mb-1">Notice Policy</h4>
+                <p class="text-[10px] text-on-surface-variant/70 leading-relaxed">
+                    We are in no way affiliated with or endorsed by Mojang Synergies AB, Microsoft Corporation, or NetEase. All purchases go towards sustaining server maintenance and network nodes.
+                </p>
+                <div class="text-[9px] font-mono text-on-surface-variant/50">
+                    © 2026 RoxSmp NETWORK. ALL RIGHTS RESERVED.
+                </div>
+            </div>
+        </div>
+        <!-- Spacer for mobile nav -->
+        <div class="h-16 md:hidden"></div>
+    </footer>
+
+    <!-- Toast Engine Container (Sticky bottom-right alerts) -->
+    <div id="toast-container" class="fixed bottom-20 md:bottom-6 right-6 z-50 flex flex-col gap-3 pointer-events-none"></div>
+
+    <!-- Core App Logic (Vanilla JS) -->
+    <script>
+        // ==============================================
+        // PRODUCT DATABASE
+        // ==============================================
+        const products = [
+            // Ranks (id: 1-5)
+            { id: 1, category: 'ranks', name: 'VIP+ Rank', price: 249, priceStrike: null, badge: 'hotel_class', description: 'Access essential server tools, sit, and carry virtual workbenches or enderchests anywhere.', features: ['Sell all items', '/sit', '/workbench', '/enderchest', '/anvil', '/grindstone', 'Set 4 Homes', '/order 10', 'Daily $5,000'], icon: 'hotel_class', rarityColor: 'text-primary', tag: 'Lifetime' },
+            { id: 2, category: 'ranks', name: 'Soul Reaper', price: 399, priceStrike: null, badge: 'verified', description: 'Gain advanced tracking utilities, disposal bins, carry custom pets, and collect daily allowance.', features: ['Everything from VIP+', '/near', '/disposal', 'Set 6 Homes', '/order 15', '/pet', 'Daily $10,000'], icon: 'brightness_3', rarityColor: 'text-primary', tag: 'Special' },
+            { id: 3, category: 'ranks', name: 'Elite Titan', price: 599, priceStrike: null, badge: 'shield', description: 'Become a Titan of the server. Auto-feed yourself, apply particle effects, and get higher home limits.', features: ['Everything from Soul Reaper', '/feed', 'Set 9 Homes', '/order 25', '/particles', 'Daily $20,000'], icon: 'shield', rarityColor: 'text-secondary', tag: 'Lifetime' },
+            { id: 4, category: 'ranks', name: 'Alpha', price: 999, priceStrike: null, badge: 'star', description: 'The peak alpha experience. Connect to full servers, double server coins, and alpha kits.', features: ['Everything from Elite Titan', '/hat', 'Set 13 Homes', '/order 30', '/deatheffect', '/hats', 'Daily $30,000'], icon: 'star', rarityColor: 'text-secondary', tag: 'Prestige' },
+            { id: 5, category: 'ranks', name: 'Custom Rank', price: 1199, priceStrike: null, badge: 'diamond', description: 'Create your ultimate rank. Customize name tag titles, configure cosmetics, and get massive allowance daily.', features: ['Everything from Alpha', 'Set 18 Homes', '/order 40', '/cosmetic', '🎨 Custom Rank Name', 'Daily $40,000'], icon: 'diamond', rarityColor: 'text-secondary', tag: 'Unique' },
+            
+            // Crate Keys (id: 6-17)
+            { id: 6, category: 'crates', name: '1x VIP+ Crate Key', price: 30, priceStrike: null, badge: 'key', description: 'Single VIP+ Crate Key. Open the spawn chest to receive entry-level rank rewards.', features: ['1x VIP+ Crate Key', 'Instant delivery', 'Lobby usage permitted'], icon: 'key', rarityColor: 'text-tertiary', tag: 'VIP+ Crate' },
+            { id: 7, category: 'crates', name: '5x + 2 Free VIP+ Crate Key', price: 199, priceStrike: null, badge: 'key', description: 'Get 7 keys for the price of 5. Unbox VIP+ tools and spawn loot chests.', features: ['7x VIP+ Crate Keys total', 'Buy 5 get 2 free promo', 'Instant delivery'], icon: 'key', rarityColor: 'text-primary', tag: 'Value Crate' },
+            { id: 8, category: 'crates', name: '10x + 5 Free VIP+ Crate Key', price: 299, priceStrike: null, badge: 'key', description: 'Get 15 keys. Best value starter pack for VIP+ chests.', features: ['15x VIP+ Crate Keys total', 'Buy 10 get 5 free promo', 'Elite starter pack'], icon: 'key', rarityColor: 'text-secondary', tag: 'Bulk Pack' },
+            
+            { id: 9, category: 'crates', name: '1x Soul Reaper Crate Key', price: 69, priceStrike: null, badge: 'vpn_key', description: 'Single Soul Reaper Crate Key. Access reaper-tier spawn rewards.', features: ['1x Soul Reaper key', 'Instant delivery', 'High tier drops pool'], icon: 'vpn_key', rarityColor: 'text-tertiary', tag: 'Reaper Crate' },
+            { id: 10, category: 'crates', name: '5x + 2 Free Soul Reaper Key', price: 249, priceStrike: null, badge: 'vpn_key', description: 'Get 7 Soul Reaper keys. Excellent chance at unlocking custom gear.', features: ['7x Soul Reaper keys total', 'Buy 5 get 2 free promo', 'Instant delivery'], icon: 'vpn_key', rarityColor: 'text-primary', tag: 'Value Crate' },
+            { id: 11, category: 'crates', name: '10x + 5 Free Soul Reaper Key', price: 399, priceStrike: null, badge: 'vpn_key', description: 'Get 15 Soul Reaper keys. Ultimate pack for the Reaper spawn chests.', features: ['15x Soul Reaper keys total', 'Buy 10 get 5 free promo', 'Bulk savings pack'], icon: 'vpn_key', rarityColor: 'text-secondary', tag: 'Bulk Pack' },
+            
+            { id: 12, category: 'crates', name: '1x Elite Titan Crate Key', price: 109, priceStrike: null, badge: 'lock_open', description: 'Single Elite Titan Crate Key. Open spawn vaults for Titan weapons.', features: ['1x Elite Titan key', 'Instant delivery', 'Elite drops pool active'], icon: 'lock_open', rarityColor: 'text-tertiary', tag: 'Titan Crate' },
+            { id: 13, category: 'crates', name: '5x + 2 Free Elite Titan Key', price: 299, priceStrike: null, badge: 'lock_open', description: 'Get 7 Elite Titan keys. High probability of unboxing mythic gear.', features: ['7x Elite Titan keys total', 'Buy 5 get 2 free promo', 'Instant delivery'], icon: 'lock_open', rarityColor: 'text-primary', tag: 'Value Crate' },
+            { id: 14, category: 'crates', name: '10x + 5 Free Elite Titan Key', price: 499, priceStrike: null, badge: 'lock_open', description: 'Get 15 Elite Titan keys. Gear up with Titan relics instantly.', features: ['15x Elite Titan keys total', 'Buy 10 get 5 free promo', 'Bulk savings pack'], icon: 'lock_open', rarityColor: 'text-secondary', tag: 'Bulk Pack' },
+            
+            { id: 15, category: 'crates', name: '1x Alpha Crate Key', price: 129, priceStrike: null, badge: 'layers', description: 'Single Alpha Crate Key. The absolute peak spawn chest rewards.', features: ['1x Alpha key', 'Instant delivery', 'Alpha drops pool active'], icon: 'layers', rarityColor: 'text-tertiary', tag: 'Alpha Crate' },
+            { id: 16, category: 'crates', name: '5x + 2 Free Alpha Crate Key', price: 449, priceStrike: null, badge: 'layers', description: 'Get 7 Alpha keys. Unbox exclusive weapons, armor, and multipliers.', features: ['7x Alpha keys total', 'Buy 5 get 2 free promo', 'Instant delivery'], icon: 'layers', rarityColor: 'text-primary', tag: 'Value Crate' },
+            { id: 17, category: 'crates', name: '10x + 5 Free Alpha Crate Key', price: 699, priceStrike: null, badge: 'layers', description: 'Get 15 Alpha keys. Maximize your chances of winning the rarest items.', features: ['15x Alpha keys total', 'Buy 10 get 5 free promo', 'Bulk savings pack'], icon: 'layers', rarityColor: 'text-secondary', tag: 'Bulk Pack' },
+
+            // Gems (id: 18-22)
+            { id: 18, category: 'currency', name: '300 Gems', price: 99, priceStrike: null, badge: 'monetization_on', description: 'Starter Gem pack to buy basic resources and market items in-game.', features: ['300 Gems credit', 'Instant wallet credit', 'Use at in-game shops'], icon: 'monetization_on', rarityColor: 'text-tertiary', tag: 'Starter' },
+            { id: 19, category: 'currency', name: '1,000 Gems', price: 299, priceStrike: null, badge: 'monetization_on', description: 'Basic Gems booster pack. Great value for claiming territory and upgrading kits.', features: ['1,000 Gems credit', 'Delivered to game wallet', 'Instant network credit'], icon: 'monetization_on', rarityColor: 'text-primary', tag: 'Popular' },
+            { id: 20, category: 'currency', name: '1,800 Gems', price: 449, priceStrike: null, badge: 'monetization_on', description: 'Epic Gem vault. Perfect for trading on player markets and purchasing boosts.', features: ['1,800 Gems credit', 'Bonus gems included', 'Network-wide balance'], icon: 'monetization_on', rarityColor: 'text-primary', tag: 'Best Value' },
+            { id: 21, category: 'currency', name: '3,000 Gems', price: 699, priceStrike: null, badge: 'monetization_on', description: 'Titan Gem pouch. Claim premium generator upgrades and global server tools.', features: ['3,000 Gems credit', 'High tier bonus value', 'Delivered in 2 mins'], icon: 'payments', rarityColor: 'text-secondary', tag: 'Titan Pack' },
+            { id: 22, category: 'currency', name: '5,000 Gems', price: 999, priceStrike: null, badge: 'monetization_on', description: 'The ultimate Alpha Gem load. Access all high-end server warps and spawner spawns.', features: ['5,000 Gems credit', 'Max bonus gems pool', 'Premium wallet status'], icon: 'payments', rarityColor: 'text-secondary', tag: 'Alpha Load' }
+        ];
+
+        const categories = [
+            { id: 'ranks', name: 'Ranks', icon: 'military_tech' },
+            { id: 'crates', name: 'Crate Keys', icon: 'key' },
+            { id: 'currency', name: 'Gems', icon: 'payments' }
+        ];
+
+        // ==============================================
+        // STATE MANAGEMENT
+        // ==============================================
+        let cart = [];
+        let activeCategory = 'ranks';
+        let searchQuery = '';
+        let sortMode = 'default';
+        let appliedCoupon = null;
+        let minecraftUser = null;
+        let checkoutStep = 1;
+
+        // Tickets DB mockup in LocalStorage
+        let supportTickets = JSON.parse(localStorage.getItem('roxsmp_tickets')) || [
+            { id: 'TKT-9201', username: 'Notch', category: 'Billing / Purchase Issue', message: 'Hello! I purchased MVP rank 20 mins ago but still haven\'t received the prefix in server chat. Transaction ID: TXN_829103.', date: 'June 08, 2026 15:42', status: 'Resolved', reply: 'Hi Notch, we verified the gateway log and MVP has been credited. Please run /claim in game if it didn\'t update.' },
+            { id: 'TKT-4921', username: 'Alex', category: 'Bug Report', message: 'The Skyblock nether portal teleport throws a coordinate offset exception sometimes.', date: 'June 08, 2026 18:12', status: 'Open', reply: null }
+        ];
+
+        // ==============================================
+        // INIT & SPA ROUTER
+        // ==============================================
+        window.addEventListener('DOMContentLoaded', () => {
+            // Load state from cache
+            const cachedCart = localStorage.getItem('roxsmp_cart');
+            if (cachedCart) {
+                cart = JSON.parse(cachedCart);
+            }
+            const cachedUser = localStorage.getItem('roxsmp_username');
+            if (cachedUser) {
+                minecraftUser = cachedUser;
+            }
+
+            // Bind UI stats & initial navigation
+            updateCartUI();
+            updateUserNavUI();
+            renderCategories();
+            renderTickets();
+
+            // Hash Router
+            window.addEventListener('hashchange', handleRoute);
+            handleRoute(); // Execute initial load
+        });
+
+        function handleRoute() {
+            const hash = window.location.hash || '#home';
+            const views = document.querySelectorAll('.page-view');
+            const links = document.querySelectorAll('.nav-link');
+
+            views.forEach(v => v.classList.remove('active'));
+            links.forEach(l => l.classList.remove('text-primary', 'bg-surface-container/50'));
+
+            // Match view
+            let targetView = document.querySelector(`${hash}-view`);
+            if (!targetView) {
+                targetView = document.querySelector('#home-view');
+            }
+            targetView.classList.add('active');
+
+            // Match active link
+            links.forEach(l => {
+                if (l.getAttribute('href') === hash) {
+                    l.classList.add('text-primary', 'bg-surface-container/50');
+                }
+            });
+
+            // Specific page init hooks
+            if (hash === '#store') {
+                renderProducts();
+            } else if (hash === '#checkout') {
+                renderCheckoutFlow();
+            }
+
+            // Scroll top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ==============================================
+        // UTILITIES: CLIPBOARD COPY
+        // ==============================================
+        function copyServerIP() {
+            navigator.clipboard.writeText('play.roxsmp.fun').then(() => {
+                showToast('IP Copied to Clipboard!', 'success');
+                
+                // Play subtle beep sound context (optional mockup indicator)
+                try {
+                    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    osc.frequency.setValueAtTime(587.33, ctx.currentTime); // D5 note
+                    gain.gain.setValueAtTime(0.05, ctx.currentTime);
+                    osc.start();
+                    osc.stop(ctx.currentTime + 0.1);
+                } catch(e) {}
+            }).catch(err => {
+                showToast('Failed to copy. IP: play.roxsmp.fun', 'error');
+            });
+        }
+
+        // ==============================================
+        // TOAST ENGINE
+        // ==============================================
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            
+            toast.className = `flex items-center gap-3 bg-surface-container-high/90 backdrop-blur-md border border-outline-variant/50 p-4 rounded-xl shadow-2xl transition-all duration-300 transform translate-x-12 opacity-0 pointer-events-auto`;
+            
+            const icon = type === 'success' ? 'check_circle' : (type === 'error' ? 'error' : 'info');
+            const iconColor = type === 'success' ? 'text-primary' : (type === 'error' ? 'text-error' : 'text-secondary');
+
+            toast.innerHTML = `
+                <span class="material-symbols-outlined ${iconColor} text-xl">${icon}</span>
+                <span class="text-sm font-semibold text-on-surface">${message}</span>
+            `;
+
+            container.appendChild(toast);
+
+            // Trigger reflow
+            toast.offsetHeight;
+
+            // Slide in
+            toast.classList.remove('translate-x-12', 'opacity-0');
+
+            // Automatic dismiss
+            setTimeout(() => {
+                toast.classList.add('translate-x-12', 'opacity-0');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        // ==============================================
+        // MOBILE MENU & DRAWER
+        // ==============================================
+        function toggleMobileMenu(isOpen) {
+            const drawer = document.getElementById('mobile-menu-drawer');
+            const panel = drawer.querySelector('aside');
+
+            if (isOpen) {
+                drawer.classList.remove('pointer-events-none', 'opacity-0');
+                panel.classList.remove('-translate-x-full');
+            } else {
+                drawer.classList.add('pointer-events-none', 'opacity-0');
+                panel.classList.add('-translate-x-full');
+            }
+        }
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => toggleMobileMenu(true));
+
+        // ==============================================
+        // USER LOGIN SYSTEM
+        // ==============================================
+        function openLoginModal() {
+            const modal = document.getElementById('login-modal');
+            modal.classList.remove('pointer-events-none', 'opacity-0');
+            modal.querySelector('.relative').classList.remove('scale-95');
+            const input = document.getElementById('login-username-input');
+            if (minecraftUser) input.value = minecraftUser;
+            toggleMobileMenu(false);
+        }
+
+        function closeLoginModal() {
+            const modal = document.getElementById('login-modal');
+            modal.classList.add('pointer-events-none', 'opacity-0');
+            modal.querySelector('.relative').classList.add('scale-95');
+        }
+
+        function handleLoginSubmit(event) {
+            event.preventDefault();
+            const username = document.getElementById('login-username-input').value.trim();
+            if (username) {
+                minecraftUser = username;
+                localStorage.setItem('roxsmp_username', username);
+                closeLoginModal();
+                updateUserNavUI();
+                updateCartUI(); // Update username card in cart drawer
+                showToast(`Connected: ${username}!`, 'success');
+                
+                // If on checkout page, refresh step panel
+                if (window.location.hash === '#checkout') {
+                    renderCheckoutFlow();
+                }
+            }
+        }
+
+        function handleLogout() {
+            minecraftUser = null;
+            localStorage.removeItem('roxsmp_username');
+            updateUserNavUI();
+            updateCartUI();
+            showToast('Cleared Connected Account', 'info');
+            if (window.location.hash === '#checkout') {
+                renderCheckoutFlow();
+            }
+        }
+
+        function updateUserNavUI() {
+            const container = document.getElementById('nav-user-container');
+            if (minecraftUser) {
+                container.innerHTML = `
+                    <div class="flex items-center gap-2 bg-surface-container border border-primary/20 px-3.5 py-1.5 rounded-lg group">
+                        <img src="https://mc-heads.net/avatar/${minecraftUser}" class="w-6 h-6 rounded bg-surface border border-outline-variant/30 group-hover:scale-105 transition-transform" alt="Avatar"/>
+                        <div class="hidden sm:flex flex-col text-left">
+                            <span class="font-mono text-[9px] text-on-surface-variant font-bold leading-none">VERIFIED</span>
+                            <span class="font-display text-xs font-bold text-primary max-w-[80px] truncate leading-tight mt-0.5">${minecraftUser}</span>
+                        </div>
+                        <button onclick="handleLogout()" class="text-on-surface-variant hover:text-error ml-1 font-bold active:scale-90 transition-transform">
+                            <span class="material-symbols-outlined text-sm">logout</span>
+                        </button>
+                    </div>
+                `;
+            } else {
+                container.innerHTML = `
+                    <button onclick="openLoginModal()" class="flex items-center gap-2 bg-surface-container border border-outline-variant/20 hover:bg-surface-container-high px-4 py-2 rounded-lg text-xs font-bold font-mono tracking-wider text-on-surface transition-all active:scale-95">
+                        <span class="material-symbols-outlined text-sm">login</span> SIGN IN
+                    </button>
+                `;
+            }
+        }
+
+        // ==============================================
+        // CATEGORIES & PRODUCTS RENDER
+        // ==============================================
+        function renderCategories() {
+            const container = document.getElementById('store-category-list');
+            container.innerHTML = categories.map(cat => {
+                const isActive = cat.id === activeCategory;
+                const activeClasses = isActive 
+                    ? 'bg-primary/20 text-primary border-primary/40 font-bold' 
+                    : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/20 border-transparent';
+                
+                return `
+                    <button onclick="selectStoreCategory('${cat.id}')" class="flex items-center gap-3 px-4 py-3 rounded-lg border text-sm font-semibold transition-all duration-200 shrink-0 whitespace-nowrap active:scale-95 ${activeClasses}">
+                        <span class="material-symbols-outlined text-base">${cat.icon}</span>
+                        <span>${cat.name}</span>
+                    </button>
+                `;
+            }).join('');
+        }
+
+        function selectStoreCategory(catId) {
+            activeCategory = catId;
+            renderCategories();
+            
+            // Navigate if not on store
+            if (window.location.hash !== '#store') {
+                window.location.hash = '#store';
+            } else {
+                renderProducts();
+            }
+        }
+
+        function handleSearch(val) {
+            searchQuery = val.toLowerCase().trim();
+            renderProducts();
+        }
+
+        function handleSort(val) {
+            sortMode = val;
+            renderProducts();
+        }
+
+        function renderProducts() {
+            const grid = document.getElementById('products-grid');
+            
+            // Filter by active category
+            let filtered = products.filter(p => p.category === activeCategory);
+
+            // Filter by search query
+            if (searchQuery) {
+                filtered = filtered.filter(p => p.name.toLowerCase().includes(searchQuery) || p.description.toLowerCase().includes(searchQuery));
+            }
+
+            // Apply sort
+            if (sortMode === 'price-asc') {
+                filtered.sort((a, b) => a.price - b.price);
+            } else if (sortMode === 'price-desc') {
+                filtered.sort((a, b) => b.price - a.price);
+            }
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full py-16 text-center glass-card rounded-xl">
+                        <span class="material-symbols-outlined text-4xl text-on-surface-variant/40 mb-2">sentiment_dissatisfied</span>
+                        <p class="text-sm text-on-surface-variant/60">No products matching the search query or category.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            grid.innerHTML = filtered.map(p => {
+                const discount = p.priceStrike ? Math.round(((p.priceStrike - p.price) / p.priceStrike) * 100) : 0;
+                
+                return `
+                    <div class="glass-card rounded-xl p-5 flex flex-col justify-between group relative overflow-hidden ${p.category === 'ranks' ? 'border-outline-variant/30' : ''}">
+                        <!-- Sale Badge -->
+                        ${p.priceStrike ? `
+                            <div class="absolute top-4 right-[-30px] bg-error text-on-error font-mono text-[9px] font-bold px-8 py-0.5 shadow-lg animate-sale-badge rotate-45 z-10">
+                                -${discount}% SALE
+                            </div>
+                        ` : ''}
+                        
+                        <div>
+                            <!-- Header Info -->
+                            <div class="flex justify-between items-start mb-4">
+                                <div class="w-12 h-12 rounded-lg bg-surface-container border border-outline-variant/20 flex items-center justify-center text-primary group-hover:scale-105 transition-transform">
+                                    <span class="material-symbols-outlined text-2xl font-bold">${p.icon}</span>
+                                </div>
+                                <div class="text-right">
+                                    ${p.priceStrike ? `<span class="block text-[10px] font-mono text-on-surface-variant/60 line-through">₹${p.priceStrike}</span>` : ''}
+                                    <span class="font-mono text-xl font-bold text-on-surface">₹${p.price}</span>
+                                </div>
+                            </div>
+
+                            <h3 class="font-display font-bold text-lg text-on-surface mb-0.5 group-hover:text-primary transition-colors">${p.name}</h3>
+                            <span class="text-[9px] bg-primary/10 border border-primary/20 px-2 py-0.5 rounded font-mono font-bold text-primary uppercase inline-block mb-3.5">${p.tag}</span>
+                            <p class="text-xs text-on-surface-variant leading-relaxed mb-6">${p.description}</p>
+                            
+                            <!-- Features checklist -->
+                            <ul class="space-y-1.5 mb-8">
+                                ${p.features.map(f => `
+                                    <li class="flex items-center gap-2 text-[10px] text-on-surface-variant font-medium">
+                                        <span class="material-symbols-outlined text-primary text-xs font-bold">check_circle</span>
+                                        ${f}
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+
+                        <button onclick="addToCart(${p.id})" class="shimmer-btn w-full py-2.5 rounded-lg bg-surface-container-highest hover:bg-primary text-on-surface hover:text-background font-bold text-xs transition-colors flex items-center justify-center gap-2 hover:shadow-[0_0_15px_rgba(255,51,68,0.15)] active:scale-95">
+                            ADD TO CART <span class="material-symbols-outlined text-xs">shopping_cart</span>
+                        </button>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // ==============================================
+        // SHOPPING CART CORE
+        // ==============================================
+        function toggleCartDrawer(isOpen) {
+            const drawer = document.getElementById('cart-drawer');
+            const panel = drawer.querySelector('aside');
+
+            if (isOpen) {
+                drawer.classList.remove('pointer-events-none', 'opacity-0');
+                panel.classList.remove('translate-x-full');
+            } else {
+                drawer.classList.add('pointer-events-none', 'opacity-0');
+                panel.classList.add('translate-x-full');
+            }
+        }
+
+        function addToCart(productId) {
+            const item = products.find(p => p.id === productId);
+            if (!item) return;
+
+            const existing = cart.find(c => c.id === productId);
+            if (existing) {
+                existing.quantity += 1;
+            } else {
+                cart.push({ ...item, quantity: 1 });
+            }
+
+            localStorage.setItem('roxsmp_cart', JSON.stringify(cart));
+            updateCartUI();
+            showToast(`${item.name} added to cart!`, 'success');
+        }
+
+        function updateCartQuantity(productId, delta) {
+            const item = cart.find(c => c.id === productId);
+            if (!item) return;
+
+            item.quantity += delta;
+            if (item.quantity <= 0) {
+                cart = cart.filter(c => c.id !== productId);
+            }
+
+            localStorage.setItem('roxsmp_cart', JSON.stringify(cart));
+            updateCartUI();
+
+            // Refresh checkout if on checkout page
+            if (window.location.hash === '#checkout') {
+                renderCheckoutFlow();
+            }
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(c => c.id !== productId);
+            localStorage.setItem('roxsmp_cart', JSON.stringify(cart));
+            updateCartUI();
+            showToast('Item removed from cart', 'info');
+
+            // Refresh checkout if on checkout page
+            if (window.location.hash === '#checkout') {
+                renderCheckoutFlow();
+            }
+        }
+
+        function updateCartUI() {
+            const badge = document.getElementById('nav-cart-badge');
+            const mobBadge = document.getElementById('mobile-cart-badge');
+            const feed = document.getElementById('cart-items-feed');
+            const subtotalText = document.getElementById('cart-subtotal');
+            const discountRow = document.getElementById('cart-discount-row');
+            const discountText = document.getElementById('cart-discount');
+            const totalText = document.getElementById('cart-total');
+            const userBadge = document.getElementById('cart-username-badge');
+
+            // Badges count
+            const totalQuantity = cart.reduce((sum, item) => sum + item.quantity, 0);
+            if (totalQuantity > 0) {
+                badge.innerText = totalQuantity;
+                badge.classList.remove('scale-0');
+                badge.classList.add('scale-100');
+                mobBadge.innerText = totalQuantity;
+                mobBadge.classList.remove('scale-0');
+                mobBadge.classList.add('scale-100');
+            } else {
+                badge.classList.remove('scale-100');
+                badge.classList.add('scale-0');
+                mobBadge.classList.remove('scale-100');
+                mobBadge.classList.add('scale-0');
+            }
+
+            // User header
+            if (minecraftUser) {
+                userBadge.classList.remove('hidden');
+                userBadge.classList.add('flex');
+                document.getElementById('cart-username-avatar').src = `https://mc-heads.net/avatar/${minecraftUser}`;
+                document.getElementById('cart-username-name').innerText = minecraftUser;
+            } else {
+                userBadge.classList.add('hidden');
+                userBadge.classList.remove('flex');
+            }
+
+            // Feed list
+            if (cart.length === 0) {
+                feed.innerHTML = `
+                    <div class="py-12 text-center opacity-60">
+                        <span class="material-symbols-outlined text-4xl text-on-surface-variant/40 mb-2">shopping_basket</span>
+                        <p class="text-xs text-on-surface-variant">Your shopping cart is empty.</p>
+                    </div>
+                `;
+            } else {
+                feed.innerHTML = cart.map(item => `
+                    <div class="flex items-center gap-3.5 bg-surface-container-lowest border border-outline-variant/10 p-3 rounded-lg relative overflow-hidden group">
+                        <div class="w-10 h-10 rounded bg-surface border border-outline-variant/20 flex items-center justify-center text-primary">
+                            <span class="material-symbols-outlined text-xl">${item.icon}</span>
+                        </div>
+                        <div class="flex-1 min-w-0">
+                            <h4 class="font-display font-semibold text-xs text-on-surface truncate">${item.name}</h4>
+                            <span class="block font-mono text-[10px] text-primary mt-0.5">₹${item.price} each</span>
+                        </div>
+                        
+                        <!-- Quantities adjustment -->
+                        <div class="flex items-center border border-outline-variant/30 rounded bg-surface-container-high text-xs">
+                            <button onclick="updateCartQuantity(${item.id}, -1)" class="px-2 py-1 hover:text-primary active:scale-90">-</button>
+                            <span class="px-1.5 font-bold font-mono text-on-surface">${item.quantity}</span>
+                            <button onclick="updateCartQuantity(${item.id}, 1)" class="px-2 py-1 hover:text-primary active:scale-90">+</button>
+                        </div>
+
+                        <!-- Trash -->
+                        <button onclick="removeFromCart(${item.id})" class="text-on-surface-variant hover:text-error active:scale-90 transition-transform">
+                            <span class="material-symbols-outlined text-lg">delete</span>
+                        </button>
+                    </div>
+                `).join('');
+            }
+
+            // Calculations
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            subtotalText.innerText = `₹${subtotal}`;
+            
+            if (appliedCoupon && subtotal > 0) {
+                const discount = Math.round(subtotal * 0.2);
+                discountRow.classList.remove('hidden');
+                discountText.innerText = `-₹${discount}`;
+                totalText.innerText = `₹${subtotal - discount}`;
+            } else {
+                discountRow.classList.add('hidden');
+                totalText.innerText = `₹${subtotal}`;
+            }
+        }
+
+        function proceedToCheckout() {
+            if (cart.length === 0) {
+                showToast('Please add items to cart first!', 'error');
+                return;
+            }
+            toggleCartDrawer(false);
+            window.location.hash = '#checkout';
+        }
+
+        // ==============================================
+        // SECURE CHECKOUT FLOW (WIZARD)
+        // ==============================================
+        function renderCheckoutFlow() {
+            const formPanel = document.getElementById('checkout-form-panel');
+            
+            // Render Order summary calculations
+            const summaryContainer = document.getElementById('checkout-summary-items');
+            const subtotalText = document.getElementById('checkout-subtotal');
+            const discountRow = document.getElementById('checkout-discount-row');
+            const discountText = document.getElementById('checkout-discount');
+            const totalText = document.getElementById('checkout-total');
+
+            if (cart.length === 0) {
+                summaryContainer.innerHTML = `<p class="text-xs text-on-surface-variant text-center py-6">Your checkout basket is empty.</p>`;
+                subtotalText.innerText = '₹0';
+                discountRow.classList.add('hidden');
+                totalText.innerText = '₹0';
+                
+                formPanel.innerHTML = `
+                    <div class="text-center py-12">
+                        <span class="material-symbols-outlined text-4xl text-on-surface-variant/40 mb-2">shopping_bag</span>
+                        <p class="text-sm text-on-surface-variant">No items queued for checkout. Go browse the store categories!</p>
+                        <a href="#store" class="inline-block mt-4 btn-primary px-6 py-2 rounded-lg font-bold text-xs tracking-wider text-background">OPEN STORE</a>
+                    </div>
+                `;
+                return;
+            }
+
+            // Populate checkout summary items list
+            summaryContainer.innerHTML = cart.map(item => `
+                <div class="flex items-center justify-between text-xs font-semibold py-1">
+                    <span class="text-on-surface-variant truncate max-w-[150px]">${item.name} <span class="font-mono text-primary font-bold">x${item.quantity}</span></span>
+                    <span class="font-mono text-on-surface">₹${item.price * item.quantity}</span>
+                </div>
+            `).join('');
+
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            subtotalText.innerText = `₹${subtotal}`;
+            
+            if (appliedCoupon) {
+                const discount = Math.round(subtotal * 0.2);
+                discountRow.classList.remove('hidden');
+                discountText.innerText = `-₹${discount}`;
+                totalText.innerText = `₹${subtotal - discount}`;
+            } else {
+                discountRow.classList.add('hidden');
+                totalText.innerText = `₹${subtotal}`;
+            }
+
+            // Sync wizard indicators classes
+            syncWizardIndicators();
+
+            // Render active Step Forms
+            if (checkoutStep === 1) {
+                renderStep1(formPanel);
+            } else if (checkoutStep === 2) {
+                renderStep2(formPanel);
+            } else if (checkoutStep === 3) {
+                renderStep3(formPanel);
+            }
+        }
+
+        function syncWizardIndicators() {
+            const steps = [1, 2, 3];
+            steps.forEach(s => {
+                const node = document.getElementById(`checkout-step-${s}-indicator`);
+                if (checkoutStep > s) {
+                    node.className = `w-8 h-8 rounded-full bg-primary text-background font-mono font-bold text-xs flex items-center justify-center border-2 border-primary`;
+                    node.innerHTML = `<span class="material-symbols-outlined text-sm font-bold">check</span>`;
+                } else if (checkoutStep === s) {
+                    node.className = `w-8 h-8 rounded-full bg-primary text-background font-mono font-bold text-xs flex items-center justify-center border-2 border-primary pulse-glow-emerald`;
+                    node.innerHTML = `${s}`;
+                } else {
+                    node.className = `w-8 h-8 rounded-full bg-surface-container border-2 border-outline-variant/30 text-on-surface-variant font-mono font-bold text-xs flex items-center justify-center`;
+                    node.innerHTML = `${s}`;
+                }
+            });
+        }
+
+        // STEP 1: Minecraft username verification
+        function renderStep1(container) {
+            container.innerHTML = `
+                <h3 class="font-display font-bold text-lg text-on-surface mb-2 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary">verified</span> STEP 1: VERIFY MINECRAFT ACCOUNT
+                </h3>
+                <p class="text-xs text-on-surface-variant mb-6">Before proceeding to billing, verify the exact Minecraft username which will receive the items in-game.</p>
+                
+                ${minecraftUser ? `
+                    <div class="flex items-center gap-4 bg-primary/10 border border-primary/20 p-4 rounded-lg mb-6">
+                        <img src="https://mc-heads.net/avatar/${minecraftUser}" class="w-12 h-12 rounded bg-surface border border-outline-variant/30" alt="Skin"/>
+                        <div>
+                            <span class="block text-[10px] font-mono font-bold text-primary tracking-widest uppercase">Verified Mojang Session</span>
+                            <span class="font-display text-lg font-bold text-on-surface">${minecraftUser}</span>
+                            <button onclick="handleLogout()" class="block text-[10px] text-error hover:underline font-bold mt-0.5">DISCONNECT ACCOUNT</button>
+                        </div>
+                    </div>
+                    <button onclick="changeCheckoutStep(2)" class="w-full bg-primary hover:bg-primary-container text-background py-3 rounded-lg font-bold text-sm tracking-wide transition-all active:scale-95 shimmer-btn">
+                        PROCEED TO BILLING <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                    </button>
+                ` : `
+                    <form onsubmit="handleCheckoutVerification(event)" class="space-y-4">
+                        <div>
+                            <label class="block text-xs font-mono font-bold text-on-surface-variant/80 uppercase mb-2">Minecraft Username</label>
+                            <input id="checkout-username-input" type="text" required class="w-full bg-surface-container-lowest border border-outline-variant/30 rounded-lg text-sm text-on-surface focus:ring-primary focus:border-primary py-2.5 px-3.5" placeholder="e.g. Steve"/>
+                        </div>
+                        <button type="submit" class="w-full bg-primary hover:bg-primary-container text-background py-3 rounded-lg font-bold text-sm tracking-wide transition-all active:scale-95">
+                            VERIFY ACCOUNT
+                        </button>
+                    </form>
+                `}
+            `;
+        }
+
+        function handleCheckoutVerification(e) {
+            e.preventDefault();
+            const val = document.getElementById('checkout-username-input').value.trim();
+            if (val) {
+                minecraftUser = val;
+                localStorage.setItem('roxsmp_username', val);
+                updateUserNavUI();
+                updateCartUI();
+                renderCheckoutFlow();
+                showToast(`Verified Minecraft account: ${val}`, 'success');
+            }
+        }
+
+        // STEP 2: Billing & payment mode
+        function renderStep2(container) {
+            container.innerHTML = `
+                <h3 class="font-display font-bold text-lg text-on-surface mb-2 flex items-center gap-2">
+                    <span class="material-symbols-outlined text-primary">credit_card</span> STEP 2: BILLING & PAYMENT MODE
+                </h3>
+                <p class="text-xs text-on-surface-variant mb-6">Choose your preferred payment gateway. Ranks will be deployed instantly.</p>
+                
+                <form onsubmit="handleCheckoutPayment(event)" class="space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-xs font-mono font-bold text-on-surface-variant/80 uppercase mb-2">Email Address</label>
+                            <input type="email" required class="w-full bg-surface-container-lowest border border-outline-variant/30 rounded-lg text-sm text-on-surface focus:ring-primary focus:border-primary py-2.5 px-3.5" placeholder="e.g. player@gmail.com"/>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-mono font-bold text-on-surface-variant/80 uppercase mb-2">Discord ID (Optional)</label>
+                            <input type="text" class="w-full bg-surface-container-lowest border border-outline-variant/30 rounded-lg text-sm text-on-surface focus:ring-primary focus:border-primary py-2.5 px-3.5" placeholder="e.g. player#1234"/>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-mono font-bold text-on-surface-variant/80 uppercase mb-3">Select Payment Gateway</label>
+                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                            <label class="relative flex items-center gap-3 p-4 rounded-lg border border-outline-variant/30 bg-surface-container-lowest cursor-pointer hover:border-primary/50 transition-all select-none">
+                                <input type="radio" name="payment_method" value="upi" checked class="text-primary focus:ring-0 cursor-pointer"/>
+                                <div class="flex flex-col">
+                                    <span class="text-xs font-bold font-display text-on-surface">UPI / GPay / PhonePe</span>
+                                    <span class="text-[9px] text-on-surface-variant/60">India Instant Delivery</span>
+                                </div>
+                            </label>
+
+                            <label class="relative flex items-center gap-3 p-4 rounded-lg border border-outline-variant/30 bg-surface-container-lowest cursor-pointer hover:border-primary/50 transition-all select-none">
+                                <input type="radio" name="payment_method" value="card" class="text-primary focus:ring-0 cursor-pointer"/>
+                                <div class="flex flex-col">
+                                    <span class="text-xs font-bold font-display text-on-surface">Credit / Debit Card</span>
+                                    <span class="text-[9px] text-on-surface-variant/60">Visa / Mastercard</span>
+                                </div>
+                            </label>
+
+                            <label class="relative flex items-center gap-3 p-4 rounded-lg border border-outline-variant/30 bg-surface-container-lowest cursor-pointer hover:border-primary/50 transition-all select-none">
+                                <input type="radio" name="payment_method" value="paypal" class="text-primary focus:ring-0 cursor-pointer"/>
+                                <div class="flex flex-col">
+                                    <span class="text-xs font-bold font-display text-on-surface">PayPal / Venmo</span>
+                                    <span class="text-[9px] text-on-surface-variant/60">International Gateways</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="flex items-center gap-2 text-xs text-on-surface-variant font-medium">
+                        <input type="checkbox" required class="rounded text-primary focus:ring-0 cursor-pointer"/>
+                        <span>I agree to the <a href="#rules" class="text-primary hover:underline font-bold">Store Terms of Service</a> and refund policies.</span>
+                    </div>
+
+                    <div class="flex gap-4">
+                        <button type="button" onclick="changeCheckoutStep(1)" class="bg-surface-container-high hover:bg-surface-variant text-on-surface px-4 py-3 rounded-lg font-bold text-sm tracking-wide transition-all">
+                            BACK
+                        </button>
+                        <button type="submit" class="flex-1 bg-primary hover:bg-primary-container text-background py-3 rounded-lg font-bold text-sm tracking-wide transition-all active:scale-95 shimmer-btn">
+                            COMPLETE PAYMENT (SIMULATION)
+                        </button>
+                    </div>
+                </form>
+            `;
+        }
+
+        function handleCheckoutPayment(e) {
+            e.preventDefault();
+            
+            // Simulate payment processing loader
+            const btn = e.target.querySelector('button[type="submit"]');
+            btn.innerHTML = `<span class="inline-block animate-spin border-2 border-background border-t-transparent w-4 h-4 rounded-full mr-2"></span> PROCESSING SECURE GATEWAY...`;
+            btn.disabled = true;
+
+            setTimeout(() => {
+                checkoutStep = 3;
+                
+                // Clear cart state upon successful checkout simulation
+                cart = [];
+                localStorage.removeItem('roxsmp_cart');
+                updateCartUI();
+
+                renderCheckoutFlow();
+                showToast('Payment completed successfully!', 'success');
+            }, 2500);
+        }
+
+        // STEP 3: Invoice Success
+        function renderStep3(container) {
+            const invoiceId = 'INV-' + Math.floor(100000 + Math.random() * 900000);
+            
+            container.innerHTML = `
+                <div class="text-center py-6 flex flex-col items-center">
+                    <div class="w-16 h-16 rounded-full bg-primary/20 border border-primary flex items-center justify-center text-primary mb-4 pulse-glow-emerald">
+                        <span class="material-symbols-outlined text-4xl">check_circle</span>
+                    </div>
+                    
+                    <h3 class="font-display font-extrabold text-2xl text-on-surface uppercase mb-1">TRANSACTION COMPLETE!</h3>
+                    <p class="text-xs text-on-surface-variant max-w-sm mb-6">Your order has been authorized. Items will reach Minecraft account <span class="text-primary font-bold font-mono">${minecraftUser}</span> in 2-5 minutes.</p>
+
+                    <!-- Invoice Card -->
+                    <div class="w-full bg-surface-container-lowest border border-outline-variant/20 p-5 rounded-lg text-left text-xs space-y-4 mb-8">
+                        <div class="flex justify-between border-b border-outline-variant/15 pb-2.5">
+                            <span class="font-mono text-on-surface-variant font-bold">INVOICE ID:</span>
+                            <span class="font-mono font-bold text-on-surface">${invoiceId}</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-on-surface-variant font-bold">Delivery Username:</span>
+                            <span class="font-mono text-on-surface">${minecraftUser}</span>
+                        </div>
+                        <div class="flex justify-between">
+                            <span class="text-on-surface-variant font-bold">Status:</span>
+                            <span class="text-primary font-bold uppercase font-mono">CREDITED / DELIVERING</span>
+                        </div>
+                        <div class="flex justify-between border-t border-outline-variant/15 pt-2.5 text-sm font-bold text-on-surface">
+                            <span>Total Simulated Paid:</span>
+                            <span class="text-primary">₹${document.getElementById('checkout-total').innerText}</span>
+                        </div>
+                    </div>
+
+                    <div class="w-full flex flex-col sm:flex-row gap-3">
+                        <a href="#home" onclick="resetCheckout()" class="flex-1 bg-primary hover:bg-primary-container text-background py-3 rounded-lg font-bold text-xs tracking-wider text-center">
+                            GO BACK HOME
+                        </a>
+                        <a href="#store" onclick="resetCheckout()" class="flex-1 bg-surface-container-high hover:bg-surface-variant text-on-surface py-3 rounded-lg font-bold text-xs tracking-wider text-center">
+                            CONTINUE SHOPPING
+                        </a>
+                    </div>
+                </div>
+            `;
+        }
+
+        function changeCheckoutStep(step) {
+            checkoutStep = step;
+            renderCheckoutFlow();
+        }
+
+        function resetCheckout() {
+            checkoutStep = 1;
+        }
+
+        // ==============================================
+        // COUPON COMPUTATION
+        // ==============================================
+        function applyCoupon() {
+            const input = document.getElementById('checkout-coupon-input').value.trim().toUpperCase();
+            if (input === 'SUMMER20') {
+                appliedCoupon = 'SUMMER20';
+                updateCartUI();
+                renderCheckoutFlow();
+                showToast('Coupon "SUMMER20" applied! 20% discount', 'success');
+            } else {
+                showToast('Invalid Coupon Code!', 'error');
+            }
+        }
+
+        // ==============================================
+        // SUPPORT TICKETS CORE
+        // ==============================================
+        function renderTickets() {
+            const container = document.getElementById('tickets-history-container');
+            const countBadge = document.getElementById('ticket-count');
+            
+            countBadge.innerText = `${supportTickets.length} ticket${supportTickets.length !== 1 ? 's' : ''}`;
+
+            if (supportTickets.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12 glass-card rounded-xl">
+                        <span class="material-symbols-outlined text-4xl text-on-surface-variant/30 mb-2">contact_support</span>
+                        <p class="text-sm text-on-surface-variant/50">No tickets found. Submit the form to log your first ticket!</p>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = supportTickets.map(tkt => {
+                const statusColor = tkt.status === 'Resolved' ? 'bg-primary/20 text-primary border-primary/30' : 'bg-secondary/20 text-secondary border-secondary/30';
+                
+                return `
+                    <div class="glass-card rounded-xl p-5 flex flex-col gap-4 border-outline-variant/20">
+                        <div class="flex items-center justify-between border-b border-outline-variant/15 pb-2.5">
+                            <div class="flex items-center gap-2">
+                                <span class="font-mono text-xs font-bold text-primary">${tkt.id}</span>
+                                <span class="text-[10px] bg-surface-container border px-2 py-0.5 rounded font-mono font-bold text-on-surface-variant">${tkt.category}</span>
+                            </div>
+                            <span class="font-mono text-[9px] text-on-surface-variant">${tkt.date}</span>
+                        </div>
+                        
+                        <div>
+                            <span class="text-[10px] font-mono text-on-surface-variant font-bold">Message from ${tkt.username}:</span>
+                            <p class="text-xs text-on-surface leading-relaxed mt-1">${tkt.message}</p>
+                        </div>
+
+                        <div class="flex items-center justify-between mt-1">
+                            <span class="text-[9px] border px-2 py-0.5 rounded font-mono font-bold ${statusColor}">${tkt.status}</span>
+                        </div>
+
+                        ${tkt.reply ? `
+                            <div class="bg-surface-container-lowest border border-outline-variant/10 p-3 rounded-lg mt-2 text-xs">
+                                <span class="font-mono text-[10px] font-bold text-primary flex items-center gap-1"><span class="material-symbols-outlined text-xs">admin_panel_settings</span> Administrator Reply:</span>
+                                <p class="text-on-surface-variant mt-1 leading-relaxed">${tkt.reply}</p>
+                            </div>
+                        ` : `
+                            <div class="bg-surface-container-lowest/40 border border-dashed border-outline-variant/10 p-3 rounded-lg mt-2 text-xs text-center text-on-surface-variant/60 font-mono text-[10px]">
+                                Awaiting administrator assignment...
+                            </div>
+                        `}
+                    </div>
+                `;
+            }).join('');
+        }
+
+        function submitTicket(e) {
+            e.preventDefault();
+            const username = document.getElementById('ticket-username').value.trim();
+            const category = document.getElementById('ticket-category').value;
+            const message = document.getElementById('ticket-message').value.trim();
+
+            if (!username || !message) return;
+
+            const newId = 'TKT-' + Math.floor(1000 + Math.random() * 9000);
+            const dateStr = new Date().toLocaleString('en-US', { hour12: false, month: 'short', day: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' }).replace(',', '');
+
+            const newTicket = {
+                id: newId,
+                username: username,
+                category: category,
+                message: message,
+                date: dateStr,
+                status: 'Open',
+                reply: null
+            };
+
+            supportTickets.unshift(newTicket);
+            localStorage.setItem('roxsmp_tickets', JSON.stringify(supportTickets));
+            
+            // Clear form message
+            document.getElementById('ticket-message').value = '';
+            
+            renderTickets();
+            showToast(`Ticket ${newId} Submitted!`, 'success');
+
+            // Trigger admin automatic reply simulation
+            setTimeout(() => {
+                newTicket.status = 'Resolved';
+                newTicket.reply = `Hi ${username}, our automated bot checked the ticket. If this is regarding a purchase issue, make sure to wait up to 15 mins. If you still have trouble, an admin will review this log within 24 hours.`;
+                localStorage.setItem('roxsmp_tickets', JSON.stringify(supportTickets));
+                renderTickets();
+                showToast(`New reply on ticket ${newId}!`, 'info');
+            }, 8000);
+        }
+
+        // ==============================================
+        // CONTACT FORM CORE
+        // ==============================================
+        function submitContact(e) {
+            e.preventDefault();
+            const form = e.target;
+            const submitBtn = form.querySelector('button[type="submit"]');
+            
+            submitBtn.innerHTML = `<span class="inline-block animate-spin border-2 border-background border-t-transparent w-4 h-4 rounded-full mr-2"></span> SENDING...`;
+            submitBtn.disabled = true;
+
+            setTimeout(() => {
+                showToast('Contact message sent successfully!', 'success');
+                form.reset();
+                submitBtn.innerHTML = 'SEND MESSAGE';
+                submitBtn.disabled = false;
+            }, 1500);
+        }
+    </script>
+</body>
+</html>
