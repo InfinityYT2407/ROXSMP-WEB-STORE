@@ -313,11 +313,6 @@
                     <!-- Floating Premium Server Logo -->
                     <img src="logo.png" alt="RoxSmp Logo" class="w-48 h-48 md:w-56 md:h-56 object-contain mb-8 drop-shadow-[0_0_35px_rgba(255,51,68,0.45)] animate-[float_4s_infinite_ease-in-out]">
 
-                    <div class="flex items-center gap-2 mb-4 bg-primary/10 border border-primary/20 px-4 py-1.5 rounded-full animate-sale-badge">
-                        <span class="w-2 h-2 rounded-full bg-primary inline-block animate-ping"></span>
-                        <span class="font-mono text-xs text-primary font-bold uppercase tracking-widest">SUMMER SALE - 20% OFF WITH "SUMMER20"</span>
-                    </div>
-
                     <h1 class="font-display font-extrabold text-5xl md:text-7xl text-on-surface tracking-tighter uppercase mb-4 leading-none">
                         RoxSmp <span class="text-primary glow-text-primary">NETWORK</span>
                     </h1>
@@ -390,7 +385,7 @@
                     </div>
                 </div>
 
-                <!-- Monthly Goal & Community section (2 columns, announcements removed) -->
+                <!-- Monthly Goal & Community section -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <!-- Donation Goal Box -->
                     <div class="glass-card rounded-xl p-6 relative overflow-hidden flex flex-col justify-between">
@@ -407,7 +402,7 @@
                                 <span class="font-mono text-sm text-on-surface-variant">₹8,200 / ₹10,000</span>
                             </div>
                             <div class="w-full bg-surface-container-lowest border border-outline-variant/10 rounded-full h-4 overflow-hidden p-[2px]">
-                                <div class="bg-gradient-to-r from-primary/80 to-primary h-full rounded-full pulse-glow-emerald" style="width: 82%"></div>
+                                <div class="bg-gradient-to-r from-primary/80 to-primary h-full rounded-full" style="width: 82%"></div>
                             </div>
                             <p class="text-[10px] font-mono text-on-surface-variant mt-2 text-right">Goal resets in 22 days</p>
                         </div>
@@ -483,12 +478,8 @@
                             </button>
                         </div>
 
-                        <!-- Card: Soul Reaper (Featured) -->
+                        <!-- Card: Soul Reaper -->
                         <div class="glass-card rounded-xl p-6 flex flex-col justify-between transition-all duration-300 relative group overflow-hidden border-primary/50 shadow-[0_0_30px_rgba(255,51,68,0.1)] md:scale-105 z-10 bg-gradient-to-b from-primary/5 to-transparent">
-                            <div class="absolute top-4 right-[-30px] bg-primary/20 text-primary font-mono text-[10px] font-bold px-10 py-1 shadow-lg animate-sale-badge rotate-45 z-20">
-                                HOT DEAL
-                            </div>
-                            
                             <div>
                                 <div class="flex justify-between items-start mb-6">
                                     <div class="w-14 h-14 rounded-lg bg-primary/20 flex items-center justify-center border border-primary text-primary">
@@ -583,7 +574,7 @@
                     
                     <div>
                         <h1 class="font-display font-extrabold text-3xl text-secondary glow-text-gold tracking-tight mb-2 uppercase">SERVER WEBSTORE</h1>
-                        <p class="text-sm text-on-surface-variant max-w-xl">Browse our items list. Ranks and unbans are delivered to your account in-game automatically. Apply coupon code <span class="text-primary font-mono font-bold font-mono">SUMMER20</span> at checkout to get 20% discount.</p>
+                        <p class="text-sm text-on-surface-variant max-w-xl">Browse our items list. Ranks and unbans are delivered to your account in-game automatically.</p>
                     </div>
 
                     <!-- Search Input on Header -->
@@ -924,7 +915,7 @@
                         
                         <!-- Panel: Verification & Info -->
                         <div id="checkout-form-panel" class="glass-card rounded-xl p-6">
-                            <!-- Injected JS based on active step -->
+                            <!-- UTR Field injected by JS -->
                         </div>
 
                     </div>
@@ -946,20 +937,10 @@
                                 <span>Cart Subtotal</span>
                                 <span id="checkout-subtotal">₹0</span>
                             </div>
-                            <div id="checkout-discount-row" class="flex justify-between text-primary hidden">
-                                <span>Promo Discount (20%)</span>
-                                <span id="checkout-discount">-₹0</span>
-                            </div>
                             <div class="flex justify-between text-on-surface text-base font-bold border-t border-outline-variant/20 pt-3">
                                 <span>Grand Total</span>
                                 <span id="checkout-total" class="text-primary glow-text-primary">₹0</span>
                             </div>
-                        </div>
-
-                        <!-- Coupon Form -->
-                        <div class="border-t border-outline-variant/20 pt-4 flex gap-2">
-                            <input id="checkout-coupon-input" type="text" class="flex-1 bg-surface-container-lowest border border-outline-variant/30 rounded-lg text-xs font-mono py-2 px-3 uppercase text-on-surface focus:ring-primary focus:border-primary" placeholder="SUMMER20"/>
-                            <button onclick="applyCoupon()" class="bg-surface-container border border-outline-variant/40 hover:border-primary/50 text-xs font-bold px-4 rounded-lg active:scale-95 transition-all text-on-surface">APPLY</button>
                         </div>
                     </div>
                 </div>
@@ -1009,10 +990,6 @@
                     <div class="flex justify-between text-on-surface-variant">
                         <span>Items Subtotal</span>
                         <span id="cart-subtotal">₹0</span>
-                    </div>
-                    <div id="cart-discount-row" class="flex justify-between text-primary hidden">
-                        <span>Promo Code Applied</span>
-                        <span id="cart-discount">-₹0</span>
                     </div>
                     <div class="flex justify-between text-on-surface text-base font-bold border-t border-outline-variant/20 pt-3">
                         <span>Estimated Total</span>
@@ -1223,7 +1200,10 @@
         let activeCategory = 'ranks';
         let searchQuery = '';
         let sortMode = 'default';
-        let appliedCoupon = null;
+        let checkoutEmail = '';
+        let checkoutDiscord = '';
+        let checkoutMethod = 'upi';
+        let checkoutUtr = '';
         let minecraftUser = null;
         let checkoutStep = 1;
 
@@ -1506,16 +1486,8 @@
             }
 
             grid.innerHTML = filtered.map(p => {
-                const discount = p.priceStrike ? Math.round(((p.priceStrike - p.price) / p.priceStrike) * 100) : 0;
-                
                 return `
                     <div class="glass-card rounded-xl p-5 flex flex-col justify-between group relative overflow-hidden ${p.category === 'ranks' ? 'border-outline-variant/30' : ''}">
-                        <!-- Sale Badge -->
-                        ${p.priceStrike ? `
-                            <div class="absolute top-4 right-[-30px] bg-error text-on-error font-mono text-[9px] font-bold px-8 py-0.5 shadow-lg animate-sale-badge rotate-45 z-10">
-                                -${discount}% SALE
-                            </div>
-                        ` : ''}
                         
                         <div>
                             <!-- Header Info -->
@@ -1524,7 +1496,6 @@
                                     <span class="material-symbols-outlined text-2xl font-bold">${p.icon}</span>
                                 </div>
                                 <div class="text-right">
-                                    ${p.priceStrike ? `<span class="block text-[10px] font-mono text-on-surface-variant/60 line-through">₹${p.priceStrike}</span>` : ''}
                                     <span class="font-mono text-xl font-bold text-on-surface">₹${p.price}</span>
                                 </div>
                             </div>
@@ -1619,8 +1590,6 @@
             const mobBadge = document.getElementById('mobile-cart-badge');
             const feed = document.getElementById('cart-items-feed');
             const subtotalText = document.getElementById('cart-subtotal');
-            const discountRow = document.getElementById('cart-discount-row');
-            const discountText = document.getElementById('cart-discount');
             const totalText = document.getElementById('cart-total');
             const userBadge = document.getElementById('cart-username-badge');
 
@@ -1688,16 +1657,7 @@
             // Calculations
             const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             subtotalText.innerText = `₹${subtotal}`;
-            
-            if (appliedCoupon && subtotal > 0) {
-                const discount = Math.round(subtotal * 0.2);
-                discountRow.classList.remove('hidden');
-                discountText.innerText = `-₹${discount}`;
-                totalText.innerText = `₹${subtotal - discount}`;
-            } else {
-                discountRow.classList.add('hidden');
-                totalText.innerText = `₹${subtotal}`;
-            }
+            totalText.innerText = `₹${subtotal}`;
         }
 
         function proceedToCheckout() {
@@ -1718,14 +1678,11 @@
             // Render Order summary calculations
             const summaryContainer = document.getElementById('checkout-summary-items');
             const subtotalText = document.getElementById('checkout-subtotal');
-            const discountRow = document.getElementById('checkout-discount-row');
-            const discountText = document.getElementById('checkout-discount');
             const totalText = document.getElementById('checkout-total');
 
             if (cart.length === 0) {
                 summaryContainer.innerHTML = `<p class="text-xs text-on-surface-variant text-center py-6">Your checkout basket is empty.</p>`;
                 subtotalText.innerText = '₹0';
-                discountRow.classList.add('hidden');
                 totalText.innerText = '₹0';
                 
                 formPanel.innerHTML = `
@@ -1749,15 +1706,7 @@
             const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             subtotalText.innerText = `₹${subtotal}`;
             
-            if (appliedCoupon) {
-                const discount = Math.round(subtotal * 0.2);
-                discountRow.classList.remove('hidden');
-                discountText.innerText = `-₹${discount}`;
-                totalText.innerText = `₹${subtotal - discount}`;
-            } else {
-                discountRow.classList.add('hidden');
-                totalText.innerText = `₹${subtotal}`;
-            }
+            totalText.innerText = `₹${subtotal}`;
 
             // Sync wizard indicators classes
             syncWizardIndicators();
@@ -1894,10 +1843,6 @@
             `;
         }
 
-        let checkoutEmail = '';
-        let checkoutDiscord = '';
-        let checkoutMethod = 'upi';
-
         function handleCheckoutPayment(e) {
             e.preventDefault();
             
@@ -1931,22 +1876,28 @@
                             <img src="payment_qr.jpg" class="w-44 h-auto mx-auto" alt="Payment QR Code"/>
                         </div>
                         
-                        <div class="w-full text-left space-y-1 mb-4">
-                            <span class="block text-[10px] font-mono font-bold text-on-surface-variant/80 uppercase">UPI Address:</span>
-                            <div class="flex items-center justify-between bg-surface-container-lowest border border-outline-variant/30 rounded-lg p-2.5">
+                        <div class="w-full text-left space-y-1 mb-3">
+                            <span class="block text-[9px] font-mono font-bold text-on-surface-variant/80 uppercase">UPI Address:</span>
+                            <div class="flex items-center justify-between bg-surface-container-lowest border border-outline-variant/30 rounded-lg p-2">
                                 <span id="payment-upi-id" class="font-mono text-xs font-bold text-primary">9266495455@ptyes</span>
-                                <button onclick="copyUPIID()" class="text-[10px] bg-surface-container-high border border-outline-variant/40 hover:border-primary/50 text-on-surface font-bold py-1 px-2.5 rounded-md transition-all active:scale-95 flex items-center gap-1">
+                                <button onclick="copyUPIID()" class="text-[9px] bg-surface-container-high border border-outline-variant/40 hover:border-primary/50 text-on-surface font-bold py-1 px-2 rounded-md transition-all active:scale-95 flex items-center gap-1">
                                     COPY <span class="material-symbols-outlined text-xs">content_copy</span>
                                 </button>
                             </div>
+                        </div>
+
+                        <!-- UTR Input Field -->
+                        <div class="w-full text-left space-y-1 mb-4">
+                            <label class="block text-[9px] font-mono font-bold text-on-surface-variant/80 uppercase">Enter 12-Digit UPI Ref / UTR No:</label>
+                            <input type="text" id="payment-utr-input" required class="w-full bg-surface-container-lowest border border-outline-variant/30 rounded-lg text-xs py-2 px-3 focus:ring-primary focus:border-primary text-on-surface font-mono" placeholder="e.g. 301234567890" maxlength="12"/>
                         </div>
 
                         <div class="w-full flex gap-3">
                             <button type="button" onclick="closePaymentModal()" class="flex-1 bg-surface-container-high hover:bg-surface-variant text-on-surface py-2.5 rounded-lg font-bold text-xs tracking-wider transition-all">
                                 CANCEL
                             </button>
-                            <button type="button" onclick="confirmPayment()" class="flex-1 bg-primary hover:bg-primary-container text-background py-2.5 rounded-lg font-bold text-xs tracking-wider shimmer-btn">
-                                I HAVE PAID
+                            <button type="button" onclick="handleUPIPaymentSubmit()" class="flex-1 bg-primary hover:bg-primary-container text-background py-2.5 rounded-lg font-bold text-xs tracking-wider shimmer-btn">
+                                CONFIRM PAYMENT
                             </button>
                         </div>
                     </div>
@@ -2023,6 +1974,16 @@
             }, 2000);
         }
 
+        function handleUPIPaymentSubmit() {
+            const utrVal = document.getElementById('payment-utr-input').value.trim();
+            if (!/^[0-9]{12}$/.test(utrVal)) {
+                showToast('Please enter a valid 12-digit UPI UTR number!', 'error');
+                return;
+            }
+            checkoutUtr = utrVal;
+            confirmPayment();
+        }
+
         function confirmPayment() {
             checkoutStep = 3;
             cart = [];
@@ -2060,8 +2021,14 @@
                             <span class="text-on-surface-variant font-bold">Status:</span>
                             <span class="text-primary font-bold uppercase font-mono">CREDITED / DELIVERING</span>
                         </div>
+                        ${checkoutMethod === 'upi' ? `
+                        <div class="flex justify-between border-t border-outline-variant/15 pt-2.5">
+                            <span class="text-on-surface-variant font-bold">UTR / Ref No:</span>
+                            <span class="font-mono text-primary font-bold">${checkoutUtr}</span>
+                        </div>
+                        ` : ''}
                         <div class="flex justify-between border-t border-outline-variant/15 pt-2.5 text-sm font-bold text-on-surface">
-                            <span>Total Simulated Paid:</span>
+                            <span>Total Paid:</span>
                             <span class="text-primary">₹${document.getElementById('checkout-total').innerText}</span>
                         </div>
                     </div>
@@ -2087,20 +2054,7 @@
             checkoutStep = 1;
         }
 
-        // ==============================================
-        // COUPON COMPUTATION
-        // ==============================================
-        function applyCoupon() {
-            const input = document.getElementById('checkout-coupon-input').value.trim().toUpperCase();
-            if (input === 'SUMMER20') {
-                appliedCoupon = 'SUMMER20';
-                updateCartUI();
-                renderCheckoutFlow();
-                showToast('Coupon "SUMMER20" applied! 20% discount', 'success');
-            } else {
-                showToast('Invalid Coupon Code!', 'error');
-            }
-        }
+
 
         // ==============================================
         // SUPPORT TICKETS CORE
