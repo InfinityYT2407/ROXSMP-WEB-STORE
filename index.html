@@ -570,7 +570,7 @@
                             </button>
                         </div>
 
-                        <!-- Card: Soul Reaper -->
+                        <!-- Card: Soul -->
                         <div class="glass-card rounded-xl p-6 flex flex-col justify-between transition-all duration-300 relative group overflow-hidden border-purple-500/40 shadow-[0_0_30px_rgba(168,85,247,0.1)] md:scale-105 z-10 bg-gradient-to-b from-purple-500/5 to-transparent hover:border-purple-400 hover:shadow-[0_0_40px_rgba(168,85,247,0.25)]">
                             <div>
                                 <div class="flex justify-between items-start mb-6">
@@ -579,7 +579,7 @@
                                     </div>
                                     <span class="font-mono text-2xl font-bold text-purple-400">₹399</span>
                                 </div>
-                                <h3 class="font-display font-bold text-xl text-on-surface mb-1">Soul Reaper</h3>
+                                <h3 class="font-display font-bold text-xl text-on-surface mb-1">Soul</h3>
                                 <span class="text-xs text-purple-400 font-mono font-bold uppercase tracking-wider block mb-4">Lifetime Perk</span>
                                 <ul class="space-y-2.5 mb-8">
                                     <li class="flex items-center gap-2.5 text-xs text-on-surface-variant font-medium">
@@ -609,7 +609,7 @@
                             </button>
                         </div>
 
-                        <!-- Card: Elite Titan -->
+                        <!-- Card: Titan -->
                         <div class="glass-card rounded-xl p-6 flex flex-col justify-between transition-all duration-300 relative group overflow-hidden border-yellow-500/30 hover:border-yellow-500/60 hover:shadow-[0_0_30px_rgba(255,214,10,0.15)]">
                             <div class="absolute inset-0 bg-gradient-to-br from-yellow-500/5 to-transparent pointer-events-none"></div>
                             <div>
@@ -619,12 +619,12 @@
                                     </div>
                                     <span class="font-mono text-2xl font-bold text-yellow-400">₹599</span>
                                 </div>
-                                <h3 class="font-display font-bold text-xl text-yellow-400 mb-1">Elite Titan</h3>
+                                <h3 class="font-display font-bold text-xl text-yellow-400 mb-1">Titan</h3>
                                 <span class="text-xs text-yellow-400 font-mono font-bold uppercase tracking-wider block mb-4">Lifetime Perk</span>
                                 <ul class="space-y-2.5 mb-8">
                                     <li class="flex items-center gap-2.5 text-xs text-on-surface-variant">
                                         <span class="material-symbols-outlined text-yellow-400 text-sm font-bold">check_circle</span>
-                                        Everything from Reaper
+                                        Everything from Soul
                                     </li>
                                     <li class="flex items-center gap-2.5 text-xs text-on-surface-variant">
                                         <span class="material-symbols-outlined text-yellow-400 text-sm font-bold">check_circle</span>
@@ -1321,9 +1321,9 @@
         const products = [
             // Ranks (id: 1-5)
             { id: 1, category: 'ranks', name: 'VIP+ Rank', price: 249, priceStrike: null, badge: 'hotel_class', description: 'Access essential server tools, sit, and carry virtual workbenches or enderchests anywhere.', features: ['Sell all items', '/sit', '/workbench', '/enderchest', '/anvil', '/grindstone', 'Set 4 Homes', '/order 10', 'Daily $5,000'], icon: 'hotel_class', rarityColor: 'text-primary', tag: 'Lifetime' },
-            { id: 2, category: 'ranks', name: 'Soul Reaper', price: 399, priceStrike: null, badge: 'verified', description: 'Gain advanced tracking utilities, disposal bins, carry custom pets, and collect daily allowance.', features: ['Everything from VIP+', '/near', '/disposal', 'Set 6 Homes', '/order 15', '/pet', 'Daily $10,000'], icon: 'brightness_3', rarityColor: 'text-primary', tag: 'Special' },
-            { id: 3, category: 'ranks', name: 'Elite Titan', price: 599, priceStrike: null, badge: 'shield', description: 'Become a Titan of the server. Auto-feed yourself, apply particle effects, and get higher home limits.', features: ['Everything from Soul Reaper', '/feed', 'Set 9 Homes', '/order 25', '/particles', 'Daily $20,000'], icon: 'shield', rarityColor: 'text-secondary', tag: 'Lifetime' },
-            { id: 4, category: 'ranks', name: 'Alpha', price: 999, priceStrike: null, badge: 'star', description: 'The peak alpha experience. Connect to full servers, double server coins, and alpha kits.', features: ['Everything from Elite Titan', '/hat', 'Set 13 Homes', '/order 30', '/deatheffect', '/hats', 'Daily $30,000'], icon: 'star', rarityColor: 'text-secondary', tag: 'Prestige' },
+            { id: 2, category: 'ranks', name: 'Soul', price: 399, priceStrike: null, badge: 'verified', description: 'Gain advanced tracking utilities, disposal bins, carry custom pets, and collect daily allowance.', features: ['Everything from VIP+', '/near', '/disposal', 'Set 6 Homes', '/order 15', '/pet', 'Daily $10,000'], icon: 'brightness_3', rarityColor: 'text-primary', tag: 'Special' },
+            { id: 3, category: 'ranks', name: 'Titan', price: 599, priceStrike: null, badge: 'shield', description: 'Become a Titan of the server. Auto-feed yourself, apply particle effects, and get higher home limits.', features: ['Everything from Soul', '/feed', 'Set 9 Homes', '/order 25', '/particles', 'Daily $20,000'], icon: 'shield', rarityColor: 'text-secondary', tag: 'Lifetime' },
+            { id: 4, category: 'ranks', name: 'Alpha', price: 999, priceStrike: null, badge: 'star', description: 'The peak alpha experience. Connect to full servers, double server coins, and alpha kits.', features: ['Everything from Titan', '/hat', 'Set 13 Homes', '/order 30', '/deatheffect', '/hats', 'Daily $30,000'], icon: 'star', rarityColor: 'text-secondary', tag: 'Prestige' },
             { id: 5, category: 'ranks', name: 'Custom Rank', price: 1199, priceStrike: null, badge: 'diamond', description: 'Create your ultimate rank. Customize name tag titles, configure cosmetics, and get massive allowance daily.', features: ['Everything from Alpha', 'Set 18 Homes', '/order 40', '/cosmetic', '🎨 Custom Rank Name', 'Daily $40,000'], icon: 'diamond', rarityColor: 'text-secondary', tag: 'Unique' },
             
             // Crate Keys (id: 6-17)
@@ -1331,13 +1331,13 @@
             { id: 7, category: 'crates', name: '5x + 2 Free VIP+ Crate Key', price: 199, priceStrike: null, badge: 'key', description: 'Get 7 keys for the price of 5. Unbox VIP+ tools and spawn loot chests.', features: ['7x VIP+ Crate Keys total', 'Buy 5 get 2 free promo', 'Instant delivery'], icon: 'key', rarityColor: 'text-primary', tag: 'Value Crate' },
             { id: 8, category: 'crates', name: '10x + 5 Free VIP+ Crate Key', price: 299, priceStrike: null, badge: 'key', description: 'Get 15 keys. Best value starter pack for VIP+ chests.', features: ['15x VIP+ Crate Keys total', 'Buy 10 get 5 free promo', 'Elite starter pack'], icon: 'key', rarityColor: 'text-secondary', tag: 'Bulk Pack' },
             
-            { id: 9, category: 'crates', name: '1x Soul Reaper Crate Key', price: 69, priceStrike: null, badge: 'vpn_key', description: 'Single Soul Reaper Crate Key. Access reaper-tier spawn rewards.', features: ['1x Soul Reaper key', 'Instant delivery', 'High tier drops pool'], icon: 'vpn_key', rarityColor: 'text-tertiary', tag: 'Reaper Crate' },
-            { id: 10, category: 'crates', name: '5x + 2 Free Soul Reaper Key', price: 249, priceStrike: null, badge: 'vpn_key', description: 'Get 7 Soul Reaper keys. Excellent chance at unlocking custom gear.', features: ['7x Soul Reaper keys total', 'Buy 5 get 2 free promo', 'Instant delivery'], icon: 'vpn_key', rarityColor: 'text-primary', tag: 'Value Crate' },
-            { id: 11, category: 'crates', name: '10x + 5 Free Soul Reaper Key', price: 399, priceStrike: null, badge: 'vpn_key', description: 'Get 15 Soul Reaper keys. Ultimate pack for the Reaper spawn chests.', features: ['15x Soul Reaper keys total', 'Buy 10 get 5 free promo', 'Bulk savings pack'], icon: 'vpn_key', rarityColor: 'text-secondary', tag: 'Bulk Pack' },
+            { id: 9, category: 'crates', name: '1x Soul Crate Key', price: 69, priceStrike: null, badge: 'vpn_key', description: 'Single Soul Crate Key. Access soul-tier spawn rewards.', features: ['1x Soul key', 'Instant delivery', 'High tier drops pool'], icon: 'vpn_key', rarityColor: 'text-tertiary', tag: 'Soul Crate' },
+            { id: 10, category: 'crates', name: '5x + 2 Free Soul Key', price: 249, priceStrike: null, badge: 'vpn_key', description: 'Get 7 Soul keys. Excellent chance at unlocking custom gear.', features: ['7x Soul keys total', 'Buy 5 get 2 free promo', 'Instant delivery'], icon: 'vpn_key', rarityColor: 'text-primary', tag: 'Value Crate' },
+            { id: 11, category: 'crates', name: '10x + 5 Free Soul Key', price: 399, priceStrike: null, badge: 'vpn_key', description: 'Get 15 Soul keys. Ultimate pack for the Soul spawn chests.', features: ['15x Soul keys total', 'Buy 10 get 5 free promo', 'Bulk savings pack'], icon: 'vpn_key', rarityColor: 'text-secondary', tag: 'Bulk Pack' },
             
-            { id: 12, category: 'crates', name: '1x Elite Titan Crate Key', price: 109, priceStrike: null, badge: 'lock_open', description: 'Single Elite Titan Crate Key. Open spawn vaults for Titan weapons.', features: ['1x Elite Titan key', 'Instant delivery', 'Elite drops pool active'], icon: 'lock_open', rarityColor: 'text-tertiary', tag: 'Titan Crate' },
-            { id: 13, category: 'crates', name: '5x + 2 Free Elite Titan Key', price: 299, priceStrike: null, badge: 'lock_open', description: 'Get 7 Elite Titan keys. High probability of unboxing mythic gear.', features: ['7x Elite Titan keys total', 'Buy 5 get 2 free promo', 'Instant delivery'], icon: 'lock_open', rarityColor: 'text-primary', tag: 'Value Crate' },
-            { id: 14, category: 'crates', name: '10x + 5 Free Elite Titan Key', price: 499, priceStrike: null, badge: 'lock_open', description: 'Get 15 Elite Titan keys. Gear up with Titan relics instantly.', features: ['15x Elite Titan keys total', 'Buy 10 get 5 free promo', 'Bulk savings pack'], icon: 'lock_open', rarityColor: 'text-secondary', tag: 'Bulk Pack' },
+            { id: 12, category: 'crates', name: '1x Titan Crate Key', price: 109, priceStrike: null, badge: 'lock_open', description: 'Single Titan Crate Key. Open spawn vaults for Titan weapons.', features: ['1x Titan key', 'Instant delivery', 'Elite drops pool active'], icon: 'lock_open', rarityColor: 'text-tertiary', tag: 'Titan Crate' },
+            { id: 13, category: 'crates', name: '5x + 2 Free Titan Key', price: 299, priceStrike: null, badge: 'lock_open', description: 'Get 7 Titan keys. High probability of unboxing mythic gear.', features: ['7x Titan keys total', 'Buy 5 get 2 free promo', 'Instant delivery'], icon: 'lock_open', rarityColor: 'text-primary', tag: 'Value Crate' },
+            { id: 14, category: 'crates', name: '10x + 5 Free Titan Key', price: 499, priceStrike: null, badge: 'lock_open', description: 'Get 15 Titan keys. Gear up with Titan relics instantly.', features: ['15x Titan keys total', 'Buy 10 get 5 free promo', 'Bulk savings pack'], icon: 'lock_open', rarityColor: 'text-secondary', tag: 'Bulk Pack' },
             
             { id: 15, category: 'crates', name: '1x Alpha Crate Key', price: 129, priceStrike: null, badge: 'layers', description: 'Single Alpha Crate Key. The absolute peak spawn chest rewards.', features: ['1x Alpha key', 'Instant delivery', 'Alpha drops pool active'], icon: 'layers', rarityColor: 'text-tertiary', tag: 'Alpha Crate' },
             { id: 16, category: 'crates', name: '5x + 2 Free Alpha Crate Key', price: 449, priceStrike: null, badge: 'layers', description: 'Get 7 Alpha keys. Unbox exclusive weapons, armor, and multipliers.', features: ['7x Alpha keys total', 'Buy 5 get 2 free promo', 'Instant delivery'], icon: 'layers', rarityColor: 'text-primary', tag: 'Value Crate' },
@@ -2462,7 +2462,7 @@
                 if (q.includes('not') || q.includes('didn\'t') || q.includes('issue') || q.includes('receive')) {
                     return "If your purchase is not received, please check that your transaction went through and wait up to 15 minutes. If it's still missing, join our Discord (<a href='https://discord.gg/qsYUDR6F7H' target='_blank' class='text-pink-400 hover:underline font-bold'>discord.gg/qsYUDR6F7H</a>) and open a Billing Support ticket. Provide your UPI ref/UTR number and a screenshot of the payment.";
                 }
-                return "To buy a rank: 1. Go to the **Store** section. 2. Choose your preferred rank (VIP+, Soul Reaper, Elite Titan, Alpha). 3. Click **Add to Cart** and enter your Minecraft username. 4. Verify and proceed to pay. 5. Make the payment via UPI QR code, enter the 12-digit UTR/Ref number, and submit. 6. Upload a screenshot to our Discord server (<a href='https://discord.gg/qsYUDR6F7H' target='_blank' class='text-pink-400 hover:underline font-bold'>discord.gg/qsYUDR6F7H</a>) for verification.";
+                return "To buy a rank: 1. Go to the **Store** section. 2. Choose your preferred rank (VIP+, Soul, Titan, Alpha). 3. Click **Add to Cart** and enter your Minecraft username. 4. Verify and proceed to pay. 5. Make the payment via UPI QR code, enter the 12-digit UTR/Ref number, and submit. 6. Upload a screenshot to our Discord server (<a href='https://discord.gg/qsYUDR6F7H' target='_blank' class='text-pink-400 hover:underline font-bold'>discord.gg/qsYUDR6F7H</a>) for verification.";
             }
             
             if (q.includes('payment') || q.includes('upi') || q.includes('method') || q.includes('pay') || q.includes('card')) {
