@@ -2458,35 +2458,42 @@
         function getAIResponse(query) {
             const q = query.toLowerCase();
             
+            // 1. IP & Server Connection Check
+            if (q.includes('ip') || q.includes('address') || q.includes('server') || q.includes('join') || q.includes('connect')) {
+                return "You can join RoxSmp Network using the Minecraft Java/Bedrock IP: <strong class='text-pink-400 font-mono'>play.roxsmp.fun</strong>. Copy it using the 'Copy Server IP' button at the top of the homepage!";
+            }
+
+            // 2. Gems & Coins Currency Check
+            if (q.includes('gem') || q.includes('currency') || q.includes('coins')) {
+                return "Gems are our premium in-game currency. You can purchase them in the **Gems** tab of the Store. Once purchased, they are credited instantly to your in-game wallet—no manual claim required! Type <strong class='text-pink-400 font-mono'>/gems</strong> in-game to check your balance, or use them at player shops!";
+            }
+
+            // 3. Crates & Keys Check
+            if (q.includes('crate') || q.includes('key') || q.includes('unboxing')) {
+                return "Crate Keys can be bought in the **Crate Keys** tab of our Store. Once purchased, keys will be delivered in-game automatically. Go to spawn, right-click the corresponding crate chest with the key to unbox rare items, keys, and ranks!";
+            }
+
+            // 4. Payment Methods Check
+            if (q.includes('payment') || q.includes('upi') || q.includes('method') || q.includes('pay') || q.includes('card')) {
+                return "We support **UPI payments** (GPay, PhonePe, Paytm, BHIM) via our secure scan-and-pay screen. **Credit and Debit Cards have been removed** to prioritize instant local India payments. After completing the payment, please enter your 12-digit UTR number and submit the payment screenshot in our Discord: <a href='https://discord.gg/qsYUDR6F7H' target='_blank' class='text-pink-400 hover:underline font-bold'>discord.gg/qsYUDR6F7H</a>.";
+            }
+
+            // 5. Discord & Support Check
+            if (q.includes('discord') || q.includes('link') || q.includes('group') || q.includes('support')) {
+                return "Join our official Discord community here: <a href='https://discord.gg/qsYUDR6F7H' target='_blank' class='text-pink-400 hover:underline font-bold'>discord.gg/qsYUDR6F7H</a>. You can open support tickets, chat with staff, and upload payment screenshots there.";
+            }
+
+            // 6. Refund & Ban Terms Check
+            if (q.includes('refund') || q.includes('chargeback') || q.includes('terms')) {
+                return "All purchases on RoxSmp Network are final and non-refundable. Chargebacks or disputes will result in an automatic permanent network ban. For payment disputes, please contact our support team on Discord: <a href='https://discord.gg/qsYUDR6F7H' target='_blank' class='text-pink-400 hover:underline font-bold'>discord.gg/qsYUDR6F7H</a>.";
+            }
+
+            // 7. General Ranks Purchase / Store Guidance Check (Fallback for generic "buy", "how to")
             if (q.includes('buy') || q.includes('purchase') || q.includes('rank') || q.includes('store') || q.includes('how to')) {
                 if (q.includes('not') || q.includes('didn\'t') || q.includes('issue') || q.includes('receive')) {
                     return "If your purchase is not received, please check that your transaction went through and wait up to 15 minutes. If it's still missing, join our Discord (<a href='https://discord.gg/qsYUDR6F7H' target='_blank' class='text-pink-400 hover:underline font-bold'>discord.gg/qsYUDR6F7H</a>) and open a Billing Support ticket. Provide your UPI ref/UTR number and a screenshot of the payment.";
                 }
                 return "To buy a rank: 1. Go to the **Store** section. 2. Choose your preferred rank (VIP+ Rank, Soul Rank, Titan Rank, Alpha Rank). 3. Click **Add to Cart** and enter your Minecraft username. 4. Verify and proceed to pay. 5. Make the payment via UPI QR code, enter the 12-digit UTR/Ref number, and submit. 6. Upload a screenshot to our Discord server (<a href='https://discord.gg/qsYUDR6F7H' target='_blank' class='text-pink-400 hover:underline font-bold'>discord.gg/qsYUDR6F7H</a>) for verification.";
-            }
-            
-            if (q.includes('payment') || q.includes('upi') || q.includes('method') || q.includes('pay') || q.includes('card')) {
-                return "We support **UPI payments** (GPay, PhonePe, Paytm, BHIM) via our secure scan-and-pay screen. **Credit and Debit Cards have been removed** to prioritize instant local India payments. After completing the payment, please enter your 12-digit UTR number and submit the payment screenshot in our Discord: <a href='https://discord.gg/qsYUDR6F7H' target='_blank' class='text-pink-400 hover:underline font-bold'>discord.gg/qsYUDR6F7H</a>.";
-            }
-
-            if (q.includes('gem') || q.includes('currency') || q.includes('coins')) {
-                return "Gems are our premium in-game currency. You can purchase them in the **Gems** tab of the Store. Once purchased, they are credited instantly to your in-game wallet. Type `/gems` in-game to check your balance, or use them at player shops!";
-            }
-
-            if (q.includes('ip') || q.includes('address') || q.includes('server') || q.includes('join') || q.includes('connect')) {
-                return "You can join RoxSmp Network using the Minecraft Java/Bedrock IP: <strong class='text-pink-400 font-mono'>play.roxsmp.fun</strong>. Copy it using the 'Copy Server IP' button at the top of the homepage!";
-            }
-
-            if (q.includes('discord') || q.includes('link') || q.includes('group') || q.includes('support')) {
-                return "Join our official Discord community here: <a href='https://discord.gg/qsYUDR6F7H' target='_blank' class='text-pink-400 hover:underline font-bold'>discord.gg/qsYUDR6F7H</a>. You can open support tickets, chat with staff, and upload payment screenshots there.";
-            }
-
-            if (q.includes('crate') || q.includes('key') || q.includes('unboxing')) {
-                return "Crate Keys can be bought in the **Crate Keys** tab of our Store. Once purchased, keys will be delivered in-game. Go to spawn, right-click the corresponding crate chest with the key to unbox rare items, keys, and ranks!";
-            }
-
-            if (q.includes('refund') || q.includes('chargeback') || q.includes('terms')) {
-                return "All purchases on RoxSmp Network are final and non-refundable. Chargebacks or disputes will result in an automatic permanent network ban. For payment disputes, please contact our support team on Discord: <a href='https://discord.gg/qsYUDR6F7H' target='_blank' class='text-pink-400 hover:underline font-bold'>discord.gg/qsYUDR6F7H</a>.";
             }
 
             return "I'm not sure if I fully understand. 😅 For detailed server help, rank benefits, or payment queries, you can check our FAQ section or chat with our admin team directly on Discord: <a href='https://discord.gg/qsYUDR6F7H' target='_blank' class='text-pink-400 hover:underline font-bold'>discord.gg/qsYUDR6F7H</a>.";
