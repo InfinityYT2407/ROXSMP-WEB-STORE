@@ -390,20 +390,12 @@
         <section id="home-view" class="page-view flex-1">
             <!-- Hero Banner -->
             <div class="relative overflow-hidden min-h-[600px] flex items-center justify-center py-20 px-6 border-b border-outline-variant/10">
-                <!-- Looping PvP Video Background -->
-                <div class="absolute inset-0 overflow-hidden pointer-events-none">
-                    <iframe class="absolute top-1/2 left-1/2 w-[115vw] h-[64.68vw] min-h-[115vh] min-w-[204.44vh] -translate-x-1/2 -translate-y-1/2 opacity-30 brightness-[0.4] saturate-[0.8] contrast-[1.1]"
-                            src="https://www.youtube.com/embed/kYv9lW6E0qI?autoplay=1&mute=1&loop=1&playlist=kYv9lW6E0qI&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&playsinline=1&enablejsapi=1" 
-                            frameborder="0" 
-                            allow="autoplay; encrypted-media" 
-                            allowfullscreen>
-                    </iframe>
-                </div>
-                <!-- Dynamic Red Blend Overlay -->
-                <div class="absolute inset-0 bg-primary/20 mix-blend-color pointer-events-none"></div>
+                <!-- Dynamic Banner Wallpaper with Crimson Blend -->
+                <div class="absolute inset-0 bg-cover bg-center" style="background-image: url('minecraft_bg.png'); transform: scale(1.02); filter: brightness(0.25) contrast(1.2) saturate(0.85);"></div>
+                <div class="absolute inset-0 bg-primary/15 mix-blend-color"></div>
                 <!-- Radial Dark Vignette Overlay -->
-                <div class="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent pointer-events-none"></div>
-                <div class="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background pointer-events-none"></div>
+                <div class="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent"></div>
+                <div class="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background"></div>
                 
                 <!-- Hero Content -->
                 <div class="relative z-10 max-w-4xl text-center flex flex-col items-center">
