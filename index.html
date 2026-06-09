@@ -27,22 +27,22 @@
                         'surface-container-high': '#2a2a2a',
                         'surface-container-highest': '#353534',
                         'on-surface': '#e5e2e1',
-                        'on-surface-variant': '#c7c2d1',
-                        outline: '#706580',
-                        'outline-variant': '#352a40',
-                        primary: '#a855f7',
+                        'on-surface-variant': '#c5b5b5',
+                        outline: '#8c7373',
+                        'outline-variant': '#453030',
+                        primary: '#ff3344',
                         'on-primary': '#ffffff',
-                        'primary-container': '#7e22ce',
-                        'on-primary-container': '#f3e8ff',
-                        secondary: '#d946ef',
-                        'on-secondary': '#ffffff',
-                        'secondary-container': '#a21caf',
-                        'on-secondary-container': '#fdf4ff',
-                        tertiary: '#c084fc',
-                        'on-tertiary': '#131313',
+                        'primary-container': '#d91e2e',
+                        'on-primary-container': '#ffebec',
+                        secondary: '#ffd60a',
+                        'on-secondary': '#000000',
+                        'secondary-container': '#e0a600',
+                        'on-secondary-container': '#ffe79a',
+                        tertiary: '#ff7096',
+                        'on-tertiary': '#313030',
                         error: '#ffb4ab',
                         'on-error': '#690005',
-                        background: '#09090b',
+                        background: '#131313',
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
@@ -72,8 +72,8 @@
             background-color: rgba(20, 19, 19, 0.7);
             backdrop-filter: blur(14px);
             -webkit-backdrop-filter: blur(14px);
-            border-top: 1px solid rgba(168, 85, 247, 0.15);
-            border-left: 1px solid rgba(168, 85, 247, 0.08);
+            border-top: 1px solid rgba(255, 51, 68, 0.15);
+            border-left: 1px solid rgba(255, 51, 68, 0.08);
             border-right: 1px solid rgba(0, 0, 0, 0.3);
             border-bottom: 1px solid rgba(0, 0, 0, 0.4);
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -81,32 +81,32 @@
         }
         .glass-card:hover {
             transform: translateY(-5px) scale(1.01);
-            border-color: rgba(168, 85, 247, 0.45);
-            box-shadow: 0 16px 45px -12px rgba(0, 0, 0, 0.9), 0 0 30px 2px rgba(168, 85, 247, 0.2), inset 0 0 12px rgba(168, 85, 247, 0.1);
+            border-color: rgba(255, 51, 68, 0.45);
+            box-shadow: 0 16px 45px -12px rgba(0, 0, 0, 0.9), 0 0 30px 2px rgba(255, 51, 68, 0.2), inset 0 0 12px rgba(255, 51, 68, 0.1);
         }
         .glass-card-premium:hover {
-            border-color: rgba(217, 70, 239, 0.45);
-            box-shadow: 0 16px 45px -12px rgba(0, 0, 0, 0.9), 0 0 30px 2px rgba(217, 70, 239, 0.2), inset 0 0 12px rgba(217, 70, 239, 0.1);
+            border-color: rgba(255, 219, 60, 0.45);
+            box-shadow: 0 16px 45px -12px rgba(0, 0, 0, 0.9), 0 0 30px 2px rgba(255, 219, 60, 0.2), inset 0 0 12px rgba(255, 219, 60, 0.1);
         }
 
         /* Accent text shadows (Vibrant) */
         .glow-text-primary {
-            text-shadow: 0 0 12px rgba(168, 85, 247, 0.6), 0 0 24px rgba(168, 85, 247, 0.3);
+            text-shadow: 0 0 12px rgba(255, 51, 68, 0.6), 0 0 24px rgba(255, 51, 68, 0.3);
         }
         .glow-text-gold {
-            text-shadow: 0 0 12px rgba(217, 70, 239, 0.6), 0 0 24px rgba(217, 70, 239, 0.3);
+            text-shadow: 0 0 12px rgba(255, 219, 60, 0.6), 0 0 24px rgba(255, 219, 60, 0.3);
         }
 
         /* Buttons Base Styling */
         .btn-primary {
-            background-color: #a855f7 !important;
+            background-color: #ff3344 !important;
             color: #131313 !important;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(168, 85, 247, 0.25) !important;
+            box-shadow: 0 4px 15px rgba(255, 51, 68, 0.25) !important;
         }
         .btn-primary:hover {
-            background-color: #b866ff !important;
-            box-shadow: 0 0 30px rgba(168, 85, 247, 0.6), 0 4px 20px rgba(168, 85, 247, 0.4) !important;
+            background-color: #ff4d5d !important;
+            box-shadow: 0 0 30px rgba(255, 51, 68, 0.6), 0 4px 20px rgba(255, 51, 68, 0.4) !important;
         }
 
         /* Shimmering Button Hover Effect */
@@ -140,10 +140,10 @@
 
         /* Pulsing Glow Animation */
         @keyframes pulseGlow {
-            0%, 100% { box-shadow: 0 0 15px rgba(168, 85, 247, 0.25); }
-            50% { box-shadow: 0 0 30px rgba(168, 85, 247, 0.55); }
+            0%, 100% { box-shadow: 0 0 15px rgba(255, 51, 68, 0.25); }
+            50% { box-shadow: 0 0 30px rgba(255, 51, 68, 0.55); }
         }
-        .pulse-glow-purple {
+        .pulse-glow-emerald {
             animation: pulseGlow 2s infinite ease-in-out;
         }
 
@@ -160,7 +160,7 @@
             border-radius: 3px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #a855f7;
+            background: #ff3344;
         }
 
         /* Smooth tab animations */
@@ -385,13 +385,13 @@
                 <!-- Looping PvP Video Background -->
                 <div class="absolute inset-0 overflow-hidden pointer-events-none">
                     <iframe class="absolute top-1/2 left-1/2 w-[115vw] h-[64.68vw] min-h-[115vh] min-w-[204.44vh] -translate-x-1/2 -translate-y-1/2 opacity-30 brightness-[0.4] saturate-[0.8] contrast-[1.1]"
-                            src="https://www.youtube.com/embed/gT6k25W733M?autoplay=1&mute=1&loop=1&playlist=gT6k25W733M&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&playsinline=1&enablejsapi=1" 
+                            src="https://www.youtube.com/embed/kYv9lW6E0qI?autoplay=1&mute=1&loop=1&playlist=kYv9lW6E0qI&controls=0&showinfo=0&rel=0&modestbranding=1&iv_load_policy=3&playsinline=1&enablejsapi=1" 
                             frameborder="0" 
                             allow="autoplay; encrypted-media" 
                             allowfullscreen>
                     </iframe>
                 </div>
-                <!-- Dynamic Purple Blend Overlay -->
+                <!-- Dynamic Red Blend Overlay -->
                 <div class="absolute inset-0 bg-primary/20 mix-blend-color pointer-events-none"></div>
                 <!-- Radial Dark Vignette Overlay -->
                 <div class="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent pointer-events-none"></div>
@@ -400,7 +400,7 @@
                 <!-- Hero Content -->
                 <div class="relative z-10 max-w-4xl text-center flex flex-col items-center">
                     <!-- Floating Premium Server Logo -->
-                    <img src="logo.png" alt="RoxSmp Logo" class="w-48 h-48 md:w-56 md:h-56 object-contain mb-8 drop-shadow-[0_0_35px_rgba(168,85,247,0.45)] animate-[float_4s_infinite_ease-in-out]">
+                    <img src="logo.png" alt="RoxSmp Logo" class="w-48 h-48 md:w-56 md:h-56 object-contain mb-8 drop-shadow-[0_0_35px_rgba(255,51,68,0.45)] animate-[float_4s_infinite_ease-in-out]">
 
                     <h1 class="font-display font-extrabold text-5xl md:text-7xl text-on-surface tracking-tighter uppercase mb-4 leading-none">
                         RoxSmp <span class="text-primary glow-text-primary">NETWORK</span>
@@ -412,7 +412,7 @@
 
                     <!-- CTAs -->
                     <div class="flex flex-col sm:flex-row items-center gap-4 w-full justify-center">
-                        <a href="#store" class="shimmer-btn btn-primary px-8 py-4 w-full sm:w-auto rounded-lg text-background font-display font-bold text-sm tracking-wider flex items-center justify-center gap-2 active:scale-95 shadow-[0_0_30px_rgba(168,85,247,0.2)] hover:bg-primary/90">
+                        <a href="#store" class="shimmer-btn btn-primary px-8 py-4 w-full sm:w-auto rounded-lg text-background font-display font-bold text-sm tracking-wider flex items-center justify-center gap-2 active:scale-95 shadow-[0_0_30px_rgba(255,51,68,0.2)] hover:bg-primary/90">
                             BROWSE STORE <span class="material-symbols-outlined text-sm">storefront</span>
                         </a>
                         <button onclick="copyServerIP()" class="bg-surface-container-high/60 backdrop-blur-md hover:bg-surface-container border border-outline-variant/40 hover:border-primary/40 px-8 py-4 w-full sm:w-auto rounded-lg text-on-surface font-display font-bold text-sm tracking-wider flex items-center justify-center gap-2 active:scale-95 transition-all">
@@ -2095,7 +2095,7 @@
         function renderStep3(container) {
             container.innerHTML = `
                 <div class="py-8 flex flex-col items-center text-center">
-                    <div class="w-20 h-20 rounded-full bg-primary/20 border border-primary flex items-center justify-center text-primary mb-6 pulse-glow-purple">
+                    <div class="w-20 h-20 rounded-full bg-primary/20 border border-primary flex items-center justify-center text-primary mb-6 pulse-glow-emerald">
                         <span class="material-symbols-outlined text-5xl">check_circle</span>
                     </div>
                     <h3 class="font-display font-extrabold text-2xl text-on-surface uppercase mb-3">PAYMENT SUCCESSFUL!</h3>
