@@ -1275,11 +1275,11 @@
             { id: 17, category: 'crates', name: '10x + 5 Free Alpha Crate Key', price: 699, priceStrike: null, badge: 'layers', description: 'Get 15 Alpha keys. Maximize your chances of winning the rarest items.', features: ['15x Alpha keys total', 'Buy 10 get 5 free promo', 'Bulk savings pack'], icon: 'layers', rarityColor: 'text-secondary', tag: 'Bulk Pack' },
 
             // Gems (id: 18-22)
-            { id: 18, category: 'currency', name: '300 Gems', price: 99, priceStrike: null, badge: 'monetization_on', description: 'Starter Gem pack to buy basic resources and market items in-game.', features: ['300 Gems credit', 'Instant wallet credit', 'Use at in-game shops'], icon: 'monetization_on', rarityColor: 'text-tertiary', tag: 'Starter' },
-            { id: 19, category: 'currency', name: '1,000 Gems', price: 299, priceStrike: null, badge: 'monetization_on', description: 'Basic Gems booster pack. Great value for claiming territory and upgrading kits.', features: ['1,000 Gems credit', 'Delivered to game wallet', 'Instant network credit'], icon: 'monetization_on', rarityColor: 'text-primary', tag: 'Popular' },
-            { id: 20, category: 'currency', name: '1,800 Gems', price: 449, priceStrike: null, badge: 'monetization_on', description: 'Epic Gem vault. Perfect for trading on player markets and purchasing boosts.', features: ['1,800 Gems credit', 'Bonus gems included', 'Network-wide balance'], icon: 'monetization_on', rarityColor: 'text-primary', tag: 'Best Value' },
-            { id: 21, category: 'currency', name: '3,000 Gems', price: 699, priceStrike: null, badge: 'monetization_on', description: 'Titan Gem pouch. Claim premium generator upgrades and global server tools.', features: ['3,000 Gems credit', 'High tier bonus value', 'Delivered in 2 mins'], icon: 'payments', rarityColor: 'text-secondary', tag: 'Titan Pack' },
-            { id: 22, category: 'currency', name: '5,000 Gems', price: 999, priceStrike: null, badge: 'monetization_on', description: 'The ultimate Alpha Gem load. Access all high-end server warps and spawner spawns.', features: ['5,000 Gems credit', 'Max bonus gems pool', 'Premium wallet status'], icon: 'payments', rarityColor: 'text-secondary', tag: 'Alpha Load' }
+            { id: 18, category: 'currency', name: '300 Gems', price: 99, priceStrike: null, badge: 'monetization_on', description: 'Starter Gem pack to buy basic resources and market items in-game.', features: ['300 Gems credit', 'Instant wallet credit', 'Use at in-game shops'], icon: 'monetization_on', rarityColor: 'text-tertiary', tag: 'Starter', image: 'gem_small.png' },
+            { id: 19, category: 'currency', name: '1,000 Gems', price: 299, priceStrike: null, badge: 'monetization_on', description: 'Basic Gems booster pack. Great value for claiming territory and upgrading kits.', features: ['1,000 Gems credit', 'Delivered to game wallet', 'Instant network credit'], icon: 'monetization_on', rarityColor: 'text-primary', tag: 'Popular', image: 'gem_medium.png' },
+            { id: 20, category: 'currency', name: '1,800 Gems', price: 449, priceStrike: null, badge: 'monetization_on', description: 'Epic Gem vault. Perfect for trading on player markets and purchasing boosts.', features: ['1,800 Gems credit', 'Bonus gems included', 'Network-wide balance'], icon: 'monetization_on', rarityColor: 'text-primary', tag: 'Best Value', image: 'gem_large.png' },
+            { id: 21, category: 'currency', name: '3,000 Gems', price: 699, priceStrike: null, badge: 'monetization_on', description: 'Titan Gem pouch. Claim premium generator upgrades and global server tools.', features: ['3,000 Gems credit', 'High tier bonus value', 'Delivered in 2 mins'], icon: 'payments', rarityColor: 'text-secondary', tag: 'Titan Pack', image: 'gem_xl.png' },
+            { id: 22, category: 'currency', name: '5,000 Gems', price: 999, priceStrike: null, badge: 'monetization_on', description: 'The ultimate Alpha Gem load. Access all high-end server warps and spawner spawns.', features: ['5,000 Gems credit', 'Max bonus gems pool', 'Premium wallet status'], icon: 'payments', rarityColor: 'text-secondary', tag: 'Alpha Load', image: 'gem_giant.png' }
         ];
 
         const categories = [
@@ -1518,9 +1518,14 @@
             const container = document.getElementById('store-category-list');
             container.innerHTML = categories.map(cat => {
                 const isActive = cat.id === activeCategory;
-                const activeClasses = isActive 
-                    ? 'bg-primary/20 text-primary border-primary/40 font-bold' 
-                    : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/20 border-transparent';
+                let activeClasses = 'text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/20 border-transparent';
+                if (isActive) {
+                    if (cat.id === 'currency') {
+                        activeClasses = 'bg-pink-500/20 text-pink-400 border-pink-500/40 font-bold';
+                    } else {
+                        activeClasses = 'bg-primary/20 text-primary border-primary/40 font-bold';
+                    }
+                }
                 
                 return `
                     <button onclick="selectStoreCategory('${cat.id}')" class="flex items-center gap-3 px-4 py-3 rounded-lg border text-sm font-semibold transition-all duration-200 shrink-0 whitespace-nowrap active:scale-95 ${activeClasses}">
@@ -1582,36 +1587,58 @@
             }
 
             grid.innerHTML = filtered.map(p => {
+                const isGems = p.category === 'currency';
+                
+                let cardBorderClass = 'border-outline-variant/30';
+                let cardHoverClass = '';
+                let iconWrapperClass = 'bg-surface-container border border-outline-variant/20 text-primary';
+                let priceTextClass = 'text-on-surface';
+                let titleHoverClass = 'group-hover:text-primary';
+                let tagClass = 'bg-primary/10 border border-primary/20 text-primary';
+                let checkmarkClass = 'text-primary';
+                let buttonHoverClass = 'hover:bg-primary hover:text-background hover:shadow-[0_0_15px_rgba(255,51,68,0.15)]';
+
+                if (isGems) {
+                    cardBorderClass = 'border-pink-500/20 hover:border-pink-500/50';
+                    cardHoverClass = 'hover:shadow-[0_0_30px_rgba(244,63,94,0.12)]';
+                    iconWrapperClass = 'bg-pink-950/25 border border-pink-500/20 text-pink-400';
+                    priceTextClass = 'text-pink-400';
+                    titleHoverClass = 'group-hover:text-pink-400';
+                    tagClass = 'bg-pink-500/10 border border-pink-500/20 text-pink-400';
+                    checkmarkClass = 'text-pink-400';
+                    buttonHoverClass = 'hover:bg-pink-500 hover:text-black hover:shadow-[0_0_15px_rgba(244,63,94,0.25)]';
+                }
+
                 return `
-                    <div class="glass-card rounded-xl p-5 flex flex-col justify-between group relative overflow-hidden ${p.category === 'ranks' ? 'border-outline-variant/30' : ''}">
+                    <div class="glass-card rounded-xl p-5 flex flex-col justify-between group relative overflow-hidden border ${cardBorderClass} ${cardHoverClass}">
                         
                         <div>
                             <!-- Header Info -->
                             <div class="flex justify-between items-start mb-4">
-                                <div class="w-12 h-12 rounded-lg bg-surface-container border border-outline-variant/20 flex items-center justify-center text-primary group-hover:scale-105 transition-transform">
-                                    <span class="material-symbols-outlined text-2xl font-bold">${p.icon}</span>
+                                <div class="w-12 h-12 rounded-lg ${iconWrapperClass} flex items-center justify-center group-hover:scale-105 transition-transform overflow-hidden">
+                                    ${p.image ? `<img src="${p.image}" alt="${p.name}" class="w-full h-full object-contain p-1">` : `<span class="material-symbols-outlined text-2xl font-bold">${p.icon}</span>`}
                                 </div>
                                 <div class="text-right">
-                                    <span class="font-mono text-xl font-bold text-on-surface">₹${p.price}</span>
+                                    <span class="font-mono text-xl font-bold ${priceTextClass}">₹${p.price}</span>
                                 </div>
                             </div>
 
-                            <h3 class="font-display font-bold text-lg text-on-surface mb-0.5 group-hover:text-primary transition-colors">${p.name}</h3>
-                            <span class="text-[9px] bg-primary/10 border border-primary/20 px-2 py-0.5 rounded font-mono font-bold text-primary uppercase inline-block mb-3.5">${p.tag}</span>
+                            <h3 class="font-display font-bold text-lg text-on-surface mb-0.5 ${titleHoverClass} transition-colors">${p.name}</h3>
+                            <span class="text-[9px] ${tagClass} px-2 py-0.5 rounded font-mono font-bold uppercase inline-block mb-3.5">${p.tag}</span>
                             <p class="text-xs text-on-surface-variant leading-relaxed mb-6">${p.description}</p>
                             
                             <!-- Features checklist -->
                             <ul class="space-y-1.5 mb-8">
                                 ${p.features.map(f => `
                                     <li class="flex items-center gap-2 text-[10px] text-on-surface-variant font-medium">
-                                        <span class="material-symbols-outlined text-primary text-xs font-bold">check_circle</span>
+                                        <span class="material-symbols-outlined ${checkmarkClass} text-xs font-bold">check_circle</span>
                                         ${f}
                                     </li>
                                 `).join('')}
                             </ul>
                         </div>
 
-                        <button onclick="addToCart(${p.id})" class="shimmer-btn w-full py-2.5 rounded-lg bg-surface-container-highest hover:bg-primary text-on-surface hover:text-background font-bold text-xs transition-colors flex items-center justify-center gap-2 hover:shadow-[0_0_15px_rgba(255,51,68,0.15)] active:scale-95">
+                        <button onclick="addToCart(${p.id})" class="shimmer-btn w-full py-2.5 rounded-lg bg-surface-container-highest ${buttonHoverClass} text-on-surface font-bold text-xs transition-colors flex items-center justify-center gap-2 active:scale-95">
                             ADD TO CART <span class="material-symbols-outlined text-xs">shopping_cart</span>
                         </button>
                     </div>
@@ -1903,20 +1930,12 @@
 
                     <div>
                         <label class="block text-xs font-mono font-bold text-on-surface-variant/80 uppercase mb-3">Select Payment Gateway</label>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                            <label class="relative flex items-center gap-3 p-4 rounded-lg border border-outline-variant/30 bg-surface-container-lowest cursor-pointer hover:border-primary/50 transition-all select-none">
+                        <div class="grid grid-cols-1 gap-3">
+                            <label class="relative flex items-center gap-3 p-4 rounded-lg border border-primary/50 bg-primary/5 cursor-pointer transition-all select-none">
                                 <input type="radio" name="payment_method" value="upi" checked class="text-primary focus:ring-0 cursor-pointer"/>
                                 <div class="flex flex-col">
                                     <span class="text-xs font-bold font-display text-on-surface">UPI (GPay / PhonePe / Paytm / BHIM)</span>
-                                    <span class="text-[9px] text-on-surface-variant/60">India Instant Delivery</span>
-                                </div>
-                            </label>
-
-                            <label class="relative flex items-center gap-3 p-4 rounded-lg border border-outline-variant/30 bg-surface-container-lowest cursor-pointer hover:border-primary/50 transition-all select-none">
-                                <input type="radio" name="payment_method" value="card" class="text-primary focus:ring-0 cursor-pointer"/>
-                                <div class="flex flex-col">
-                                    <span class="text-xs font-bold font-display text-on-surface">Credit / Debit Card</span>
-                                    <span class="text-[9px] text-on-surface-variant/60">Visa / Mastercard / RuPay</span>
+                                    <span class="text-[9px] text-on-surface-variant/60">India Instant Delivery (Recommended)</span>
                                 </div>
                             </label>
                         </div>
