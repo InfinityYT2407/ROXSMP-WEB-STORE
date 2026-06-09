@@ -570,7 +570,7 @@
                             </button>
                         </div>
 
-                        <!-- Card: Soul -->
+                        <!-- Card: Soul Rank -->
                         <div class="glass-card rounded-xl p-6 flex flex-col justify-between transition-all duration-300 relative group overflow-hidden border-purple-500/40 shadow-[0_0_30px_rgba(168,85,247,0.1)] md:scale-105 z-10 bg-gradient-to-b from-purple-500/5 to-transparent hover:border-purple-400 hover:shadow-[0_0_40px_rgba(168,85,247,0.25)]">
                             <div>
                                 <div class="flex justify-between items-start mb-6">
@@ -579,12 +579,12 @@
                                     </div>
                                     <span class="font-mono text-2xl font-bold text-purple-400">₹399</span>
                                 </div>
-                                <h3 class="font-display font-bold text-xl text-on-surface mb-1">Soul</h3>
+                                <h3 class="font-display font-bold text-xl text-on-surface mb-1">Soul Rank</h3>
                                 <span class="text-xs text-purple-400 font-mono font-bold uppercase tracking-wider block mb-4">Lifetime Perk</span>
                                 <ul class="space-y-2.5 mb-8">
                                     <li class="flex items-center gap-2.5 text-xs text-on-surface-variant font-medium">
                                         <span class="material-symbols-outlined text-purple-400 text-sm font-bold">check_circle</span>
-                                        Everything from VIP+
+                                        Everything from VIP+ Rank
                                     </li>
                                     <li class="flex items-center gap-2.5 text-xs text-on-surface-variant font-medium">
                                         <span class="material-symbols-outlined text-purple-400 text-sm font-bold">check_circle</span>
@@ -609,7 +609,7 @@
                             </button>
                         </div>
 
-                        <!-- Card: Titan -->
+                        <!-- Card: Titan Rank -->
                         <div class="glass-card rounded-xl p-6 flex flex-col justify-between transition-all duration-300 relative group overflow-hidden border-yellow-500/30 hover:border-yellow-500/60 hover:shadow-[0_0_30px_rgba(255,214,10,0.15)]">
                             <div class="absolute inset-0 bg-gradient-to-br from-yellow-500/5 to-transparent pointer-events-none"></div>
                             <div>
@@ -619,12 +619,12 @@
                                     </div>
                                     <span class="font-mono text-2xl font-bold text-yellow-400">₹599</span>
                                 </div>
-                                <h3 class="font-display font-bold text-xl text-yellow-400 mb-1">Titan</h3>
+                                <h3 class="font-display font-bold text-xl text-yellow-400 mb-1">Titan Rank</h3>
                                 <span class="text-xs text-yellow-400 font-mono font-bold uppercase tracking-wider block mb-4">Lifetime Perk</span>
                                 <ul class="space-y-2.5 mb-8">
                                     <li class="flex items-center gap-2.5 text-xs text-on-surface-variant">
                                         <span class="material-symbols-outlined text-yellow-400 text-sm font-bold">check_circle</span>
-                                        Everything from Soul
+                                        Everything from Soul Rank
                                     </li>
                                     <li class="flex items-center gap-2.5 text-xs text-on-surface-variant">
                                         <span class="material-symbols-outlined text-yellow-400 text-sm font-bold">check_circle</span>
@@ -1321,10 +1321,10 @@
         const products = [
             // Ranks (id: 1-5)
             { id: 1, category: 'ranks', name: 'VIP+ Rank', price: 249, priceStrike: null, badge: 'hotel_class', description: 'Access essential server tools, sit, and carry virtual workbenches or enderchests anywhere.', features: ['Sell all items', '/sit', '/workbench', '/enderchest', '/anvil', '/grindstone', 'Set 4 Homes', '/order 10', 'Daily $5,000'], icon: 'hotel_class', rarityColor: 'text-primary', tag: 'Lifetime' },
-            { id: 2, category: 'ranks', name: 'Soul', price: 399, priceStrike: null, badge: 'verified', description: 'Gain advanced tracking utilities, disposal bins, carry custom pets, and collect daily allowance.', features: ['Everything from VIP+', '/near', '/disposal', 'Set 6 Homes', '/order 15', '/pet', 'Daily $10,000'], icon: 'brightness_3', rarityColor: 'text-primary', tag: 'Special' },
-            { id: 3, category: 'ranks', name: 'Titan', price: 599, priceStrike: null, badge: 'shield', description: 'Become a Titan of the server. Auto-feed yourself, apply particle effects, and get higher home limits.', features: ['Everything from Soul', '/feed', 'Set 9 Homes', '/order 25', '/particles', 'Daily $20,000'], icon: 'shield', rarityColor: 'text-secondary', tag: 'Lifetime' },
-            { id: 4, category: 'ranks', name: 'Alpha', price: 999, priceStrike: null, badge: 'star', description: 'The peak alpha experience. Connect to full servers, double server coins, and alpha kits.', features: ['Everything from Titan', '/hat', 'Set 13 Homes', '/order 30', '/deatheffect', '/hats', 'Daily $30,000'], icon: 'star', rarityColor: 'text-secondary', tag: 'Prestige' },
-            { id: 5, category: 'ranks', name: 'Custom Rank', price: 1199, priceStrike: null, badge: 'diamond', description: 'Create your ultimate rank. Customize name tag titles, configure cosmetics, and get massive allowance daily.', features: ['Everything from Alpha', 'Set 18 Homes', '/order 40', '/cosmetic', '🎨 Custom Rank Name', 'Daily $40,000'], icon: 'diamond', rarityColor: 'text-secondary', tag: 'Unique' },
+            { id: 2, category: 'ranks', name: 'Soul Rank', price: 399, priceStrike: null, badge: 'verified', description: 'Gain advanced tracking utilities, disposal bins, carry custom pets, and collect daily allowance.', features: ['Everything from VIP+ Rank', '/near', '/disposal', 'Set 6 Homes', '/order 15', '/pet', 'Daily $10,000'], icon: 'brightness_3', rarityColor: 'text-primary', tag: 'Special' },
+            { id: 3, category: 'ranks', name: 'Titan Rank', price: 599, priceStrike: null, badge: 'shield', description: 'Become a Titan of the server. Auto-feed yourself, apply particle effects, and get higher home limits.', features: ['Everything from Soul Rank', '/feed', 'Set 9 Homes', '/order 25', '/particles', 'Daily $20,000'], icon: 'shield', rarityColor: 'text-secondary', tag: 'Lifetime' },
+            { id: 4, category: 'ranks', name: 'Alpha Rank', price: 999, priceStrike: null, badge: 'star', description: 'The peak alpha experience. Connect to full servers, double server coins, and alpha kits.', features: ['Everything from Titan Rank', '/hat', 'Set 13 Homes', '/order 30', '/deatheffect', '/hats', 'Daily $30,000'], icon: 'star', rarityColor: 'text-secondary', tag: 'Prestige' },
+            { id: 5, category: 'ranks', name: 'Custom Rank', price: 1199, priceStrike: null, badge: 'diamond', description: 'Create your ultimate rank. Customize name tag titles, configure cosmetics, and get massive allowance daily.', features: ['Everything from Alpha Rank', 'Set 18 Homes', '/order 40', '/cosmetic', '🎨 Custom Rank Name', 'Daily $40,000'], icon: 'diamond', rarityColor: 'text-secondary', tag: 'Unique' },
             
             // Crate Keys (id: 6-17)
             { id: 6, category: 'crates', name: '1x VIP+ Crate Key', price: 30, priceStrike: null, badge: 'key', description: 'Single VIP+ Crate Key. Open the spawn chest to receive entry-level rank rewards.', features: ['1x VIP+ Crate Key', 'Instant delivery', 'Lobby usage permitted'], icon: 'key', rarityColor: 'text-tertiary', tag: 'VIP+ Crate' },
@@ -2462,7 +2462,7 @@
                 if (q.includes('not') || q.includes('didn\'t') || q.includes('issue') || q.includes('receive')) {
                     return "If your purchase is not received, please check that your transaction went through and wait up to 15 minutes. If it's still missing, join our Discord (<a href='https://discord.gg/qsYUDR6F7H' target='_blank' class='text-pink-400 hover:underline font-bold'>discord.gg/qsYUDR6F7H</a>) and open a Billing Support ticket. Provide your UPI ref/UTR number and a screenshot of the payment.";
                 }
-                return "To buy a rank: 1. Go to the **Store** section. 2. Choose your preferred rank (VIP+, Soul, Titan, Alpha). 3. Click **Add to Cart** and enter your Minecraft username. 4. Verify and proceed to pay. 5. Make the payment via UPI QR code, enter the 12-digit UTR/Ref number, and submit. 6. Upload a screenshot to our Discord server (<a href='https://discord.gg/qsYUDR6F7H' target='_blank' class='text-pink-400 hover:underline font-bold'>discord.gg/qsYUDR6F7H</a>) for verification.";
+                return "To buy a rank: 1. Go to the **Store** section. 2. Choose your preferred rank (VIP+ Rank, Soul Rank, Titan Rank, Alpha Rank). 3. Click **Add to Cart** and enter your Minecraft username. 4. Verify and proceed to pay. 5. Make the payment via UPI QR code, enter the 12-digit UTR/Ref number, and submit. 6. Upload a screenshot to our Discord server (<a href='https://discord.gg/qsYUDR6F7H' target='_blank' class='text-pink-400 hover:underline font-bold'>discord.gg/qsYUDR6F7H</a>) for verification.";
             }
             
             if (q.includes('payment') || q.includes('upi') || q.includes('method') || q.includes('pay') || q.includes('card')) {
