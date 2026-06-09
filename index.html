@@ -1244,6 +1244,71 @@
     <!-- Toast Engine Container (Sticky bottom-right alerts) -->
     <div id="toast-container" class="fixed bottom-20 md:bottom-6 right-6 z-50 flex flex-col gap-3 pointer-events-none"></div>
 
+    <!-- AI ASSISTANT FLOATING BUTTON -->
+    <button onclick="toggleAIChat(true)" class="fixed bottom-24 right-6 z-40 w-14 h-14 rounded-full bg-pink-500 hover:bg-pink-600 text-black flex items-center justify-center shadow-[0_0_25px_rgba(244,63,94,0.4)] transition-all active:scale-95 group hover:scale-110">
+        <span class="material-symbols-outlined text-2xl group-hover:rotate-12 transition-transform text-black">smart_toy</span>
+        <span class="absolute -top-1 -right-1 flex h-3 w-3">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-3 w-3 bg-green-500"></span>
+        </span>
+    </button>
+
+    <!-- AI CHAT PANEL -->
+    <div id="ai-chat-panel" class="fixed bottom-40 right-6 z-40 w-[350px] max-w-[calc(100vw-2rem)] h-[480px] bg-surface-container border border-outline-variant/30 rounded-2xl shadow-2xl flex flex-col justify-between overflow-hidden transition-all duration-300 translate-y-10 opacity-0 pointer-events-none scale-95">
+        <!-- Chat Header -->
+        <div class="bg-gradient-to-r from-pink-600 to-pink-500 px-4 py-3.5 flex items-center justify-between text-black">
+            <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-full bg-white/20 flex items-center justify-center">
+                    <span class="material-symbols-outlined text-lg text-black">smart_toy</span>
+                </div>
+                <div>
+                    <h4 class="font-display font-bold text-sm leading-tight text-black">RoxSmp Assistant</h4>
+                    <span class="text-[9px] font-semibold text-black/75 flex items-center gap-1">
+                        <span class="w-1.5 h-1.5 rounded-full bg-green-400 inline-block animate-pulse"></span> Online Helper
+                    </span>
+                </div>
+            </div>
+            <button onclick="toggleAIChat(false)" class="text-black/70 hover:text-black p-1 hover:bg-white/10 rounded transition-colors active:scale-90 flex items-center">
+                <span class="material-symbols-outlined text-xl">close</span>
+            </button>
+        </div>
+
+        <!-- Chat Messages Area -->
+        <div id="ai-chat-messages" class="flex-1 p-4 overflow-y-auto space-y-3 scrollbar-thin">
+            <!-- Welcome message -->
+            <div class="flex items-start gap-2.5">
+                <div class="w-6 h-6 rounded-full bg-pink-500/20 border border-pink-500/30 flex items-center justify-center text-pink-400 shrink-0 mt-0.5">
+                    <span class="material-symbols-outlined text-[14px]">smart_toy</span>
+                </div>
+                <div class="bg-surface-container-high rounded-xl rounded-tl-none p-3 max-w-[85%]">
+                    <p class="text-xs text-on-surface leading-relaxed">
+                        Namaste! Welcome to **RoxSmp Network** Support. 🤖 How can I help you today?
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Quick questions options -->
+            <div class="pl-8 space-y-2">
+                <p class="text-[10px] text-on-surface-variant uppercase font-mono font-bold">Frequently Asked Questions:</p>
+                <div class="flex flex-wrap gap-1.5">
+                    <button onclick="askAIQuestion('How to buy Ranks?')" class="text-[10px] bg-surface-container-lowest border border-outline-variant/30 hover:border-pink-500/50 hover:bg-pink-500/10 text-on-surface-variant hover:text-pink-400 px-3 py-1.5 rounded-full transition-all">How to buy Ranks?</button>
+                    <button onclick="askAIQuestion('Supported payment methods?')" class="text-[10px] bg-surface-container-lowest border border-outline-variant/30 hover:border-pink-500/50 hover:bg-pink-500/10 text-on-surface-variant hover:text-pink-400 px-3 py-1.5 rounded-full transition-all">Payment Methods?</button>
+                    <button onclick="askAIQuestion('How to claim Gems?')" class="text-[10px] bg-surface-container-lowest border border-outline-variant/30 hover:border-pink-500/50 hover:bg-pink-500/10 text-on-surface-variant hover:text-pink-400 px-3 py-1.5 rounded-full transition-all">Claim Gems?</button>
+                    <button onclick="askAIQuestion('Server IP address?')" class="text-[10px] bg-surface-container-lowest border border-outline-variant/30 hover:border-pink-500/50 hover:bg-pink-500/10 text-on-surface-variant hover:text-pink-400 px-3 py-1.5 rounded-full transition-all">Server IP?</button>
+                    <button onclick="askAIQuestion('Purchase not received?')" class="text-[10px] bg-surface-container-lowest border border-outline-variant/30 hover:border-pink-500/50 hover:bg-pink-500/10 text-on-surface-variant hover:text-pink-400 px-3 py-1.5 rounded-full transition-all">Delivery Help?</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Chat Input Area -->
+        <form onsubmit="handleAIChatSubmit(event)" class="p-3 border-t border-outline-variant/10 flex gap-2 bg-surface-container-lowest">
+            <input type="text" id="ai-chat-input" placeholder="Type a message..." class="flex-1 bg-surface-container border border-outline-variant/30 rounded-lg text-xs py-2 px-3 focus:ring-pink-500 focus:border-pink-500 text-on-surface placeholder-on-surface-variant/40" />
+            <button type="submit" class="w-8 h-8 rounded-lg bg-pink-500 hover:bg-pink-600 text-black flex items-center justify-center active:scale-95 transition-all">
+                <span class="material-symbols-outlined text-base font-bold text-black">send</span>
+            </button>
+        </form>
+    </div>
+
     <!-- Core App Logic (Vanilla JS) -->
     <script>
         // ==============================================
@@ -1516,7 +1581,7 @@
         // ==============================================
         function renderCategories() {
             const container = document.getElementById('store-category-list');
-            container.innerHTML = categories.map(cat => {
+            let categoriesHtml = categories.map(cat => {
                 const isActive = cat.id === activeCategory;
                 let activeClasses = 'text-on-surface-variant hover:text-on-surface hover:bg-surface-variant/20 border-transparent';
                 if (isActive) {
@@ -1534,6 +1599,16 @@
                     </button>
                 `;
             }).join('');
+
+            // Add AI Support Helper Button
+            categoriesHtml += `
+                <button onclick="toggleAIChat(true)" class="flex items-center gap-3 px-4 py-3 rounded-lg border border-pink-500/30 hover:border-pink-500 bg-pink-500/10 hover:bg-pink-500/20 text-pink-400 hover:text-pink-300 text-sm font-semibold transition-all duration-200 shrink-0 whitespace-nowrap active:scale-95 md:ml-auto">
+                    <span class="material-symbols-outlined text-base animate-pulse text-pink-400">smart_toy</span>
+                    <span>Ask AI Assistant</span>
+                </button>
+            `;
+            
+            container.innerHTML = categoriesHtml;
         }
 
         function selectStoreCategory(catId) {
@@ -2269,6 +2344,138 @@
                 submitBtn.innerHTML = 'SEND MESSAGE';
                 submitBtn.disabled = false;
             }, 1500);
+        }
+
+        // ==============================================
+        // AI ASSISTANT CORE LOGIC
+        // ==============================================
+        function toggleAIChat(isOpen) {
+            const panel = document.getElementById('ai-chat-panel');
+            if (isOpen) {
+                panel.classList.remove('pointer-events-none', 'opacity-0', 'translate-y-10', 'scale-95');
+                panel.classList.add('pointer-events-auto', 'opacity-100', 'translate-y-0', 'scale-100');
+            } else {
+                panel.classList.add('pointer-events-none', 'opacity-0', 'translate-y-10', 'scale-95');
+                panel.classList.remove('pointer-events-auto', 'opacity-100', 'translate-y-0', 'scale-100');
+            }
+        }
+
+        function askAIQuestion(question) {
+            appendUserMessage(question);
+            triggerAIResponse(question);
+        }
+
+        function handleAIChatSubmit(e) {
+            e.preventDefault();
+            const input = document.getElementById('ai-chat-input');
+            const msg = input.value.trim();
+            if (msg) {
+                appendUserMessage(msg);
+                input.value = '';
+                triggerAIResponse(msg);
+            }
+        }
+
+        function appendUserMessage(text) {
+            const chatMessages = document.getElementById('ai-chat-messages');
+            const userMsgHtml = `
+                <div class="flex items-start justify-end gap-2.5">
+                    <div class="bg-pink-500 text-black rounded-xl rounded-tr-none p-3 max-w-[85%] text-xs font-semibold leading-relaxed">
+                        ${escapeHtml(text)}
+                    </div>
+                </div>
+            `;
+            chatMessages.insertAdjacentHTML('beforeend', userMsgHtml);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function triggerAIResponse(userMsg) {
+            const chatMessages = document.getElementById('ai-chat-messages');
+            
+            // Render typing indicator
+            const typingId = 'ai-typing-' + Date.now();
+            const typingHtml = `
+                <div id="${typingId}" class="flex items-start gap-2.5">
+                    <div class="w-6 h-6 rounded-full bg-pink-500/20 border border-pink-500/30 flex items-center justify-center text-pink-400 shrink-0 mt-0.5 animate-pulse">
+                        <span class="material-symbols-outlined text-[14px]">smart_toy</span>
+                    </div>
+                    <div class="bg-surface-container-high rounded-xl rounded-tl-none p-3 max-w-[85%] flex items-center gap-1">
+                        <span class="w-1.5 h-1.5 rounded-full bg-pink-400 animate-bounce" style="animation-delay: 0s"></span>
+                        <span class="w-1.5 h-1.5 rounded-full bg-pink-400 animate-bounce" style="animation-delay: 0.15s"></span>
+                        <span class="w-1.5 h-1.5 rounded-full bg-pink-400 animate-bounce" style="animation-delay: 0.3s"></span>
+                    </div>
+                </div>
+            `;
+            chatMessages.insertAdjacentHTML('beforeend', typingHtml);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+
+            // Trigger actual response after delay
+            setTimeout(() => {
+                const indicator = document.getElementById(typingId);
+                if (indicator) {
+                    indicator.remove();
+                }
+
+                const responseText = getAIResponse(userMsg);
+                const replyHtml = `
+                    <div class="flex items-start gap-2.5">
+                        <div class="w-6 h-6 rounded-full bg-pink-500/20 border border-pink-500/30 flex items-center justify-center text-pink-400 shrink-0 mt-0.5">
+                            <span class="material-symbols-outlined text-[14px]">smart_toy</span>
+                        </div>
+                        <div class="bg-surface-container-high rounded-xl rounded-tl-none p-3 max-w-[85%]">
+                            <p class="text-xs text-on-surface leading-relaxed">${responseText}</p>
+                        </div>
+                    </div>
+                `;
+                chatMessages.insertAdjacentHTML('beforeend', replyHtml);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }, 1000);
+        }
+
+        function getAIResponse(query) {
+            const q = query.toLowerCase();
+            
+            if (q.includes('buy') || q.includes('purchase') || q.includes('rank') || q.includes('store') || q.includes('how to')) {
+                if (q.includes('not') || q.includes('didn\'t') || q.includes('issue') || q.includes('receive')) {
+                    return "If your purchase is not received, please check that your transaction went through and wait up to 15 minutes. If it's still missing, join our Discord (<a href='https://discord.gg/qsYUDR6F7H' target='_blank' class='text-pink-400 hover:underline font-bold'>discord.gg/qsYUDR6F7H</a>) and open a Billing Support ticket. Provide your UPI ref/UTR number and a screenshot of the payment.";
+                }
+                return "To buy a rank: 1. Go to the **Store** section. 2. Choose your preferred rank (VIP+, Soul Reaper, Elite Titan, Alpha). 3. Click **Add to Cart** and enter your Minecraft username. 4. Verify and proceed to pay. 5. Make the payment via UPI QR code, enter the 12-digit UTR/Ref number, and submit. 6. Upload a screenshot to our Discord server (<a href='https://discord.gg/qsYUDR6F7H' target='_blank' class='text-pink-400 hover:underline font-bold'>discord.gg/qsYUDR6F7H</a>) for verification.";
+            }
+            
+            if (q.includes('payment') || q.includes('upi') || q.includes('method') || q.includes('pay') || q.includes('card')) {
+                return "We support **UPI payments** (GPay, PhonePe, Paytm, BHIM) via our secure scan-and-pay screen. **Credit and Debit Cards have been removed** to prioritize instant local India payments. After completing the payment, please enter your 12-digit UTR number and submit the payment screenshot in our Discord: <a href='https://discord.gg/qsYUDR6F7H' target='_blank' class='text-pink-400 hover:underline font-bold'>discord.gg/qsYUDR6F7H</a>.";
+            }
+
+            if (q.includes('gem') || q.includes('currency') || q.includes('coins')) {
+                return "Gems are our premium in-game currency. You can purchase them in the **Gems** tab of the Store. Once purchased, they are credited instantly to your in-game wallet. Type `/gems` in-game to check your balance, or use them at player shops!";
+            }
+
+            if (q.includes('ip') || q.includes('address') || q.includes('server') || q.includes('join') || q.includes('connect')) {
+                return "You can join RoxSmp Network using the Minecraft Java/Bedrock IP: <strong class='text-pink-400 font-mono'>play.roxsmp.fun</strong>. Copy it using the 'Copy Server IP' button at the top of the homepage!";
+            }
+
+            if (q.includes('discord') || q.includes('link') || q.includes('group') || q.includes('support')) {
+                return "Join our official Discord community here: <a href='https://discord.gg/qsYUDR6F7H' target='_blank' class='text-pink-400 hover:underline font-bold'>discord.gg/qsYUDR6F7H</a>. You can open support tickets, chat with staff, and upload payment screenshots there.";
+            }
+
+            if (q.includes('crate') || q.includes('key') || q.includes('unboxing')) {
+                return "Crate Keys can be bought in the **Crate Keys** tab of our Store. Once purchased, keys will be delivered in-game. Go to spawn, right-click the corresponding crate chest with the key to unbox rare items, keys, and ranks!";
+            }
+
+            if (q.includes('refund') || q.includes('chargeback') || q.includes('terms')) {
+                return "All purchases on RoxSmp Network are final and non-refundable. Chargebacks or disputes will result in an automatic permanent network ban. For payment disputes, please contact our support team on Discord: <a href='https://discord.gg/qsYUDR6F7H' target='_blank' class='text-pink-400 hover:underline font-bold'>discord.gg/qsYUDR6F7H</a>.";
+            }
+
+            return "I'm not sure if I fully understand. 😅 For detailed server help, rank benefits, or payment queries, you can check our FAQ section or chat with our admin team directly on Discord: <a href='https://discord.gg/qsYUDR6F7H' target='_blank' class='text-pink-400 hover:underline font-bold'>discord.gg/qsYUDR6F7H</a>.";
+        }
+
+        function escapeHtml(text) {
+            return text
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
         }
     </script>
 </body>
