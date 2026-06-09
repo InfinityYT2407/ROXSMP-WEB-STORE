@@ -413,7 +413,7 @@
                     <div class="mb-6 inline-flex items-center gap-3 bg-gradient-to-r from-red-500/20 via-pink-500/20 to-purple-500/20 border border-primary/30 px-5 py-2.5 rounded-full backdrop-blur-md shadow-[0_0_25px_rgba(255,51,68,0.15)] animate-pulse">
                         <span class="w-2 h-2 rounded-full bg-primary inline-block"></span>
                         <span class="font-display font-bold text-xs md:text-sm text-on-surface uppercase tracking-wider">
-                            🔥 20% Store-wide Sale! Code: <span class="text-secondary font-mono font-extrabold bg-secondary/10 border border-secondary/20 px-2 py-0.5 rounded text-xs select-all">ROXSMP01</span> for extra 10% off
+                            🔥 20% Store-wide Sale! Code: <span class="text-secondary font-mono font-extrabold bg-secondary/10 border border-secondary/20 px-2 py-0.5 rounded text-xs select-all">ROXSMP01</span>
                         </span>
                     </div>
 
@@ -1972,23 +1972,18 @@
             const subtotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             subtotalText.innerText = `₹${subtotal}`;
             
-            let discount = 0;
-            if (appliedPromoCode === 'ROXSMP01') {
-                discount = Math.round(subtotal * 0.10);
-            }
-
             const discountRow = document.getElementById('checkout-discount-row');
             const discountText = document.getElementById('checkout-discount');
             if (discountRow && discountText) {
-                if (discount > 0) {
-                    discountText.innerText = `-₹${discount}`;
+                if (appliedPromoCode === 'ROXSMP01') {
+                    discountText.innerText = 'Applied (20% Sale)';
                     discountRow.classList.remove('hidden');
                 } else {
                     discountRow.classList.add('hidden');
                 }
             }
 
-            const total = subtotal - discount;
+            const total = subtotal;
             totalText.innerText = `₹${total}`;
 
             // Re-populate promo input and status message if already applied
@@ -1997,7 +1992,7 @@
             if (promoInput && appliedPromoCode) {
                 promoInput.value = appliedPromoCode;
                 if (promoStatus) {
-                    promoStatus.innerText = 'Promo code ROXSMP01 applied! Extra 10% discount has been activated.';
+                    promoStatus.innerText = 'Promo code ROXSMP01 applied successfully! 20% Store-wide Sale discount active.';
                     promoStatus.className = 'text-[10px] font-semibold text-success mt-1 block';
                 }
             }
@@ -2028,7 +2023,7 @@
 
             if (code === 'ROXSMP01') {
                 appliedPromoCode = 'ROXSMP01';
-                promoStatus.innerText = 'Promo code ROXSMP01 applied! Extra 10% discount has been activated.';
+                promoStatus.innerText = 'Promo code ROXSMP01 applied successfully! 20% Store-wide Sale discount active.';
                 promoStatus.className = 'text-[10px] font-semibold text-success mt-1 block';
                 showToast('Promo code applied successfully!', 'success');
                 renderCheckoutFlow();
