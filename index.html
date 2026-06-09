@@ -96,6 +96,9 @@
         .glow-text-gold {
             text-shadow: 0 0 12px rgba(255, 219, 60, 0.6), 0 0 24px rgba(255, 219, 60, 0.3);
         }
+        .glow-text-pink {
+            text-shadow: 0 0 12px rgba(244, 63, 94, 0.6), 0 0 24px rgba(244, 63, 94, 0.3);
+        }
 
         /* Buttons Base Styling */
         .btn-primary {
@@ -662,7 +665,8 @@
                     <div class="absolute -right-20 -top-20 w-44 h-44 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
                     
                     <div>
-                        <img src="webstore_title.png" alt="RoxSmp Webstore" class="h-16 md:h-20 object-contain mb-2 -ml-1">
+                        <img id="store-header-logo" src="webstore_ranks.png" alt="RoxSmp Webstore" class="h-16 md:h-20 object-contain mb-2 -ml-1">
+                        <h1 id="store-header-title-text" class="hidden font-display font-extrabold text-3xl text-pink-400 glow-text-pink tracking-tight mb-2 uppercase">ROXSMP GEMS STORE</h1>
                         <p class="text-sm text-on-surface-variant max-w-xl">Browse our items list. Ranks and unbans are delivered to your account in-game automatically.</p>
                     </div>
 
@@ -1636,6 +1640,24 @@
         function renderProducts() {
             const grid = document.getElementById('products-grid');
             
+            // Update Store Header Logo/Title dynamically based on active category
+            const headerLogo = document.getElementById('store-header-logo');
+            const headerText = document.getElementById('store-header-title-text');
+            if (headerLogo && headerText) {
+                if (activeCategory === 'ranks') {
+                    headerLogo.src = 'webstore_ranks.png';
+                    headerLogo.classList.remove('hidden');
+                    headerText.classList.add('hidden');
+                } else if (activeCategory === 'crates') {
+                    headerLogo.src = 'webstore_crates.png';
+                    headerLogo.classList.remove('hidden');
+                    headerText.classList.add('hidden');
+                } else if (activeCategory === 'currency') {
+                    headerLogo.classList.add('hidden');
+                    headerText.classList.remove('hidden');
+                }
+            }
+
             // Filter by active category
             let filtered = products.filter(p => p.category === activeCategory);
 
