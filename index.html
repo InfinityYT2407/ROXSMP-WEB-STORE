@@ -585,7 +585,7 @@
                                 </ul>
                             </div>
                             <div class="flex gap-3">
-                                <button onclick="openKitPreview(1)" class="w-1/2 py-3 rounded-lg bg-surface-container-low hover:bg-surface-container border border-outline-variant/40 hover:border-cyan-500/40 text-on-surface font-bold text-sm transition-all flex items-center justify-center gap-1.5 active:scale-95">
+                                <button onclick="openKitPreview(1)" class="shimmer-btn w-1/2 py-3 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm transition-all flex items-center justify-center gap-1.5 shadow-[0_0_15px_rgba(99,102,241,0.25)] active:scale-95">
                                     Preview <span class="material-symbols-outlined text-sm">visibility</span>
                                 </button>
                                 <button onclick="addToCart(1)" class="shimmer-btn w-1/2 py-3 rounded-lg bg-cyan-500 hover:bg-cyan-600 text-black font-bold text-sm transition-all flex items-center justify-center gap-1.5 shadow-[0_0_20px_rgba(6,182,212,0.25)]">
@@ -635,7 +635,7 @@
                                 </ul>
                             </div>
                             <div class="flex gap-3">
-                                <button onclick="openKitPreview(2)" class="w-1/2 py-3 rounded-lg bg-surface-container-low hover:bg-surface-container border border-outline-variant/40 hover:border-purple-500/40 text-on-surface font-bold text-sm transition-all flex items-center justify-center gap-1.5 active:scale-95">
+                                <button onclick="openKitPreview(2)" class="shimmer-btn w-1/2 py-3 rounded-lg bg-fuchsia-600 hover:bg-fuchsia-700 text-white font-bold text-sm transition-all flex items-center justify-center gap-1.5 shadow-[0_0_15px_rgba(217,70,239,0.25)] active:scale-95">
                                     Preview <span class="material-symbols-outlined text-sm">visibility</span>
                                 </button>
                                 <button onclick="addToCart(2)" class="shimmer-btn w-1/2 py-3 rounded-lg bg-purple-500 hover:bg-purple-600 text-black font-bold text-sm transition-all flex items-center justify-center gap-1.5 shadow-[0_0_25px_rgba(168,85,247,0.3)]">
@@ -686,7 +686,7 @@
                                 </ul>
                             </div>
                             <div class="flex gap-3">
-                                <button onclick="openKitPreview(3)" class="w-1/2 py-3 rounded-lg bg-surface-container-low hover:bg-surface-container border border-outline-variant/40 hover:border-yellow-500/40 text-on-surface font-bold text-sm transition-all flex items-center justify-center gap-1.5 active:scale-95">
+                                <button onclick="openKitPreview(3)" class="shimmer-btn w-1/2 py-3 rounded-lg bg-amber-600 hover:bg-amber-700 text-white font-bold text-sm transition-all flex items-center justify-center gap-1.5 shadow-[0_0_15px_rgba(217,119,6,0.25)] active:scale-95">
                                     Preview <span class="material-symbols-outlined text-sm">visibility</span>
                                 </button>
                                 <button onclick="addToCart(3)" class="shimmer-btn w-1/2 py-3 rounded-lg bg-secondary hover:bg-secondary-container text-black font-bold text-sm transition-all flex items-center justify-center gap-1.5 shadow-[0_0_20px_rgba(255,214,10,0.25)]">
@@ -1771,6 +1771,45 @@
                     buttonHoverClass = 'hover:bg-pink-500 hover:text-black hover:shadow-[0_0_15px_rgba(244,63,94,0.25)]';
                 }
 
+                let buttonHtml = '';
+                if (p.category === 'ranks') {
+                    let previewClass = 'bg-indigo-600 hover:bg-indigo-500 text-white shadow-[0_0_15px_rgba(99,102,241,0.2)]';
+                    let cartClass = 'bg-cyan-500 hover:bg-cyan-400 text-black shadow-[0_0_15px_rgba(6,182,212,0.2)]';
+                    
+                    if (p.id === 2) { // Soul
+                        previewClass = 'bg-fuchsia-600 hover:bg-fuchsia-500 text-white shadow-[0_0_15px_rgba(217,70,239,0.2)]';
+                        cartClass = 'bg-purple-500 hover:bg-purple-400 text-black shadow-[0_0_15px_rgba(168,85,247,0.2)]';
+                    } else if (p.id === 3) { // Titan
+                        previewClass = 'bg-amber-600 hover:bg-amber-500 text-white shadow-[0_0_15px_rgba(217,119,6,0.2)]';
+                        cartClass = 'bg-secondary hover:bg-yellow-400 text-black shadow-[0_0_15px_rgba(255,214,10,0.2)]';
+                    } else if (p.id === 4) { // Alpha
+                        previewClass = 'bg-rose-700 hover:bg-rose-600 text-white shadow-[0_0_15px_rgba(190,24,74,0.2)]';
+                        cartClass = 'bg-primary hover:bg-red-400 text-white shadow-[0_0_15px_rgba(255,51,68,0.2)]';
+                    } else if (p.id === 5) { // Custom
+                        previewClass = 'bg-cyan-600 hover:bg-cyan-500 text-black shadow-[0_0_15px_rgba(6,182,212,0.2)]';
+                        cartClass = 'bg-purple-500 hover:bg-purple-400 text-black shadow-[0_0_15px_rgba(168,85,247,0.2)]';
+                    }
+                    
+                    buttonHtml = `
+                        <div class="flex gap-2.5 mt-auto">
+                            <button onclick="openKitPreview(${p.id})" class="shimmer-btn w-1/2 py-2.5 rounded-lg ${previewClass} font-bold text-xs transition-all flex items-center justify-center gap-1.5 active:scale-95">
+                                PREVIEW <span class="material-symbols-outlined text-xs">visibility</span>
+                            </button>
+                            <button onclick="addToCart(${p.id})" class="shimmer-btn w-1/2 py-2.5 rounded-lg ${cartClass} font-bold text-xs transition-all flex items-center justify-center gap-1.5 active:scale-95">
+                                ADD TO CART <span class="material-symbols-outlined text-xs">shopping_cart</span>
+                            </button>
+                        </div>
+                    `;
+                } else {
+                    buttonHtml = `
+                        <div class="mt-auto">
+                            <button onclick="addToCart(${p.id})" class="shimmer-btn w-full py-2.5 rounded-lg bg-surface-container-highest ${buttonHoverClass} text-on-surface font-bold text-xs transition-colors flex items-center justify-center gap-2 active:scale-95">
+                                ADD TO CART <span class="material-symbols-outlined text-xs">shopping_cart</span>
+                            </button>
+                        </div>
+                    `;
+                }
+
                 return `
                     <div class="glass-card rounded-xl p-5 flex flex-col justify-between group relative overflow-hidden border ${cardBorderClass} ${cardHoverClass}">
                         
@@ -1801,20 +1840,7 @@
                             </ul>
                         </div>
 
-                        <div class="flex gap-2.5 mt-auto">
-                            ${p.category === 'ranks' ? `
-                            <button onclick="openKitPreview(${p.id})" class="w-1/2 py-2.5 rounded-lg bg-surface-container-lowest border border-outline-variant/40 hover:border-primary/40 text-on-surface font-bold text-xs transition-colors flex items-center justify-center gap-1.5 active:scale-95">
-                                PREVIEW <span class="material-symbols-outlined text-xs">visibility</span>
-                            </button>
-                            <button onclick="addToCart(${p.id})" class="shimmer-btn w-1/2 py-2.5 rounded-lg bg-surface-container-highest ${buttonHoverClass} text-on-surface font-bold text-xs transition-colors flex items-center justify-center gap-1.5 active:scale-95">
-                                ADD TO CART <span class="material-symbols-outlined text-xs">shopping_cart</span>
-                            </button>
-                            ` : `
-                            <button onclick="addToCart(${p.id})" class="shimmer-btn w-full py-2.5 rounded-lg bg-surface-container-highest ${buttonHoverClass} text-on-surface font-bold text-xs transition-colors flex items-center justify-center gap-2 active:scale-95">
-                                ADD TO CART <span class="material-symbols-outlined text-xs">shopping_cart</span>
-                            </button>
-                            `}
-                        </div>
+                        ${buttonHtml}
                     </div>
                 `;
             }).join('');
@@ -2648,6 +2674,12 @@
             const image = document.getElementById('kit-modal-image');
             
             title.textContent = `${product.name} - Kit Contents`;
+            
+            // Reset image display states
+            image.style.display = 'block';
+            const placeholder = document.getElementById('kit-modal-placeholder');
+            if (placeholder) placeholder.remove();
+            
             image.src = product.previewImage;
             
             // Show modal
@@ -2674,6 +2706,23 @@
                 document.body.style.overflow = '';
             }, 300);
         }
+
+        function handleKitImageError(img) {
+            img.style.display = 'none';
+            const parent = img.parentElement;
+            let placeholder = parent.querySelector('#kit-modal-placeholder');
+            if (!placeholder) {
+                placeholder = document.createElement('div');
+                placeholder.id = 'kit-modal-placeholder';
+                placeholder.className = 'py-16 px-8 text-center flex flex-col items-center justify-center';
+                placeholder.innerHTML = `
+                    <span class="material-symbols-outlined text-5xl text-on-surface-variant/40 mb-3">photo_library</span>
+                    <p class="text-base font-bold text-on-surface mb-1">Kit Preview Coming Soon!</p>
+                    <p class="text-xs text-on-surface-variant max-w-sm">The graphical preview for this rank's kit is being prepared and will be available shortly.</p>
+                `;
+                parent.appendChild(placeholder);
+            }
+        }
     </script>
 
     <!-- Kit Preview Modal -->
@@ -2693,7 +2742,7 @@
             
             <!-- Body -->
             <div class="p-6 overflow-y-auto flex items-center justify-center bg-surface-container-lowest">
-                <img id="kit-modal-image" src="" alt="Kit Preview" class="max-w-full max-h-[60vh] object-contain rounded-lg shadow-lg border border-outline-variant/20">
+                <img id="kit-modal-image" src="" alt="Kit Preview" onerror="handleKitImageError(this)" class="max-w-full max-h-[60vh] object-contain rounded-lg shadow-lg border border-outline-variant/20">
             </div>
             
             <!-- Footer -->
