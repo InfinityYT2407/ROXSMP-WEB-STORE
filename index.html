@@ -585,7 +585,7 @@
                                 </ul>
                             </div>
                             <div class="flex gap-3">
-                                <button onclick="openKitPreview(1)" class="shimmer-btn w-1/2 py-3 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-sm transition-all flex items-center justify-center gap-1.5 shadow-[0_0_15px_rgba(99,102,241,0.25)] active:scale-95">
+                                <button onclick="openKitPreview(1)" class="shimmer-btn w-1/2 py-3 rounded-lg bg-red-500 hover:bg-red-600 text-white font-bold text-sm transition-all flex items-center justify-center gap-1.5 shadow-[0_0_15px_rgba(239,68,68,0.25)] active:scale-95">
                                     Preview <span class="material-symbols-outlined text-sm">visibility</span>
                                 </button>
                                 <button onclick="addToCart(1)" class="shimmer-btn w-1/2 py-3 rounded-lg bg-cyan-500 hover:bg-cyan-600 text-black font-bold text-sm transition-all flex items-center justify-center gap-1.5 shadow-[0_0_20px_rgba(6,182,212,0.25)]">
@@ -635,7 +635,7 @@
                                 </ul>
                             </div>
                             <div class="flex gap-3">
-                                <button onclick="openKitPreview(2)" class="shimmer-btn w-1/2 py-3 rounded-lg bg-fuchsia-600 hover:bg-fuchsia-700 text-white font-bold text-sm transition-all flex items-center justify-center gap-1.5 shadow-[0_0_15px_rgba(217,70,239,0.25)] active:scale-95">
+                                <button onclick="openKitPreview(2)" class="shimmer-btn w-1/2 py-3 rounded-lg bg-red-500 hover:bg-red-600 text-white font-bold text-sm transition-all flex items-center justify-center gap-1.5 shadow-[0_0_15px_rgba(239,68,68,0.25)] active:scale-95">
                                     Preview <span class="material-symbols-outlined text-sm">visibility</span>
                                 </button>
                                 <button onclick="addToCart(2)" class="shimmer-btn w-1/2 py-3 rounded-lg bg-purple-500 hover:bg-purple-600 text-black font-bold text-sm transition-all flex items-center justify-center gap-1.5 shadow-[0_0_25px_rgba(168,85,247,0.3)]">
@@ -686,7 +686,7 @@
                                 </ul>
                             </div>
                             <div class="flex gap-3">
-                                <button onclick="openKitPreview(3)" class="shimmer-btn w-1/2 py-3 rounded-lg bg-amber-600 hover:bg-amber-700 text-white font-bold text-sm transition-all flex items-center justify-center gap-1.5 shadow-[0_0_15px_rgba(217,119,6,0.25)] active:scale-95">
+                                <button onclick="openKitPreview(3)" class="shimmer-btn w-1/2 py-3 rounded-lg bg-red-500 hover:bg-red-600 text-white font-bold text-sm transition-all flex items-center justify-center gap-1.5 shadow-[0_0_15px_rgba(239,68,68,0.25)] active:scale-95">
                                     Preview <span class="material-symbols-outlined text-sm">visibility</span>
                                 </button>
                                 <button onclick="addToCart(3)" class="shimmer-btn w-1/2 py-3 rounded-lg bg-secondary hover:bg-secondary-container text-black font-bold text-sm transition-all flex items-center justify-center gap-1.5 shadow-[0_0_20px_rgba(255,214,10,0.25)]">
@@ -1773,29 +1773,14 @@
 
                 let buttonHtml = '';
                 if (p.category === 'ranks') {
-                    let previewClass = 'bg-indigo-600 hover:bg-indigo-500 text-white shadow-[0_0_15px_rgba(99,102,241,0.2)]';
-                    let cartClass = 'bg-cyan-500 hover:bg-cyan-400 text-black shadow-[0_0_15px_rgba(6,182,212,0.2)]';
-                    
-                    if (p.id === 2) { // Soul
-                        previewClass = 'bg-fuchsia-600 hover:bg-fuchsia-500 text-white shadow-[0_0_15px_rgba(217,70,239,0.2)]';
-                        cartClass = 'bg-purple-500 hover:bg-purple-400 text-black shadow-[0_0_15px_rgba(168,85,247,0.2)]';
-                    } else if (p.id === 3) { // Titan
-                        previewClass = 'bg-amber-600 hover:bg-amber-500 text-white shadow-[0_0_15px_rgba(217,119,6,0.2)]';
-                        cartClass = 'bg-secondary hover:bg-yellow-400 text-black shadow-[0_0_15px_rgba(255,214,10,0.2)]';
-                    } else if (p.id === 4) { // Alpha
-                        previewClass = 'bg-rose-700 hover:bg-rose-600 text-white shadow-[0_0_15px_rgba(190,24,74,0.2)]';
-                        cartClass = 'bg-primary hover:bg-red-400 text-white shadow-[0_0_15px_rgba(255,51,68,0.2)]';
-                    } else if (p.id === 5) { // Custom
-                        previewClass = 'bg-cyan-600 hover:bg-cyan-500 text-black shadow-[0_0_15px_rgba(6,182,212,0.2)]';
-                        cartClass = 'bg-purple-500 hover:bg-purple-400 text-black shadow-[0_0_15px_rgba(168,85,247,0.2)]';
-                    }
+                    let previewClass = 'bg-red-500 hover:bg-red-600 text-white shadow-[0_0_15px_rgba(239,68,68,0.2)]';
                     
                     buttonHtml = `
                         <div class="flex gap-2.5 mt-auto">
                             <button onclick="openKitPreview(${p.id})" class="shimmer-btn w-1/2 py-2.5 rounded-lg ${previewClass} font-bold text-xs transition-all flex items-center justify-center gap-1.5 active:scale-95">
                                 PREVIEW <span class="material-symbols-outlined text-xs">visibility</span>
                             </button>
-                            <button onclick="addToCart(${p.id})" class="shimmer-btn w-1/2 py-2.5 rounded-lg ${cartClass} font-bold text-xs transition-all flex items-center justify-center gap-1.5 active:scale-95">
+                            <button onclick="addToCart(${p.id})" class="shimmer-btn w-1/2 py-2.5 rounded-lg bg-surface-container-highest ${buttonHoverClass} text-on-surface font-bold text-xs transition-colors flex items-center justify-center gap-1.5 active:scale-95">
                                 ADD TO CART <span class="material-symbols-outlined text-xs">shopping_cart</span>
                             </button>
                         </div>
