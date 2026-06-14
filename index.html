@@ -204,7 +204,7 @@
 
         /* Set fixed Minecraft background image with dark overlay */
         body {
-            background-image: linear-gradient(rgba(19, 19, 19, 0.88), rgba(19, 19, 19, 0.88)), url('minecraft_bg.png');
+            background-image: linear-gradient(var(--bg-overlay, rgba(19, 19, 19, 0.88)), var(--bg-overlay, rgba(19, 19, 19, 0.88))), url('minecraft_bg.png');
             background-attachment: fixed;
             background-size: cover;
             background-position: center;
@@ -378,10 +378,6 @@
                             <button onclick="setAccentTheme('pink')" title="Pink (Default)" class="w-8 h-8 rounded-full bg-[#ff3344] border-2 border-transparent hover:scale-110 active:scale-90 transition-all flex items-center justify-center shadow-lg shadow-pink-500/20">
                                 <span class="theme-check-icon hidden material-symbols-outlined text-[14px] text-white font-bold">check</span>
                             </button>
-                            <!-- Lime Theme -->
-                            <button onclick="setAccentTheme('lime')" title="Lime Green" class="w-8 h-8 rounded-full bg-[#84cc16] border-2 border-transparent hover:scale-110 active:scale-90 transition-all flex items-center justify-center shadow-lg shadow-lime-500/20">
-                                <span class="theme-check-icon hidden material-symbols-outlined text-[14px] text-white font-bold">check</span>
-                            </button>
                             <!-- Purple Theme -->
                             <button onclick="setAccentTheme('purple')" title="Purple" class="w-8 h-8 rounded-full bg-[#a855f7] border-2 border-transparent hover:scale-110 active:scale-90 transition-all flex items-center justify-center shadow-lg shadow-purple-500/20">
                                 <span class="theme-check-icon hidden material-symbols-outlined text-[14px] text-white font-bold">check</span>
@@ -389,6 +385,10 @@
                             <!-- White Theme -->
                             <button onclick="setAccentTheme('white')" title="White" class="w-8 h-8 rounded-full bg-[#ffffff] border border-outline-variant/30 hover:scale-110 active:scale-90 transition-all flex items-center justify-center shadow-lg shadow-white/10">
                                 <span class="theme-check-icon hidden material-symbols-outlined text-[14px] text-black font-bold">check</span>
+                            </button>
+                            <!-- Black Theme -->
+                            <button onclick="setAccentTheme('black')" title="Black" class="w-8 h-8 rounded-full bg-[#09090b] border border-outline-variant/30 hover:scale-110 active:scale-90 transition-all flex items-center justify-center shadow-lg shadow-black/40">
+                                <span class="theme-check-icon hidden material-symbols-outlined text-[14px] text-white font-bold">check</span>
                             </button>
                         </div>
                     </div>
@@ -2672,26 +2672,8 @@
                 pink700: '#be185d',
                 pink800: '#9d174d',
                 pink900: '#831843',
-                pink950: '#500724'
-            },
-            lime: {
-                primary: '#84cc16',
-                primaryRgb: '132, 204, 22',
-                primaryHover: '#a3e635',
-                primaryContainer: '#65a30d',
-                onPrimary: '#ffffff',
-                onPrimaryContainer: '#f7fee7',
-                pink50: '#f7fee7',
-                pink100: '#ecfccb',
-                pink200: '#d9f99d',
-                pink300: '#bef264',
-                pink400: '#a3e635',
-                pink500: '#84cc16',
-                pink600: '#65a30d',
-                pink700: '#4d7c0f',
-                pink800: '#3f6212',
-                pink900: '#365314',
-                pink950: '#1a2e05'
+                pink950: '#500724',
+                bgOverlay: 'rgba(19, 19, 19, 0.88)'
             },
             purple: {
                 primary: '#a855f7',
@@ -2710,7 +2692,8 @@
                 pink700: '#7e22ce',
                 pink800: '#6b21a8',
                 pink900: '#581c87',
-                pink950: '#3b0764'
+                pink950: '#3b0764',
+                bgOverlay: 'rgba(15, 11, 22, 0.91)'
             },
             white: {
                 primary: '#ffffff',
@@ -2729,7 +2712,28 @@
                 pink700: '#cbd5e1',
                 pink800: '#94a3b8',
                 pink900: '#475569',
-                pink950: '#0f172a'
+                pink950: '#0f172a',
+                bgOverlay: 'rgba(15, 15, 15, 0.9)'
+            },
+            black: {
+                primary: '#ffffff',
+                primaryRgb: '255, 255, 255',
+                primaryHover: '#e4e4e7',
+                primaryContainer: '#18181b',
+                onPrimary: '#000000',
+                onPrimaryContainer: '#ffffff',
+                pink50: '#18181b',
+                pink100: '#27272a',
+                pink200: '#3f3f46',
+                pink300: '#52525b',
+                pink400: '#71717a',
+                pink500: '#18181b',
+                pink600: '#27272a',
+                pink700: '#3f3f46',
+                pink800: '#52525b',
+                pink900: '#71717a',
+                pink950: '#09090b',
+                bgOverlay: 'rgba(0, 0, 0, 0.97)'
             }
         };
 
@@ -2771,9 +2775,13 @@
             root.style.setProperty('--color-pink-900', theme.pink900);
             root.style.setProperty('--color-pink-950', theme.pink950);
             
+            // Set background overlay property
+            const bgOverlayVal = theme.bgOverlay || 'rgba(19, 19, 19, 0.88)';
+            root.style.setProperty('--bg-overlay', bgOverlayVal);
+            
             // Update active check indicators in the dropdown
             const buttons = document.querySelectorAll('#theme-dropdown button');
-            const themeNames = ['pink', 'lime', 'purple', 'white'];
+            const themeNames = ['pink', 'purple', 'white', 'black'];
             
             buttons.forEach((btn, idx) => {
                 const check = btn.querySelector('.theme-check-icon');
