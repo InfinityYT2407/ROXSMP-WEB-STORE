@@ -31,7 +31,7 @@
                         'on-surface-variant': '#c5b5b5',
                         outline: '#8c7373',
                         'outline-variant': '#453030',
-                        primary: 'var(--color-primary)',
+                        primary: 'rgb(var(--color-primary-rgb) / <alpha-value>)',
                         'on-primary': 'var(--color-on-primary)',
                         'primary-container': 'var(--color-primary-container)',
                         'on-primary-container': 'var(--color-on-primary-container)',
@@ -606,9 +606,9 @@
                                 <span class="font-mono text-sm text-on-surface-variant">₹4,600 / ₹10,000</span>
                             </div>
                             <div class="w-full bg-surface-container-lowest border border-outline-variant/10 rounded-full h-4 overflow-hidden p-[2px]">
-                                <div class="bg-gradient-to-r from-primary/80 to-primary h-full rounded-full" style="width: 46%"></div>
+                                <div class="bg-gradient-to-r from-primary/80 to-primary h-full rounded-full" style="width: 46%; background: linear-gradient(to right, rgba(var(--color-primary-rgb), 0.8), var(--color-primary));"></div>
                             </div>
-                            <p class="text-[10px] font-mono text-on-surface-variant mt-2 text-right">Goal resets in 22 days</p>
+                            <p id="goal-reset-text" class="text-[10px] font-mono text-on-surface-variant mt-2 text-right">Goal resets in 22 days</p>
                         </div>
                     </div>
 
@@ -1575,6 +1575,23 @@
             window.addEventListener('hashchange', handleRoute);
             handleRoute(); // Execute initial load
             startSaleTimer(); // Start countdown timer
+
+            // Calculate and set goal reset text dynamically based on real calendar days left
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = now.getMonth();
+            const lastDay = new Date(year, month + 1, 0).getDate();
+            const daysLeft = lastDay - now.getDate();
+            const resetTextEl = document.getElementById('goal-reset-text');
+            if (resetTextEl) {
+                if (daysLeft === 0) {
+                    resetTextEl.textContent = "Goal resets today";
+                } else if (daysLeft === 1) {
+                    resetTextEl.textContent = "Goal resets tomorrow";
+                } else {
+                    resetTextEl.textContent = `Goal resets in ${daysLeft} days`;
+                }
+            }
         });
 
         function handleRoute() {
