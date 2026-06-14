@@ -302,12 +302,23 @@
 
             <!-- Actions Right -->
             <div class="flex items-center gap-4">
-                <!-- Server IP Copy (Desktop) -->
-                <button onclick="copyServerIP()" class="hidden lg:flex items-center gap-2 bg-surface-container border border-outline-variant/40 hover:border-primary/50 text-xs font-mono font-bold uppercase py-2.5 px-4 rounded-md transition-all group active:scale-95">
-                    <span class="w-2.5 h-2.5 rounded-full bg-primary inline-block animate-ping"></span>
-                    <span class="text-on-surface-variant group-hover:text-on-surface">play.roxsmp.fun</span>
-                    <span class="material-symbols-outlined text-sm text-primary">content_copy</span>
-                </button>
+                <!-- Server IP Copy Group (Desktop) -->
+                <div class="hidden lg:flex items-center gap-2">
+                    <!-- Java Copy -->
+                    <button onclick="copyServerIP('java')" title="Click to copy Java IP" class="flex items-center gap-1.5 bg-surface-container border border-outline-variant/40 hover:border-primary/50 text-[10px] font-mono font-bold uppercase py-2.5 px-3 rounded-md transition-all group active:scale-95">
+                        <span class="w-2 h-2 rounded-full bg-primary inline-block animate-pulse"></span>
+                        <span class="text-primary font-sans font-extrabold">JAVA:</span>
+                        <span class="text-on-surface-variant group-hover:text-on-surface">play.roxsmp.fun</span>
+                        <span class="material-symbols-outlined text-[14px] text-primary">content_copy</span>
+                    </button>
+                    <!-- Bedrock Copy -->
+                    <button onclick="copyServerIP('bedrock')" title="Click to copy Bedrock IP (Port: 25567)" class="flex items-center gap-1.5 bg-surface-container border border-outline-variant/40 hover:border-pink-500/50 text-[10px] font-mono font-bold uppercase py-2.5 px-3 rounded-md transition-all group active:scale-95">
+                        <span class="w-2 h-2 rounded-full bg-pink-500 inline-block animate-pulse"></span>
+                        <span class="text-pink-400 font-sans font-extrabold">BEDROCK:</span>
+                        <span class="text-on-surface-variant group-hover:text-on-surface">play.roxsmp.fun:25567</span>
+                        <span class="material-symbols-outlined text-[14px] text-pink-400">content_copy</span>
+                    </button>
+                </div>
 
                 <!-- Minecraft User Status -->
                 <div id="nav-user-container">
@@ -355,12 +366,21 @@
                 </button>
             </div>
             
-            <button onclick="copyServerIP()" class="flex items-center justify-between w-full bg-surface-container-lowest border border-outline-variant/30 px-4 py-3 rounded-lg font-mono text-sm">
-                <span class="flex items-center gap-2 text-primary font-bold">
-                    <span class="w-2 h-2 rounded-full bg-primary inline-block animate-pulse"></span> play.roxsmp.fun
-                </span>
-                <span class="material-symbols-outlined text-sm">content_copy</span>
-            </button>
+            <!-- Server IP Copy (Mobile Drawer) -->
+            <div class="flex flex-col gap-2">
+                <button onclick="copyServerIP('java')" class="flex items-center justify-between w-full bg-surface-container-lowest border border-outline-variant/30 px-4 py-2.5 rounded-lg font-mono text-xs text-left">
+                    <span class="flex items-center gap-2 text-primary font-bold">
+                        <span class="w-2 h-2 rounded-full bg-primary inline-block animate-pulse"></span> Java: play.roxsmp.fun
+                    </span>
+                    <span class="material-symbols-outlined text-sm">content_copy</span>
+                </button>
+                <button onclick="copyServerIP('bedrock')" class="flex items-center justify-between w-full bg-surface-container-lowest border border-outline-variant/30 px-4 py-2.5 rounded-lg font-mono text-xs text-left">
+                    <span class="flex items-center gap-2 text-pink-400 font-bold">
+                        <span class="w-2 h-2 rounded-full bg-pink-500 inline-block animate-pulse"></span> Bedrock: play.roxsmp.fun:25567
+                    </span>
+                    <span class="material-symbols-outlined text-sm">content_copy</span>
+                </button>
+            </div>
 
             <nav class="flex flex-col gap-2">
                 <a href="#home" onclick="toggleMobileMenu(false)" class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:text-primary hover:bg-surface-variant/30 rounded-lg text-base font-medium transition-all">
@@ -427,16 +447,40 @@
                     </p>
 
                     <!-- CTAs -->
-                    <div class="flex flex-col sm:flex-row items-center gap-4 w-full justify-center">
+                    <div class="flex flex-col sm:flex-row items-center gap-4 w-full justify-center mb-6">
                         <a href="#store" class="shimmer-btn btn-primary px-8 py-4 w-full sm:w-auto rounded-lg text-background font-display font-bold text-sm tracking-wider flex items-center justify-center gap-2 active:scale-95 shadow-[0_0_30px_rgba(255,51,68,0.2)] hover:bg-primary/90">
                             BROWSE STORE <span class="material-symbols-outlined text-sm">storefront</span>
                         </a>
-                        <button onclick="copyServerIP()" class="bg-surface-container-high/60 backdrop-blur-md hover:bg-surface-container border border-outline-variant/40 hover:border-primary/40 px-8 py-4 w-full sm:w-auto rounded-lg text-on-surface font-display font-bold text-sm tracking-wider flex items-center justify-center gap-2 active:scale-95 transition-all">
-                            COPY SERVER IP <span class="material-symbols-outlined text-sm">content_copy</span>
-                        </button>
                         <a href="https://discord.gg/3Sfte6XW4g" target="_blank" class="bg-indigo-600/35 hover:bg-indigo-600 border border-indigo-500/40 px-8 py-4 w-full sm:w-auto rounded-lg text-on-surface font-display font-bold text-sm tracking-wider flex items-center justify-center gap-2 active:scale-95 transition-all">
                             JOIN DISCORD <span class="material-symbols-outlined text-sm">forum</span>
                         </a>
+                    </div>
+
+                    <!-- Connection Info Sub-row -->
+                    <div class="flex flex-col sm:flex-row items-center gap-4 justify-center bg-surface-container-high/40 border border-outline-variant/20 px-6 py-3 rounded-xl backdrop-blur-md max-w-xl w-full">
+                        <!-- Java connection -->
+                        <div onclick="copyServerIP('java')" class="flex items-center gap-3 cursor-pointer hover:bg-white/5 px-3 py-2 rounded-lg transition-all w-full sm:w-auto justify-center sm:justify-start group">
+                            <span class="material-symbols-outlined text-primary text-xl">computer</span>
+                            <div class="text-left">
+                                <span class="block text-[9px] font-bold text-on-surface-variant uppercase tracking-wider">Java Edition (PC)</span>
+                                <span class="text-xs font-mono font-bold text-on-surface group-hover:text-primary transition-colors flex items-center gap-1.5">
+                                    play.roxsmp.fun <span class="material-symbols-outlined text-xs">content_copy</span>
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="hidden sm:block w-[1px] h-8 bg-outline-variant/30"></div>
+                        
+                        <!-- Bedrock connection -->
+                        <div onclick="copyServerIP('bedrock')" class="flex items-center gap-3 cursor-pointer hover:bg-white/5 px-3 py-2 rounded-lg transition-all w-full sm:w-auto justify-center sm:justify-start group">
+                            <span class="material-symbols-outlined text-pink-400 text-xl">phone_iphone</span>
+                            <div class="text-left">
+                                <span class="block text-[9px] font-bold text-on-surface-variant uppercase tracking-wider">Bedrock Edition (PE/Mobile)</span>
+                                <span class="text-xs font-mono font-bold text-on-surface group-hover:text-pink-400 transition-colors flex items-center gap-1.5">
+                                    play.roxsmp.fun <span class="text-[10px] text-pink-400 font-sans">Port: 25567</span> <span class="material-symbols-outlined text-xs">content_copy</span>
+                                </span>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1348,8 +1392,8 @@
                     <span class="material-symbols-outlined text-[14px]">smart_toy</span>
                 </div>
                 <div class="bg-surface-container-high rounded-xl rounded-tl-none p-3 max-w-[85%]">
-                    <p class="text-xs text-on-surface leading-relaxed">
-                        Namaste! Welcome to **RoxSmp Network** Support. 🤖 How can I help you today?
+                    <p id="ai-chat-welcome-text" class="text-xs text-on-surface leading-relaxed">
+                        Namaste! Welcome to <strong>RoxSmp Network</strong> Support. 🤖 How can I help you today?
                     </p>
                 </div>
             </div>
@@ -1360,8 +1404,11 @@
                 <div class="flex flex-wrap gap-1.5">
                     <button onclick="askAIQuestion('How to buy Ranks?')" class="text-[10px] bg-surface-container-lowest border border-outline-variant/30 hover:border-pink-500/50 hover:bg-pink-500/10 text-on-surface-variant hover:text-pink-400 px-3 py-1.5 rounded-full transition-all">How to buy Ranks?</button>
                     <button onclick="askAIQuestion('Supported payment methods?')" class="text-[10px] bg-surface-container-lowest border border-outline-variant/30 hover:border-pink-500/50 hover:bg-pink-500/10 text-on-surface-variant hover:text-pink-400 px-3 py-1.5 rounded-full transition-all">Payment Methods?</button>
-                    <button onclick="askAIQuestion('How to claim Gems?')" class="text-[10px] bg-surface-container-lowest border border-outline-variant/30 hover:border-pink-500/50 hover:bg-pink-500/10 text-on-surface-variant hover:text-pink-400 px-3 py-1.5 rounded-full transition-all">Claim Gems?</button>
+                    <button onclick="askAIQuestion('Claim Gems?')" class="text-[10px] bg-surface-container-lowest border border-outline-variant/30 hover:border-pink-500/50 hover:bg-pink-500/10 text-on-surface-variant hover:text-pink-400 px-3 py-1.5 rounded-full transition-all">Claim Gems?</button>
                     <button onclick="askAIQuestion('Server IP address?')" class="text-[10px] bg-surface-container-lowest border border-outline-variant/30 hover:border-pink-500/50 hover:bg-pink-500/10 text-on-surface-variant hover:text-pink-400 px-3 py-1.5 rounded-full transition-all">Server IP?</button>
+                    <button onclick="askAIQuestion('Bedrock Edition?')" class="text-[10px] bg-surface-container-lowest border border-outline-variant/30 hover:border-pink-500/50 hover:bg-pink-500/10 text-on-surface-variant hover:text-pink-400 px-3 py-1.5 rounded-full transition-all">Bedrock Support?</button>
+                    <button onclick="askAIQuestion('Ranks perks?')" class="text-[10px] bg-surface-container-lowest border border-outline-variant/30 hover:border-pink-500/50 hover:bg-pink-500/10 text-on-surface-variant hover:text-pink-400 px-3 py-1.5 rounded-full transition-all">Ranks Perks?</button>
+                    <button onclick="askAIQuestion('Promo code?')" class="text-[10px] bg-surface-container-lowest border border-outline-variant/30 hover:border-pink-500/50 hover:bg-pink-500/10 text-on-surface-variant hover:text-pink-400 px-3 py-1.5 rounded-full transition-all">Promo Code?</button>
                     <button onclick="askAIQuestion('Purchase not received?')" class="text-[10px] bg-surface-container-lowest border border-outline-variant/30 hover:border-pink-500/50 hover:bg-pink-500/10 text-on-surface-variant hover:text-pink-400 px-3 py-1.5 rounded-full transition-all">Delivery Help?</button>
                 </div>
             </div>
@@ -1503,9 +1550,13 @@
         // ==============================================
         // UTILITIES: CLIPBOARD COPY
         // ==============================================
-        function copyServerIP() {
-            navigator.clipboard.writeText('play.roxsmp.fun').then(() => {
-                showToast('IP Copied to Clipboard!', 'success');
+        function copyServerIP(type = 'java') {
+            const ip = 'play.roxsmp.fun';
+            navigator.clipboard.writeText(ip).then(() => {
+                const message = type === 'java' 
+                    ? 'Java IP Copied! (play.roxsmp.fun)' 
+                    : 'Bedrock IP Copied! (play.roxsmp.fun | Port: 25567)';
+                showToast(message, 'success');
                 
                 // Play subtle beep sound context (optional mockup indicator)
                 try {
@@ -1514,13 +1565,13 @@
                     const gain = ctx.createGain();
                     osc.connect(gain);
                     gain.connect(ctx.destination);
-                    osc.frequency.setValueAtTime(587.33, ctx.currentTime); // D5 note
+                    osc.frequency.setValueAtTime(type === 'java' ? 587.33 : 659.25, ctx.currentTime); // D5 or E5 note
                     gain.gain.setValueAtTime(0.05, ctx.currentTime);
                     osc.start();
                     osc.stop(ctx.currentTime + 0.1);
                 } catch(e) {}
             }).catch(err => {
-                showToast('Failed to copy. IP: play.roxsmp.fun', 'error');
+                showToast(`Failed to copy. IP: ${ip}`, 'error');
             });
         }
 
@@ -2518,6 +2569,13 @@
             if (isOpen) {
                 panel.classList.remove('pointer-events-none', 'opacity-0', 'translate-y-10', 'scale-95');
                 panel.classList.add('pointer-events-auto', 'opacity-100', 'translate-y-0', 'scale-100');
+                
+                // Update welcome message dynamically if logged in
+                const welcomeText = document.getElementById('ai-chat-welcome-text');
+                if (welcomeText) {
+                    const userGreeting = minecraftUser ? `<strong>${minecraftUser}</strong>` : "player";
+                    welcomeText.innerHTML = `Namaste, ${userGreeting}! Welcome to <strong>RoxSmp Network</strong> Support. 🤖 How can I help you today?`;
+                }
             } else {
                 panel.classList.add('pointer-events-none', 'opacity-0', 'translate-y-10', 'scale-95');
                 panel.classList.remove('pointer-events-auto', 'opacity-100', 'translate-y-0', 'scale-100');
@@ -2598,46 +2656,108 @@
 
         function getAIResponse(query) {
             const q = query.toLowerCase();
+            const userGreeting = minecraftUser ? `<strong>${minecraftUser}</strong>` : "player";
             
+            // Cart reference if they have items
+            const cartItemsCount = cart.length;
+            const cartTotal = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const cartSummary = cartItemsCount > 0 
+                ? `<br/><br/>🛒 <em>I see you currently have ${cartItemsCount} item(s) in your shopping cart (Total: ₹${cartTotal}). Don't forget to use promo code <strong class='text-pink-400 font-mono'>ROXSMP01</strong> at checkout for an extra 10% discount! Let me know if you need help checking out!</em>` 
+                : `<br/><br/>🛒 <em>Your shopping cart is currently empty. Our popular <button onclick="openKitPreview(1)" class="text-pink-400 hover:underline font-semibold bg-transparent border-0 p-0 cursor-pointer">VIP+ Rank</button> (₹199) and <button onclick="openKitPreview(3)" class="text-pink-400 hover:underline font-semibold bg-transparent border-0 p-0 cursor-pointer">Titan Rank</button> (₹479) are great places to start! Let me know if you need recommendations.</em>`;
+
             // 1. IP & Server Connection Check
-            if (q.includes('ip') || q.includes('address') || q.includes('server') || q.includes('join') || q.includes('connect')) {
-                return "You can join RoxSmp Network using the Minecraft Java/Bedrock IP: <strong class='text-pink-400 font-mono'>play.roxsmp.fun</strong>. Copy it using the 'Copy Server IP' button at the top of the homepage!";
+            if (q.includes('ip') || q.includes('address') || q.includes('server') || q.includes('join') || q.includes('connect') || q.includes('port') || q.includes('play')) {
+                return `Hey ${userGreeting}! You can join RoxSmp Network using:<br/>
+                • <strong>Java Edition:</strong> IP: <strong class='text-pink-400 font-mono'>play.roxsmp.fun</strong> (Port: <strong class='text-pink-400 font-mono'>25565</strong>)<br/>
+                • <strong>Bedrock / PE Edition:</strong> IP: <strong class='text-pink-400 font-mono'>play.roxsmp.fun</strong> (Port: <strong class='text-pink-400 font-mono'>25567</strong>)<br/>
+                Hope to see you online soon! ⚔️`;
             }
 
             // 2. Gems & Coins Currency Check
             if (q.includes('gem') || q.includes('currency') || q.includes('coins')) {
-                return "Gems are our premium in-game currency. You can purchase them in the **Gems** tab of the Store. Once purchased, they are credited instantly to your in-game wallet—no manual claim required! Type <strong class='text-pink-400 font-mono'>/gems</strong> in-game to check your balance, or use them at player shops!";
+                return `Gems are the premium currency of RoxSmp, ${userGreeting}. You can spend them in-game to buy custom items, trade, or unlock special perks! Buy them on our store under the <button onclick="selectStoreCategory('currency'); toggleAIChat(false);" class="text-pink-400 hover:underline font-bold bg-transparent border-0 p-0 cursor-pointer">Gems Category</button>. They are credited automatically to your account in-game. Run <strong class='text-pink-400 font-mono'>/gems</strong> in-game to view your current balance. 💎`;
             }
 
             // 3. Crates & Keys Check
-            if (q.includes('crate') || q.includes('key') || q.includes('unboxing')) {
-                return "Crate Keys can be bought in the **Crate Keys** tab of our Store. Once purchased, keys will be delivered in-game automatically. Go to spawn, right-click the corresponding crate chest with the key to unbox rare items, keys, and ranks!";
+            if (q.includes('crate') || q.includes('key') || q.includes('unboxing') || q.includes('chest')) {
+                return `Hey ${userGreeting}! Crate Keys can be bought in the <button onclick="selectStoreCategory('crates'); toggleAIChat(false);" class="text-pink-400 hover:underline font-bold bg-transparent border-0 p-0 cursor-pointer">Crates Category</button> of our Store. Once purchased, keys will be delivered in-game automatically. Right-click the corresponding crate chest with the key at spawn to claim rare items, keys, and ranks! 🗝️`;
             }
 
-            // 4. Payment Methods Check
-            if (q.includes('payment') || q.includes('upi') || q.includes('method') || q.includes('pay') || q.includes('card')) {
-                return "We support **UPI payments** (GPay, PhonePe, Paytm, BHIM) via our secure scan-and-pay screen. **Credit and Debit Cards have been removed** to prioritize instant local India payments. After completing the payment, please enter your 12-digit UTR number and submit the payment screenshot in our Discord: <a href='https://discord.gg/qsYUDR6F7H' target='_blank' class='text-pink-400 hover:underline font-bold'>discord.gg/qsYUDR6F7H</a>.";
+            // 4. Payment Methods & UTR/Ref Check
+            if (q.includes('payment') || q.includes('upi') || q.includes('method') || q.includes('pay') || q.includes('card') || q.includes('utr') || q.includes('ref')) {
+                return `We prioritize secure **UPI payments** (GPay, PhonePe, Paytm, BHIM) for instant delivery inside India, ${userGreeting}. <br/><br/><strong>How it works:</strong><br/>1. Scan the QR code during checkout.<br/>2. Pay the total amount.<br/>3. Enter the 12-digit transaction UTR/Reference number.<br/>4. Open a support ticket on our <a href='https://discord.gg/qsYUDR6F7H' target='_blank' class='text-pink-400 hover:underline font-bold'>Discord</a> and upload your payment screenshot. <br/><br/><em>Note: Credit/Debit card options are disabled to ensure smooth local UPI instant processing.</em>`;
             }
 
             // 5. Discord & Support Check
-            if (q.includes('discord') || q.includes('link') || q.includes('group') || q.includes('support')) {
-                return "Join our official Discord community here: <a href='https://discord.gg/qsYUDR6F7H' target='_blank' class='text-pink-400 hover:underline font-bold'>discord.gg/qsYUDR6F7H</a>. You can open support tickets, chat with staff, and upload payment screenshots there.";
+            if (q.includes('discord') || q.includes('link') || q.includes('group') || q.includes('support') || q.includes('ticket')) {
+                return `Our official Discord server is the best place to get help, ${userGreeting}! Join us here: <a href='https://discord.gg/qsYUDR6F7H' target='_blank' class='text-pink-400 hover:underline font-bold'>discord.gg/qsYUDR6F7H</a>. There you can open support tickets, chat with staff, and verify your UPI payment screenshots. 💬`;
             }
 
             // 6. Refund & Ban Terms Check
-            if (q.includes('refund') || q.includes('chargeback') || q.includes('terms')) {
-                return "All purchases on RoxSmp Network are final and non-refundable. Chargebacks or disputes will result in an automatic permanent network ban. For payment disputes, please contact our support team on Discord: <a href='https://discord.gg/qsYUDR6F7H' target='_blank' class='text-pink-400 hover:underline font-bold'>discord.gg/qsYUDR6F7H</a>.";
+            if (q.includes('refund') || q.includes('chargeback') || q.includes('terms') || q.includes('policy')) {
+                return `Please note that all purchases on RoxSmp Network are final and non-refundable, ${userGreeting}. Initiating chargebacks or disputes will lead to an automatic and permanent network IP ban. For any billing issues, please contact our support team on <a href='https://discord.gg/qsYUDR6F7H' target='_blank' class='text-pink-400 hover:underline font-bold'>Discord</a>. ⚠️`;
             }
 
-            // 7. General Ranks Purchase / Store Guidance Check (Fallback for generic "buy", "how to")
-            if (q.includes('buy') || q.includes('purchase') || q.includes('rank') || q.includes('store') || q.includes('how to')) {
-                if (q.includes('not') || q.includes('didn\'t') || q.includes('issue') || q.includes('receive')) {
-                    return "If your purchase is not received, please check that your transaction went through and wait up to 15 minutes. If it's still missing, join our Discord (<a href='https://discord.gg/qsYUDR6F7H' target='_blank' class='text-pink-400 hover:underline font-bold'>discord.gg/qsYUDR6F7H</a>) and open a Billing Support ticket. Provide your UPI ref/UTR number and a screenshot of the payment.";
+            // 7. Bedrock Edition & Console/Mobile Connection
+            if (q.includes('bedrock') || q.includes('pe') || q.includes('mobile') || q.includes('console') || q.includes('pocket')) {
+                return `Yes, RoxSmp supports Bedrock/PE Edition, ${userGreeting}! You can join from your phone, tablet, console, or Windows Bedrock client. Use IP: <strong class='text-pink-400 font-mono'>play.roxsmp.fun</strong> and Port: <strong class='text-pink-400 font-mono'>25567</strong>. 🎮`;
+            }
+
+            // 8. Unban & Ban Appeal Check
+            if (q.includes('unban') || q.includes('ban') || q.includes('appeal') || q.includes('unbanned')) {
+                return `If you have been banned from the server, ${userGreeting}, you can purchase an **Unban** package in the store (or ask an admin) to get unbanned instantly. Alternatively, you can open a ban appeal in our <a href='https://discord.gg/qsYUDR6F7H' target='_blank' class='text-pink-400 hover:underline font-bold'>Discord</a> for a manual review by staff. 🔨`;
+            }
+
+            // 9. Lifesteal Season 1 / Game Modes Check
+            if (q.includes('lifesteal') || q.includes('season') || q.includes('survival') || q.includes('pvp') || q.includes('gamemode') || q.includes('practice')) {
+                return `RoxSmp is currently running **Lifesteal Season 1**! We also host **Survival** and **PvP Practice/Arena** game modes. It is India's ultimate high-performance competitive network. Jump in-game and type <strong class='text-pink-400 font-mono'>/lobby</strong> or walk to the portals to switch modes! 🛡️`;
+            }
+
+            // 10. Rank Perks / Benefits Check (VIP+, Soul, Titan, Alpha, Custom)
+            if (q.includes('benefit') || q.includes('perk') || q.includes('rank perk') || q.includes('what do ranks give') || q.includes('ranks perks')) {
+                return `Ranks give you amazing custom commands, home limits, allowance, and chat perks, ${userGreeting}!<br/><br/>
+                • <strong>VIP+:</strong> Sell all, /sit, /workbench, /enderchest, /anvil, 4 Homes, Daily $5,000 allowance. <button onclick="openKitPreview(1)" class="text-pink-400 hover:underline font-semibold bg-transparent border-0 p-0 cursor-pointer">[Preview Kit]</button><br/>
+                • <strong>Soul:</strong> All VIP+ perks, /near, /disposal, 6 Homes, /pet, Daily $10,000 allowance. <button onclick="openKitPreview(2)" class="text-pink-400 hover:underline font-semibold bg-transparent border-0 p-0 cursor-pointer">[Preview Kit]</button><br/>
+                • <strong>Titan:</strong> All Soul perks, /feed, 9 Homes, /order 25, /particles, Daily $20,000 allowance. <button onclick="openKitPreview(3)" class="text-pink-400 hover:underline font-semibold bg-transparent border-0 p-0 cursor-pointer">[Preview Kit]</button><br/>
+                • <strong>Alpha:</strong> All Titan perks, /hat, 13 Homes, /order 30, /deatheffect, /hats, Daily $30,000 allowance. <button onclick="openKitPreview(4)" class="text-pink-400 hover:underline font-semibold bg-transparent border-0 p-0 cursor-pointer">[Preview Kit]</button><br/>
+                • <strong>Custom Rank:</strong> Complete personalization, custom name tag titles, 18 Homes, /cosmetic, and Daily $40,000 allowance. <button onclick="openKitPreview(5)" class="text-pink-400 hover:underline font-semibold bg-transparent border-0 p-0 cursor-pointer">[Preview Kit]</button><br/><br/>
+                You can browse and purchase these under the <button onclick="selectStoreCategory('ranks'); toggleAIChat(false);" class="text-pink-400 hover:underline font-bold bg-transparent border-0 p-0 cursor-pointer">Ranks Category</button>! ⚔️`;
+            }
+
+            // 11. Coupon / Promo Code Check
+            if (q.includes('promo') || q.includes('code') || q.includes('coupon') || q.includes('discount') || q.includes('sale')) {
+                return `We currently have a 20% store-wide sale active, ${userGreeting}! On top of that, you can use the promo code <strong class='text-pink-400 font-mono'>ROXSMP01</strong> at checkout to get an extra **10% discount** on your entire cart subtotal! 🏷️`;
+            }
+
+            // 12. Login / Verification Check
+            if (q.includes('login') || q.includes('verify') || q.includes('username') || q.includes('sign in') || q.includes('signin') || q.includes('account')) {
+                return `To buy ranks or gems on the webstore, you must verify your Minecraft username. You can <button onclick="openLoginModal(); toggleAIChat(false);" class="text-pink-400 hover:underline font-bold bg-transparent border-0 p-0 cursor-pointer">click here to verify/login</button> right now. It is quick and automatically syncs your inventory! 👤`;
+            }
+
+            // 13. Cart / Checkout Action Check
+            if (q.includes('cart') || q.includes('checkout') || q.includes('how to buy') || q.includes('purchase')) {
+                if (q.includes('not') || q.includes('didn\'t') || q.includes('issue') || q.includes('receive') || q.includes('problem')) {
+                    return `If you haven't received your purchase yet, ${userGreeting}:<br/>1. Wait up to 15 minutes (transactions can take a brief moment to sync).<br/>2. Verify your UPI payment went through.<br/>3. Join our <a href='https://discord.gg/qsYUDR6F7H' target='_blank' class='text-pink-400 hover:underline font-bold'>Discord</a>, open a Billing support ticket, and upload your payment receipt and 12-digit UTR/Ref number. We will resolve it immediately! 🎫`;
                 }
-                return "To buy a rank: 1. Go to the **Store** section. 2. Choose your preferred rank (VIP+ Rank, Soul Rank, Titan Rank, Alpha Rank). 3. Click **Add to Cart** and enter your Minecraft username. 4. Verify and proceed to pay. 5. Make the payment via UPI QR code, enter the 12-digit UTR/Ref number, and submit. 6. Upload a screenshot to our Discord server (<a href='https://discord.gg/qsYUDR6F7H' target='_blank' class='text-pink-400 hover:underline font-bold'>discord.gg/qsYUDR6F7H</a>) for verification.";
+                
+                if (cartItemsCount > 0) {
+                    return `You have ${cartItemsCount} item(s) in your cart, ${userGreeting}. You can <button onclick="toggleCartDrawer(true); toggleAIChat(false);" class="text-pink-400 hover:underline font-bold bg-transparent border-0 p-0 cursor-pointer">open your cart drawer</button> or <button onclick="proceedToCheckout(); toggleAIChat(false);" class="text-pink-400 hover:underline font-bold bg-transparent border-0 p-0 cursor-pointer">proceed directly to checkout</button> to secure your items! 🛒`;
+                }
+                
+                return `To buy items, ${userGreeting}:<br/>
+                1. Browse store categories like <button onclick="selectStoreCategory('ranks'); toggleAIChat(false);" class="text-pink-400 hover:underline font-bold bg-transparent border-0 p-0 cursor-pointer">Ranks</button>, <button onclick="selectStoreCategory('currency'); toggleAIChat(false);" class="text-pink-400 hover:underline font-bold bg-transparent border-0 p-0 cursor-pointer">Gems</button>, or <button onclick="selectStoreCategory('crates'); toggleAIChat(false);" class="text-pink-400 hover:underline font-bold bg-transparent border-0 p-0 cursor-pointer">Crates</button>.<br/>
+                2. Click **Add to Cart** on your preferred item.<br/>
+                3. Enter your Minecraft Username to verify.<br/>
+                4. Open your cart, choose UPI, scan the QR code and pay.<br/>
+                5. Submit your payment UTR code to verify and instantly deliver the items! 🛒`;
             }
 
-            return "I'm not sure if I fully understand. 😅 For detailed server help, rank benefits, or payment queries, you can check our FAQ section or chat with our admin team directly on Discord: <a href='https://discord.gg/qsYUDR6F7H' target='_blank' class='text-pink-400 hover:underline font-bold'>discord.gg/qsYUDR6F7H</a>.";
+            // 14. Basic Greetings Check
+            if (q.includes('hello') || q.includes('hi') || q.includes('hey') || q.includes('namaste') || q.includes('yo') || q.includes('sup')) {
+                return `Hello ${userGreeting}! Emojis-ready online helper here. ${cartSummary} Ask me anything about server IP, ranks, gems, crates, or billing! 👋`;
+            }
+
+            return `I'm not sure I fully understand that, ${userGreeting}. 😅 ${cartSummary}<br/><br/>Try asking me about **IP**, **Ranks Perks**, **Gems**, **Crates**, **Promo Codes**, **Bedrock Support**, or how to get **Support** on Discord!`;
         }
 
         function escapeHtml(text) {
