@@ -430,10 +430,12 @@
                     </h1>
                     
                     <!-- Sale Banner in Hero -->
-                    <div class="mb-6 inline-flex items-center gap-3 bg-gradient-to-r from-red-500/20 via-pink-500/20 to-purple-500/20 border border-primary/30 px-5 py-2.5 rounded-full backdrop-blur-md shadow-[0_0_25px_rgba(255,51,68,0.15)] animate-pulse">
-                        <span class="w-2 h-2 rounded-full bg-primary inline-block"></span>
-                        <span class="font-display font-bold text-xs md:text-sm text-on-surface uppercase tracking-wider">
-                            🔥 20% Store-wide Sale! Code: <span class="text-secondary font-mono font-extrabold bg-secondary/10 border border-secondary/20 px-2 py-0.5 rounded text-xs select-all">ROXSMP01</span> for extra 10% off
+                    <div class="mb-6 inline-flex items-center gap-3 bg-gradient-to-r from-red-500/20 via-pink-500/20 to-purple-500/20 border border-primary/30 px-5 py-2.5 rounded-full backdrop-blur-md shadow-[0_0_25px_rgba(255,51,68,0.15)]">
+                        <span class="w-2 h-2 rounded-full bg-primary inline-block animate-ping"></span>
+                        <span class="font-display font-bold text-xs md:text-sm text-on-surface uppercase tracking-wider flex items-center flex-wrap gap-2 justify-center">
+                            <span>🔥 20% Sale Ending Soon!</span>
+                            <span class="bg-primary/20 text-primary border border-primary/30 px-2 py-0.5 rounded font-mono text-xs sale-timer">00:00:00</span>
+                            <span>Code: <span class="text-secondary font-mono font-extrabold bg-secondary/10 border border-secondary/20 px-2 py-0.5 rounded text-xs select-all">ROXSMP01</span> for extra 10% off</span>
                         </span>
                     </div>
 
@@ -754,7 +756,10 @@
                         <h1 id="store-header-title-text" class="hidden font-display font-extrabold text-3xl text-pink-400 glow-text-pink tracking-tight mb-2 uppercase">ROXSMP GEMS STORE</h1>
                         <p class="text-sm text-on-surface-variant max-w-xl flex flex-wrap items-center gap-2">
                             Browse our items list. Ranks and unbans are delivered to your account in-game automatically.
-                            <span class="bg-primary/20 border border-primary/30 text-primary text-[10px] font-bold px-2 py-0.5 rounded font-mono uppercase inline-block animate-pulse">🔥 20% SALE ACTIVE</span>
+                            <span class="bg-primary/20 border border-primary/30 text-primary text-[10px] font-bold px-2 py-0.5 rounded font-mono uppercase inline-block flex items-center gap-1.5 shrink-0">
+                                <span>🔥 20% SALE ENDING SOON!</span>
+                                <span class="font-bold text-pink-400 font-mono sale-timer">00:00:00</span>
+                            </span>
                         </p>
                     </div>
 
@@ -1507,6 +1512,7 @@
             // Hash Router
             window.addEventListener('hashchange', handleRoute);
             handleRoute(); // Execute initial load
+            startSaleTimer(); // Start countdown timer
         });
 
         function handleRoute() {
@@ -1568,6 +1574,33 @@
             }).catch(err => {
                 showToast(`Failed to copy. IP: ${ip}`, 'error');
             });
+        }
+
+        function startSaleTimer() {
+            function updateTimer() {
+                const now = new Date();
+                const midnight = new Date();
+                midnight.setHours(24, 0, 0, 0); // Next midnight
+                
+                const diff = midnight - now;
+                
+                const hours = Math.floor(diff / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+                
+                const formattedTime = [
+                    hours.toString().padStart(2, '0'),
+                    minutes.toString().padStart(2, '0'),
+                    seconds.toString().padStart(2, '0')
+                ].join(':');
+                
+                document.querySelectorAll('.sale-timer').forEach(el => {
+                    el.textContent = formattedTime;
+                });
+            }
+            
+            updateTimer();
+            setInterval(updateTimer, 1000);
         }
 
         // ==============================================
@@ -2721,7 +2754,7 @@
 
             // 11. Coupon / Promo Code Check
             if (q.includes('promo') || q.includes('code') || q.includes('coupon') || q.includes('discount') || q.includes('sale')) {
-                return `We currently have a 20% store-wide sale active, ${userGreeting}! On top of that, you can use the promo code <strong class='text-pink-400 font-mono'>ROXSMP01</strong> at checkout to get an extra **10% discount** on your entire cart subtotal! 🏷️`;
+                return `We currently have a 20% store-wide sale **ending soon**, ${userGreeting}! On top of that, you can use the promo code <strong class='text-pink-400 font-mono'>ROXSMP01</strong> at checkout to get an extra **10% discount** on your entire cart subtotal! 🏷️`;
             }
 
             // 12. Login / Verification Check
