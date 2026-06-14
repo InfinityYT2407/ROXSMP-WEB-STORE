@@ -31,10 +31,10 @@
                         'on-surface-variant': '#c5b5b5',
                         outline: '#8c7373',
                         'outline-variant': '#453030',
-                        primary: '#ff3344',
-                        'on-primary': '#ffffff',
-                        'primary-container': '#d91e2e',
-                        'on-primary-container': '#ffebec',
+                        primary: 'var(--color-primary)',
+                        'on-primary': 'var(--color-on-primary)',
+                        'primary-container': 'var(--color-primary-container)',
+                        'on-primary-container': 'var(--color-on-primary-container)',
                         secondary: '#ffd60a',
                         'on-secondary': '#000000',
                         'secondary-container': '#e0a600',
@@ -44,6 +44,19 @@
                         error: '#ffb4ab',
                         'on-error': '#690005',
                         background: '#131313',
+                        pink: {
+                            50: 'var(--color-pink-50)',
+                            100: 'var(--color-pink-100)',
+                            200: 'var(--color-pink-200)',
+                            300: 'var(--color-pink-300)',
+                            400: 'var(--color-pink-400)',
+                            500: 'var(--color-pink-500)',
+                            600: 'var(--color-pink-600)',
+                            700: 'var(--color-pink-700)',
+                            800: 'var(--color-pink-800)',
+                            900: 'var(--color-pink-900)',
+                            950: 'var(--color-pink-950)',
+                        }
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
@@ -62,6 +75,28 @@
     </script>
     
     <style>
+        :root {
+            /* Default Pink Theme */
+            --color-primary: #ff3344;
+            --color-primary-rgb: 255, 51, 68;
+            --color-primary-hover: #ff4d5d;
+            --color-primary-container: #d91e2e;
+            --color-on-primary: #ffffff;
+            --color-on-primary-container: #ffebec;
+
+            --color-pink-50: #fdf2f8;
+            --color-pink-100: #fce7f3;
+            --color-pink-200: #fbcfe8;
+            --color-pink-300: #f9a8d4;
+            --color-pink-400: #f472b6;
+            --color-pink-500: #ec4899;
+            --color-pink-600: #db2777;
+            --color-pink-700: #be185d;
+            --color-pink-800: #9d174d;
+            --color-pink-900: #831843;
+            --color-pink-950: #500724;
+        }
+
         /* Floating animation for logo */
         @keyframes float {
             0%, 100% { transform: translateY(0); }
@@ -73,8 +108,8 @@
             background-color: rgba(20, 19, 19, 0.7);
             backdrop-filter: blur(14px);
             -webkit-backdrop-filter: blur(14px);
-            border-top: 1px solid rgba(255, 51, 68, 0.15);
-            border-left: 1px solid rgba(255, 51, 68, 0.08);
+            border-top: 1px solid rgba(var(--color-primary-rgb), 0.15);
+            border-left: 1px solid rgba(var(--color-primary-rgb), 0.08);
             border-right: 1px solid rgba(0, 0, 0, 0.3);
             border-bottom: 1px solid rgba(0, 0, 0, 0.4);
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -82,8 +117,8 @@
         }
         .glass-card:hover {
             transform: translateY(-5px) scale(1.01);
-            border-color: rgba(255, 51, 68, 0.45);
-            box-shadow: 0 16px 45px -12px rgba(0, 0, 0, 0.9), 0 0 30px 2px rgba(255, 51, 68, 0.2), inset 0 0 12px rgba(255, 51, 68, 0.1);
+            border-color: rgba(var(--color-primary-rgb), 0.45);
+            box-shadow: 0 16px 45px -12px rgba(0, 0, 0, 0.9), 0 0 30px 2px rgba(var(--color-primary-rgb), 0.2), inset 0 0 12px rgba(var(--color-primary-rgb), 0.1);
         }
         .glass-card-premium:hover {
             border-color: rgba(255, 219, 60, 0.45);
@@ -92,25 +127,25 @@
 
         /* Accent text shadows (Vibrant) */
         .glow-text-primary {
-            text-shadow: 0 0 12px rgba(255, 51, 68, 0.6), 0 0 24px rgba(255, 51, 68, 0.3);
+            text-shadow: 0 0 12px rgba(var(--color-primary-rgb), 0.6), 0 0 24px rgba(var(--color-primary-rgb), 0.3);
         }
         .glow-text-gold {
             text-shadow: 0 0 12px rgba(255, 219, 60, 0.6), 0 0 24px rgba(255, 219, 60, 0.3);
         }
         .glow-text-pink {
-            text-shadow: 0 0 12px rgba(244, 63, 94, 0.6), 0 0 24px rgba(244, 63, 94, 0.3);
+            text-shadow: 0 0 12px rgba(var(--color-primary-rgb), 0.6), 0 0 24px rgba(var(--color-primary-rgb), 0.3);
         }
 
         /* Buttons Base Styling */
         .btn-primary {
-            background-color: #ff3344 !important;
-            color: #131313 !important;
+            background-color: var(--color-primary) !important;
+            color: var(--color-on-primary) !important;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(255, 51, 68, 0.25) !important;
+            box-shadow: 0 4px 15px rgba(var(--color-primary-rgb), 0.25) !important;
         }
         .btn-primary:hover {
-            background-color: #ff4d5d !important;
-            box-shadow: 0 0 30px rgba(255, 51, 68, 0.6), 0 4px 20px rgba(255, 51, 68, 0.4) !important;
+            background-color: var(--color-primary-hover) !important;
+            box-shadow: 0 0 30px rgba(var(--color-primary-rgb), 0.6), 0 4px 20px rgba(var(--color-primary-rgb), 0.4) !important;
         }
 
         /* Shimmering Button Hover Effect */
@@ -164,7 +199,7 @@
             border-radius: 3px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #ff3344;
+            background: var(--color-primary);
         }
 
         /* Set fixed Minecraft background image with dark overlay */
@@ -328,6 +363,35 @@
                             <path d="M23.498 6.163a3.003 3.003 0 00-2.11-2.107C19.53 3.5 12 3.5 12 3.5s-7.53 0-9.388.556a3.003 3.003 0 00-2.11 2.107C0 8.028 0 12 0 12s0 3.972.502 5.837a3.003 3.003 0 002.11 2.107C4.47 20.5 12 20.5 12 20.5s7.53 0 9.388-.556a3.003 3.003 0 002.11-2.107C24 15.972 24 12 24 12s0-3.972-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
                         </svg>
                     </a>
+                </div>
+
+                <!-- Theme Selector -->
+                <div class="relative inline-block text-left" id="theme-selector-container">
+                    <button onclick="toggleThemeDropdown()" class="p-2.5 rounded-lg bg-surface-container border border-outline-variant/30 hover:border-primary/50 text-on-surface-variant hover:text-primary transition-all active:scale-95 flex items-center justify-center" aria-label="Switch Theme" title="Switch Theme">
+                        <span class="material-symbols-outlined text-lg">palette</span>
+                    </button>
+                    <!-- Theme Dropdown Panel -->
+                    <div id="theme-dropdown" class="absolute right-0 mt-2 w-48 rounded-xl bg-surface-container border border-outline-variant/30 shadow-2xl p-3 space-y-2.5 transition-all duration-200 transform scale-95 opacity-0 pointer-events-none z-50">
+                        <p class="text-[9px] uppercase font-bold tracking-wider text-on-surface-variant/80 font-mono">Select Theme Accent</p>
+                        <div class="grid grid-cols-4 gap-2">
+                            <!-- Pink Theme -->
+                            <button onclick="setAccentTheme('pink')" title="Pink (Default)" class="w-8 h-8 rounded-full bg-[#ff3344] border-2 border-transparent hover:scale-110 active:scale-90 transition-all flex items-center justify-center shadow-lg shadow-pink-500/20">
+                                <span class="theme-check-icon hidden material-symbols-outlined text-[14px] text-white font-bold">check</span>
+                            </button>
+                            <!-- Lime Theme -->
+                            <button onclick="setAccentTheme('lime')" title="Lime Green" class="w-8 h-8 rounded-full bg-[#84cc16] border-2 border-transparent hover:scale-110 active:scale-90 transition-all flex items-center justify-center shadow-lg shadow-lime-500/20">
+                                <span class="theme-check-icon hidden material-symbols-outlined text-[14px] text-white font-bold">check</span>
+                            </button>
+                            <!-- Purple Theme -->
+                            <button onclick="setAccentTheme('purple')" title="Purple" class="w-8 h-8 rounded-full bg-[#a855f7] border-2 border-transparent hover:scale-110 active:scale-90 transition-all flex items-center justify-center shadow-lg shadow-purple-500/20">
+                                <span class="theme-check-icon hidden material-symbols-outlined text-[14px] text-white font-bold">check</span>
+                            </button>
+                            <!-- White Theme -->
+                            <button onclick="setAccentTheme('white')" title="White" class="w-8 h-8 rounded-full bg-[#ffffff] border border-outline-variant/30 hover:scale-110 active:scale-90 transition-all flex items-center justify-center shadow-lg shadow-white/10">
+                                <span class="theme-check-icon hidden material-symbols-outlined text-[14px] text-black font-bold">check</span>
+                            </button>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Cart Action -->
@@ -1497,6 +1561,10 @@
                 minecraftUser = cachedUser;
             }
 
+            // Load theme
+            const savedTheme = localStorage.getItem('roxsmp_accent_theme') || 'pink';
+            setAccentTheme(savedTheme);
+
             // Bind UI stats & initial navigation
             updateCartUI();
             updateUserNavUI();
@@ -2582,6 +2650,157 @@
                 submitBtn.disabled = false;
             }, 1500);
         }
+
+        // ==============================================
+        // UTILITIES: THEME SELECTOR ENGINE
+        // ==============================================
+        const themes = {
+            pink: {
+                primary: '#ff3344',
+                primaryRgb: '255, 51, 68',
+                primaryHover: '#ff4d5d',
+                primaryContainer: '#d91e2e',
+                onPrimary: '#ffffff',
+                onPrimaryContainer: '#ffebec',
+                pink50: '#fdf2f8',
+                pink100: '#fce7f3',
+                pink200: '#fbcfe8',
+                pink300: '#f9a8d4',
+                pink400: '#f472b6',
+                pink500: '#ec4899',
+                pink600: '#db2777',
+                pink700: '#be185d',
+                pink800: '#9d174d',
+                pink900: '#831843',
+                pink950: '#500724'
+            },
+            lime: {
+                primary: '#84cc16',
+                primaryRgb: '132, 204, 22',
+                primaryHover: '#a3e635',
+                primaryContainer: '#65a30d',
+                onPrimary: '#ffffff',
+                onPrimaryContainer: '#f7fee7',
+                pink50: '#f7fee7',
+                pink100: '#ecfccb',
+                pink200: '#d9f99d',
+                pink300: '#bef264',
+                pink400: '#a3e635',
+                pink500: '#84cc16',
+                pink600: '#65a30d',
+                pink700: '#4d7c0f',
+                pink800: '#3f6212',
+                pink900: '#365314',
+                pink950: '#1a2e05'
+            },
+            purple: {
+                primary: '#a855f7',
+                primaryRgb: '168, 85, 247',
+                primaryHover: '#c084fc',
+                primaryContainer: '#9333ea',
+                onPrimary: '#ffffff',
+                onPrimaryContainer: '#faf5ff',
+                pink50: '#faf5ff',
+                pink100: '#f3e8ff',
+                pink200: '#e9d5ff',
+                pink300: '#d8b4fe',
+                pink400: '#c084fc',
+                pink500: '#a855f7',
+                pink600: '#9333ea',
+                pink700: '#7e22ce',
+                pink800: '#6b21a8',
+                pink900: '#581c87',
+                pink950: '#3b0764'
+            },
+            white: {
+                primary: '#ffffff',
+                primaryRgb: '255, 255, 255',
+                primaryHover: '#f3f4f6',
+                primaryContainer: '#e5e7eb',
+                onPrimary: '#111827',
+                onPrimaryContainer: '#0f172a',
+                pink50: '#f8fafc',
+                pink100: '#f1f5f9',
+                pink200: '#e2e8f0',
+                pink300: '#cbd5e1',
+                pink400: '#94a3b8',
+                pink500: '#ffffff',
+                pink600: '#e2e8f0',
+                pink700: '#cbd5e1',
+                pink800: '#94a3b8',
+                pink900: '#475569',
+                pink950: '#0f172a'
+            }
+        };
+
+        function toggleThemeDropdown() {
+            const dropdown = document.getElementById('theme-dropdown');
+            if (!dropdown) return;
+            const isOpen = dropdown.classList.contains('opacity-100');
+            if (isOpen) {
+                dropdown.classList.add('opacity-0', 'pointer-events-none', 'scale-95');
+                dropdown.classList.remove('opacity-100', 'pointer-events-auto', 'scale-100');
+            } else {
+                dropdown.classList.remove('opacity-0', 'pointer-events-none', 'scale-95');
+                dropdown.classList.add('opacity-100', 'pointer-events-auto', 'scale-100');
+            }
+        }
+
+        function setAccentTheme(themeName) {
+            const theme = themes[themeName] || themes.pink;
+            const root = document.documentElement;
+            
+            // Set CSS custom variables
+            root.style.setProperty('--color-primary', theme.primary);
+            root.style.setProperty('--color-primary-rgb', theme.primaryRgb);
+            root.style.setProperty('--color-primary-hover', theme.primaryHover);
+            root.style.setProperty('--color-primary-container', theme.primaryContainer);
+            root.style.setProperty('--color-on-primary', theme.onPrimary);
+            root.style.setProperty('--color-on-primary-container', theme.onPrimaryContainer);
+            
+            // Set CSS pink variables mapping
+            root.style.setProperty('--color-pink-50', theme.pink50);
+            root.style.setProperty('--color-pink-100', theme.pink100);
+            root.style.setProperty('--color-pink-200', theme.pink200);
+            root.style.setProperty('--color-pink-300', theme.pink300);
+            root.style.setProperty('--color-pink-400', theme.pink400);
+            root.style.setProperty('--color-pink-500', theme.pink500);
+            root.style.setProperty('--color-pink-600', theme.pink600);
+            root.style.setProperty('--color-pink-700', theme.pink700);
+            root.style.setProperty('--color-pink-800', theme.pink800);
+            root.style.setProperty('--color-pink-900', theme.pink900);
+            root.style.setProperty('--color-pink-950', theme.pink950);
+            
+            // Update active check indicators in the dropdown
+            const buttons = document.querySelectorAll('#theme-dropdown button');
+            const themeNames = ['pink', 'lime', 'purple', 'white'];
+            
+            buttons.forEach((btn, idx) => {
+                const check = btn.querySelector('.theme-check-icon');
+                if (check) {
+                    if (themeNames[idx] === themeName) {
+                        check.classList.remove('hidden');
+                        btn.classList.add('border-white');
+                    } else {
+                        check.classList.add('hidden');
+                        btn.classList.remove('border-white');
+                    }
+                }
+            });
+            
+            // Save to localStorage
+            localStorage.setItem('roxsmp_accent_theme', themeName);
+        }
+
+        // Close dropdown when clicking outside
+        window.addEventListener('click', (e) => {
+            const container = document.getElementById('theme-selector-container');
+            const dropdown = document.getElementById('theme-dropdown');
+            if (container && dropdown && !container.contains(e.target)) {
+                dropdown.classList.add('opacity-0', 'pointer-events-none', 'scale-95');
+                dropdown.classList.remove('opacity-100', 'pointer-events-auto', 'scale-100');
+            }
+        });
 
         // ==============================================
         // AI ASSISTANT CORE LOGIC
